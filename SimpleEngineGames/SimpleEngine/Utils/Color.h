@@ -1,4 +1,5 @@
 #pragma once
+#include <SDL.h>
 
 struct Color
 {
@@ -17,5 +18,13 @@ struct Color
 	Color(int rP, int gP, int bP, int aP) : r{ rP }, g{ gP }, b{ bP }, a{ aP } {}
 
 	void set(int rP, int gP, int bP, int aP);
+
+	SDL_Color toSDLColor()
+	{
+		return SDL_Color{ static_cast<uint8_t>(r), 
+			static_cast<uint8_t>(g),
+			static_cast<uint8_t>(b),
+			static_cast<uint8_t>(a)};
+	}
 };
 

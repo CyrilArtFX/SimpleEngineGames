@@ -6,7 +6,9 @@
 #include "Utils/Vector2.h"
 #include "Texture.h"
 #include "Utils/Maths.h"
+#include "Utils/Font.h"
 #include "ActorsComponents/Components/DrawComponent.h"
+#include "ActorsComponents/Components/DrawTextComponent.h"
 #include "Game.h"
 #include <iostream>
 #include <SDL_ttf.h>
@@ -37,6 +39,11 @@ bool Renderer::initialize(Window& window, Color backgroundColorP)
 		Log::error(LogCategory::Video, "Unable to initialize SDL_image");
 		return false;
 	}
+	if (TTF_Init() == -1)
+	{
+		Log::error(LogCategory::Video, "Unable to initialize SDL_ttf");
+		return false;
+	}
 	backgroundColor = backgroundColorP;
 	return true;
 }
@@ -54,22 +61,7 @@ void Renderer::draw()
 
 void Renderer::endDraw()
 {
-	TTF_Font* pixelFont = TTF_OpenFont("Sans.ttf", 24);
-	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(pixelFont, "test", SDL_Color{ 255, 255, 255 });
-	SDL_Texture* message = SDL_CreateTextureFromSurface(SDLRenderer, surfaceMessage);
-	SDL_Rect messageRect = SDL_Rect{ 50, 50, 100, 100 };
-	SDL_RenderCopy(SDLRenderer, message, NULL, &messageRect);
-
 	SDL_RenderPresent(SDLRenderer);
-}
-
-void Renderer::drawRect(const Rectangle& rect, Color color)
-{
-	Vector2 camPos = Game::instance().getCamera().getCamPos();
-	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
-	Rectangle test = Rectangle{ rect.x - camPos.x, rect.y - camPos.y, rect.width, rect.height };
-	auto drawRect = test.toSDLRect();
-	SDL_RenderFillRect(SDLRenderer, &drawRect);
 }
 
 void Renderer::drawDrawComponents()
@@ -78,6 +70,24 @@ void Renderer::drawDrawComponents()
 	{
 		drawComponent->draw(*this);
 	}
+}
+
+void Renderer::drawRect(const Actor& actor, const Rectangle& rect, Color color)
+{
+	Vector2 camPos = Game::instance().getCamera().getCamPos();
+	SDL_Rect drawRect;
+	Vector2 position = actor.getPosition() - camPos;
+	float scale = actor.getScale();
+	
+	drawRect.w = static_cast<int>(rect.width * scale);
+	drawRect.h = static_cast<int>(rect.height * scale);
+
+	drawRect.x = static_cast<int>(rect.x + position.x);
+	drawRect.y = static_cast<int>(rect.y + position.y);
+
+
+	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
+	SDL_RenderFillRect(SDLRenderer, &drawRect);
 }
 
 void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip) const
@@ -102,6 +112,26 @@ void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcR
 	}
 
 	SDL_RenderCopyEx(SDLRenderer, tex.toSDLTexture(), srcSDL, &dstRect, -Maths::toDegrees(rotation), nullptr, SDL_FLIP_NONE);
+	delete srcSDL;
+}
+
+void Renderer::drawText(const Actor& actor, const class DrawTextComponent* text, int width, int height)
+{
+	Vector2 camPos = Game::instance().getCamera().getCamPos();
+	SDL_Rect dstRect;
+	Vector2 position = actor.getPosition() - camPos;
+	float rotation = actor.getRotation();
+	float scale = actor.getScale();
+
+	dstRect.w = static_cast<int>(scale * width);
+	dstRect.h = static_cast<int>(scale * height);
+
+	dstRect.x = static_cast<int>(position.x);
+	dstRect.y = static_cast<int>(position.y);
+
+	SDL_Rect* srcSDL = nullptr;
+
+	SDL_RenderCopyEx(SDLRenderer, text->toSDLTexture(), srcSDL, &dstRect, -Maths::toDegrees(rotation), nullptr, SDL_FLIP_NONE);
 	delete srcSDL;
 }
 

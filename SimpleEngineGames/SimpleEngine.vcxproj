@@ -26,6 +26,7 @@
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\CircleCollisionComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawRectComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawTextComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\InputMoveComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\RectangleCollisionComponent.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="SimpleEngine\Texture.cpp" />
     <ClCompile Include="SimpleEngine\Timer.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Color.cpp" />
+    <ClCompile Include="SimpleEngine\Utils\Font.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Log.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Random.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Rectangle.cpp" />
@@ -52,6 +54,7 @@
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\CircleCollisionComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawRectComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawTextComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\InputMoveComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\RectangleCollisionComponent.h" />
@@ -64,6 +67,7 @@
     <ClInclude Include="SimpleEngine\Texture.h" />
     <ClInclude Include="SimpleEngine\Timer.h" />
     <ClInclude Include="SimpleEngine\Utils\Color.h" />
+    <ClInclude Include="SimpleEngine\Utils\Font.h" />
     <ClInclude Include="SimpleEngine\Utils\Log.h" />
     <ClInclude Include="SimpleEngine\Utils\Maths.h" />
     <ClInclude Include="SimpleEngine\Utils\Random.h" />
