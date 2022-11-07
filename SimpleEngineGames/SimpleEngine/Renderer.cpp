@@ -72,6 +72,71 @@ void Renderer::drawDrawComponents()
 	}
 }
 
+void Renderer::drawDebugRect(const Actor& actor, const Rectangle& rect, Color color)
+{
+	Vector2 camPos = Game::instance().getCamera().getCamPos();
+	SDL_Rect drawRect;
+	Vector2 position = actor.getPosition() - camPos;
+	float scale = actor.getScale();
+
+	drawRect.w = static_cast<int>(rect.width * scale);
+	drawRect.h = static_cast<int>(rect.height * scale);
+
+	drawRect.x = static_cast<int>(rect.x + position.x);
+	drawRect.y = static_cast<int>(rect.y + position.y);
+
+
+	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
+	SDL_RenderDrawRect(SDLRenderer, &drawRect);
+
+}
+
+void Renderer::drawDebugCircle(const Actor& actor, const Vector2& center, int radius, Color color)
+{
+	//  midpoint circle algorithm 
+	//  (found on https://stackoverflow.com/questions/38334081/howto-draw-circles-arcs-and-vector-graphics-in-sdl)
+	Vector2 camPos = Game::instance().getCamera().getCamPos();
+	const int centreX = static_cast<int>(actor.getPosition().x + center.x - camPos.x);
+	const int centreY = static_cast<int>(actor.getPosition().y + center.y - camPos.y);
+
+	radius *= actor.getScale();
+	const int diameter = radius * 2;
+
+	int x = radius - 1;
+	int y = 0;
+	int tx = 1;
+	int ty = 1;
+	int error = tx - diameter;
+
+	while (x >= y)
+	{
+		SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
+
+		SDL_RenderDrawPoint(SDLRenderer, centreX + x, centreY - y);
+		SDL_RenderDrawPoint(SDLRenderer, centreX + x, centreY + y);
+		SDL_RenderDrawPoint(SDLRenderer, centreX - x, centreY - y);
+		SDL_RenderDrawPoint(SDLRenderer, centreX - x, centreY + y);
+		SDL_RenderDrawPoint(SDLRenderer, centreX + y, centreY - x);
+		SDL_RenderDrawPoint(SDLRenderer, centreX + y, centreY + x);
+		SDL_RenderDrawPoint(SDLRenderer, centreX - y, centreY - x);
+		SDL_RenderDrawPoint(SDLRenderer, centreX - y, centreY + x);
+
+		if (error <= 0)
+		{
+			y++;
+			error += ty;
+			ty += 2;
+		}
+
+		if (error > 0)
+		{
+			x--;
+			tx += 2;
+			error += tx - diameter;
+		}
+	}
+}
+
 void Renderer::drawRect(const Actor& actor, const Rectangle& rect, Color color)
 {
 	Vector2 camPos = Game::instance().getCamera().getCamPos();
@@ -88,6 +153,7 @@ void Renderer::drawRect(const Actor& actor, const Rectangle& rect, Color color)
 
 	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
 	SDL_RenderFillRect(SDLRenderer, &drawRect);
+
 }
 
 void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip) const
