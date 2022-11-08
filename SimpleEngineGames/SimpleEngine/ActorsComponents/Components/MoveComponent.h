@@ -1,22 +1,23 @@
 #pragma once
 #include "../Component.h"
+#include "../../Utils/Vector2.h"
 
 class MoveComponent : public Component
 {
 public:
-	MoveComponent(Actor* ownerP, int updateOrder = 10);
+	MoveComponent(Actor* ownerP, int updateOrderP = 10) : Component(ownerP, updateOrderP) {}
 	MoveComponent() = delete;
 	MoveComponent(const MoveComponent&) = delete;
 	MoveComponent& operator=(const MoveComponent&) = delete;
 
-	float getForwardSpeed() const { return forwardSpeed; }
-	void setForwardSpeed(float forwardSpeedP);
-	float getAngularSpeed() const { return angularSpeed; }
-	void setAngularSpeed(float angularSpeedP);
+	Vector2 getVelocity() const { return velocity; }
+	void setVelocity(Vector2 velocityP);
+	float getSpeed() const { return speed; }
+	void setSpeed(float speedP);
 
 	void update(float dt) override;
 
 protected:
-	float forwardSpeed{ 0.0f };
-	float angularSpeed{ 0.0f };
+	Vector2 velocity{ Vector2::zero };
+	float speed{ 0.0f };
 };

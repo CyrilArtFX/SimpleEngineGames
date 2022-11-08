@@ -10,6 +10,7 @@ struct Color
 
 	static const Color black;
 	static const Color white;
+	static const Color grey;
 	static const Color red;
 	static const Color green;
 	static const Color blue;
@@ -26,5 +27,7 @@ struct Color
 			static_cast<uint8_t>(b),
 			static_cast<uint8_t>(a)};
 	}
+
+	static Color HSV(float h, float s, float v);
 };
 

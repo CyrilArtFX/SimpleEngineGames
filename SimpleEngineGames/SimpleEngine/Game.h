@@ -51,6 +51,7 @@ private:
 	Scene* scene{ nullptr };
 	bool isRunning{ true };
 
+	bool debug{ false };
 	bool isUpdatingActors{ false };
 	vector<Actor*> actors;
 	vector<Actor*> pendingActors;

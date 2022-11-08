@@ -2,6 +2,7 @@
 #include <SDL_stdinc.h>
 
 class Actor;
+class Renderer;
 
 class Component
 {
@@ -16,6 +17,7 @@ public:
 
 	virtual void update(float dt);
 	virtual void processInput(const Uint8* keyState);
+	virtual void debug(Renderer& renderer);
 
 protected:
 	Actor& owner;

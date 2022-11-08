@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Timer.h"
+#include "Utils/Log.h"
 
 bool Game::initialize(const char* windowName, int windowWidth, int windowHeight, Color backgroundColor)
 {
@@ -59,6 +60,19 @@ void Game::processInput()
 		case SDL_QUIT:
 			isRunning = false;
 			break;
+		case SDL_KEYDOWN:
+			if (event.key.keysym.scancode == SDL_SCANCODE_K)
+			{
+				if (debug)
+				{
+					Log::info("Disable debug mode");
+				}
+				else
+				{
+					Log::info("Enable debug mode");
+				}
+				debug = !debug;
+			}
 		}
 	}
 
@@ -144,5 +158,12 @@ void Game::render()
 {
 	renderer.beginDraw();
 	renderer.draw();
+	if (debug)
+	{
+		for (auto actor : actors)
+		{
+			actor->debugComponents(renderer);
+		}
+	}
 	renderer.endDraw();
 }

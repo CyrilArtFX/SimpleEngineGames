@@ -1,81 +1,68 @@
 #include "InputMoveComponent.h"
-#include "../../Utils/Maths.h"
-#include "../Actor.h"
-#include "RectangleCollisionComponent.h"
-#include "../../Game.h"
-#include <iostream>
-
-InputMoveComponent::InputMoveComponent(Actor* ownerP, CircleCollisionComponent* collisionP) : MoveComponent(ownerP), collision(collisionP)
-{
-}
 
 void InputMoveComponent::processInput(const Uint8* keyState)
 {
-	float forwardSpeed = 0.0f;
-	if (keyState[forwardKey])
+	if (enableYAxis)
 	{
-		forwardSpeed += maxForwardSpeed;
+		velocity.y = 0.0f;
+		if (keyState[forwardKey])
+		{
+			velocity.y = -1.0f;
+		}
+		else if (keyState[backKey])
+		{
+			velocity.y = 1.0f;
+		}
 	}
-	if (keyState[backKey])
-	{
-		forwardSpeed -= maxForwardSpeed;
-	}
-	setForwardSpeed(forwardSpeed);
 
-	float angularSpeed = 0.0f;
-	if (keyState[clockwiseKey])
+	if (enableXAxis)
 	{
-		angularSpeed -= maxAngularSpeed;
+		velocity.x = 0.0f;
+		if (keyState[rightKey])
+		{
+			velocity.x = 1.0f;
+		}
+		else if (keyState[leftKey])
+		{
+			velocity.x = -1.0f;
+		}
 	}
-	if (keyState[counterClockwiseKey])
-	{
-		angularSpeed += maxAngularSpeed;
-	}
-	setAngularSpeed(angularSpeed);
 }
 
-void InputMoveComponent::update(float dt)
+void InputMoveComponent::setEnableXMovement(bool enable)
 {
-	if (!Maths::nearZero(angularSpeed))
+	enableXAxis = enable;
+	if (!enableXAxis)
 	{
-		float newRotation = owner.getRotation() + angularSpeed * dt;
-		owner.setRotation(newRotation);
-	}
-
-	if (!Maths::nearZero(forwardSpeed))
-	{
-		Vector2 newPosition = owner.getPosition() + owner.getForward() * forwardSpeed * dt;
-		owner.setPosition(newPosition);
+		velocity.x = 0.0f;
 	}
 }
 
-
-void InputMoveComponent::setMaxForwardSpeed(float maxForwardSpeedP)
+void InputMoveComponent::setEnableYMovement(bool enable)
 {
-	maxForwardSpeed = maxForwardSpeedP;
+	enableYAxis = enable;
+	if (!enableYAxis)
+	{
+		velocity.y = 0.0f;
+	}
 }
 
-void InputMoveComponent::setMaxAngularSpeed(float maxAngularSpeedP)
-{
-	maxAngularSpeed = maxAngularSpeedP;
-}
-
-void InputMoveComponent::setForwardKey(int key)
+void InputMoveComponent::setForwardKey(SDL_Scancode key)
 {
 	forwardKey = key;
 }
 
-void InputMoveComponent::setBackKey(int key)
+void InputMoveComponent::setBackKey(SDL_Scancode key)
 {
 	backKey = key;
 }
 
-void InputMoveComponent::setClockwiseKey(int key)
+void InputMoveComponent::setRightKey(SDL_Scancode key)
 {
-	clockwiseKey = key;
+	rightKey = key;
 }
 
-void InputMoveComponent::setCounterClockwiseKey(int key)
+void InputMoveComponent::setLeftKey(SDL_Scancode key)
 {
-	counterClockwiseKey = key;
+	leftKey = key;
 }

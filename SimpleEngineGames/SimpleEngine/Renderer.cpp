@@ -9,6 +9,7 @@
 #include "Utils/Font.h"
 #include "ActorsComponents/Components/DrawComponent.h"
 #include "ActorsComponents/Components/DrawTextComponent.h"
+#include "ActorsComponents/Components/CollisionComponent.h"
 #include "Game.h"
 #include <iostream>
 #include <SDL_ttf.h>

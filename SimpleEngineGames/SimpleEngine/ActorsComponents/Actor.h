@@ -6,6 +6,7 @@ using std::vector;
 
 class Game;
 class Component;
+class Renderer;
 
 class Actor
 {
@@ -35,6 +36,7 @@ public:
 
 	void update(float dt);
 	void updateComponents(float dt);
+	void debugComponents(Renderer& renderer);
 	virtual void updateActor(float dt);
 	void addComponent(Component* component);
 	void removeComponent(Component* component);

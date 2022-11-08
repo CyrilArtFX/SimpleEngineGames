@@ -1,15 +1,21 @@
 #include "CollisionComponent.h"
+#include "../../Game.h"
 
-CollisionComponent::CollisionComponent(Actor* owner) : Component(owner)
-{
-}
-
-bool intersectWithPoint(const Vector2& point)
+bool CollisionComponent::intersectWithPoint(const Vector2& point) const
 {
 	return false;
 }
 
-bool intersectWithCollison(const CollisionComponent& collision)
+bool CollisionComponent::intersectWithCircleCollision(const CircleCollisionComponent& collision) const
 {
 	return false;
+}
+
+bool CollisionComponent::intersectWithRectCollision(const RectangleCollisionComponent& collision) const
+{
+	return false;
+}
+
+void CollisionComponent::drawDebug(Renderer& renderer, Color debugColor)
+{
 }

@@ -1,9 +1,7 @@
 #include "CircleCollisionComponent.h"
 #include "../Actor.h"
-
-CircleCollisionComponent::CircleCollisionComponent(Actor* owner) : Component(owner)
-{
-}
+#include "../../Game.h"
+#include "../../Utils/Log.h"
 
 float CircleCollisionComponent::getRadius() const
 {
@@ -15,17 +13,52 @@ void CircleCollisionComponent::setRadius(float radiusP)
 	radius = radiusP;
 }
 
-const Vector2 CircleCollisionComponent::getCenter() const
+void CircleCollisionComponent::setOffset(Vector2 offsetP)
 {
-	return owner.getPosition();
+	offset = offsetP;
 }
 
-bool CircleCollisionComponent::intersect(const Vector2 targetPos, const CircleCollisionComponent& targetCol)
+const Vector2 CircleCollisionComponent::getCenter() const
 {
-	Vector2 aCenter = getCenter();
-	Vector2 bCenter = targetPos;
-	Vector2 ab = bCenter - aCenter;
-	float distSq = ab.lengthSq();
-	float sumOfRadius = getRadius() + targetCol.getRadius();
-	return distSq <= sumOfRadius * sumOfRadius;
+	return owner.getPosition() + offset;
+}
+
+bool CircleCollisionComponent::intersectWithPoint(const Vector2& point) const
+{
+	return (getCenter() - point).lengthSq() <= getRadius() * getRadius();
+}
+
+bool CircleCollisionComponent::intersectWithCircleCollision(const CircleCollisionComponent& collision) const
+{
+	return (getCenter() - collision.getCenter()).lengthSq() 
+		<= getRadius() * getRadius() + collision.getRadius() * collision.getRadius();
+}
+
+bool CircleCollisionComponent::intersectWithRectCollision(const RectangleCollisionComponent& collision) const
+{
+	return false;
+}
+
+void CircleCollisionComponent::debug(Renderer& renderer)
+{
+	int mousePosX, mousePosY;
+	SDL_GetMouseState(&mousePosX, &mousePosY);
+	Vector2 mousePos = Vector2{
+		mousePosX + owner.getGame().getCamera().getCamPos().x,
+		mousePosY + owner.getGame().getCamera().getCamPos().y
+	};
+
+	if (intersectWithPoint(mousePos))
+	{
+		drawDebug(renderer, Color::white);
+	}
+	else
+	{
+		drawDebug(renderer, Color::grey);
+	}
+}
+
+void CircleCollisionComponent::drawDebug(Renderer& renderer, Color debugColor)
+{
+	renderer.drawDebugCircle(owner, offset, radius, debugColor);
 }

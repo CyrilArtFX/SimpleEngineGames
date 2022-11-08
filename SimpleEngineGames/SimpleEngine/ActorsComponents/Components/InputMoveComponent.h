@@ -8,31 +8,29 @@
 class InputMoveComponent : public MoveComponent
 {
 public:
-	InputMoveComponent(Actor* ownerP, CircleCollisionComponent* collisionP);
+	InputMoveComponent(Actor* ownerP, int updateOrderP = 10) : MoveComponent(ownerP, updateOrderP) {}
 	InputMoveComponent() = delete;
 	InputMoveComponent(const InputMoveComponent&) = delete;
 	InputMoveComponent& operator=(const InputMoveComponent&) = delete;
 
 	void processInput(const Uint8* keyState);
 
-	void setMaxForwardSpeed(float maxForwardSpeedP);
-	void setMaxAngularSpeed(float maxAngularSpeedP);
+	void setEnableXMovement(bool enable);
+	bool getEnableXMovement() const { return enableXAxis; }
+	void setEnableYMovement(bool enable);
+	bool getEnableYMovement() const { return enableYAxis; }
 
-	void setForwardKey(int key);
-	void setBackKey(int key);
-	void setClockwiseKey(int key);
-	void setCounterClockwiseKey(int key);
-
-	void update(float dt) override;
+	void setForwardKey(SDL_Scancode key);
+	void setBackKey(SDL_Scancode key);
+	void setRightKey(SDL_Scancode key);
+	void setLeftKey(SDL_Scancode key);
 
 private:
-	float maxForwardSpeed{ 0.0f };
-	float maxAngularSpeed{ 0.0f };
+	bool enableXAxis{ true };
+	bool enableYAxis{ true };
 
-	int forwardKey{ SDL_SCANCODE_W };
-	int backKey{ SDL_SCANCODE_S };
-	int clockwiseKey{ SDL_SCANCODE_D };
-	int counterClockwiseKey{ SDL_SCANCODE_A };
-
-	CircleCollisionComponent* collision{ nullptr };
+	SDL_Scancode forwardKey{ SDL_SCANCODE_W };
+	SDL_Scancode backKey{ SDL_SCANCODE_S };
+	SDL_Scancode rightKey{ SDL_SCANCODE_D };
+	SDL_Scancode leftKey{ SDL_SCANCODE_A };
 };

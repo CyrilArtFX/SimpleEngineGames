@@ -51,6 +51,14 @@ void Actor::updateComponents(float dt)
 	}
 }
 
+void Actor::debugComponents(Renderer& renderer) 
+{
+	for (auto component : components)
+	{
+		component->debug(renderer);
+	}
+}
+
 void Actor::updateActor(float dt)
 {
 }

@@ -1,26 +1,21 @@
 #pragma once
 #include "../Component.h"
 #include "../../Utils/Vector2.h"
+#include "../../Renderer.h"
 
-enum CollisionType
-{
-	Circle,
-	Rectangle,
-	Null
-};
 
 class CollisionComponent : public Component
 {
 public:
-	CollisionComponent(Actor* owner);
+	CollisionComponent(Actor* ownerP) : Component(ownerP) {}
 	CollisionComponent() = delete;
 	CollisionComponent(const CollisionComponent&) = delete;
 	CollisionComponent& operator=(const CollisionComponent&) = delete;
 
-	virtual bool intersectWithPoint(const Vector2& point);
-	virtual bool intersectWithCollision(const CollisionComponent& collision);
+	virtual bool intersectWithPoint(const Vector2& point) const;
+	virtual bool intersectWithCircleCollision(const class CircleCollisionComponent& collision) const;
+	virtual bool intersectWithRectCollision(const class RectangleCollisionComponent& collision) const;
 
-private:
-	CollisionType collisionType{ CollisionType::Null };
+	virtual void drawDebug(Renderer& renderer, Color debugColor);
 };
 

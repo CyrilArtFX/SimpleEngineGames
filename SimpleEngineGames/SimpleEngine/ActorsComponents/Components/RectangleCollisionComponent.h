@@ -1,20 +1,29 @@
 #pragma once
-#include "../Component.h"
+#include "CollisionComponent.h"
 #include "../../Utils/Rectangle.h"
 #include "../../Utils/Vector2.h"
 
-class RectangleCollisionComponent : public Component
+//  note : rectangle collision doesn't support actor rotation                                                                                                                                          (aled)
+
+class RectangleCollisionComponent : public CollisionComponent
 {
 public:
-	RectangleCollisionComponent(Actor* owner);
+	RectangleCollisionComponent(Actor* ownerP) : CollisionComponent(ownerP) {}
 	RectangleCollisionComponent() = delete;
 	RectangleCollisionComponent(const RectangleCollisionComponent&) = delete;
 	RectangleCollisionComponent& operator=(const RectangleCollisionComponent&) = delete;
 
+	
 	Rectangle getRectangle() const { return rectangle; }
+	Rectangle getTransformedRectangle() const;
 	void setRectangle(Rectangle rectangleP);
 
-	bool intersect(const Vector2 targetPos);
+	bool intersectWithPoint(const Vector2& point) const override;
+	bool intersectWithCircleCollision(const class CircleCollisionComponent& collision) const override;
+	bool intersectWithRectCollision(const class RectangleCollisionComponent& collision) const override;
+
+	void debug(Renderer& renderer) override;
+	void drawDebug(Renderer& renderer, Color debugColor) override;
 
 private:
 	Rectangle rectangle{ Rectangle::nullRect };

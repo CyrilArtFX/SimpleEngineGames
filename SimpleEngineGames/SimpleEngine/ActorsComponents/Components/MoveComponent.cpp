@@ -2,31 +2,25 @@
 #include "../../Utils/Maths.h"
 #include "../Actor.h"
 
-MoveComponent::MoveComponent(Actor* ownerP, int updateOrderP) : Component(ownerP, updateOrderP)
+void MoveComponent::setVelocity(Vector2 velocityP) 
 {
+	velocity = velocityP;
 }
 
-void MoveComponent::setForwardSpeed(float forwardSpeedP)
+void MoveComponent::setSpeed(float speedP)
 {
-	forwardSpeed = forwardSpeedP;
-}
-
-void MoveComponent::setAngularSpeed(float angularSpeedP)
-{
-	angularSpeed = angularSpeedP;
+	speed = speedP;
 }
 
 void MoveComponent::update(float dt)
 {
-	if (!Maths::nearZero(angularSpeed))
+	if (!Maths::nearZero(speed))
 	{
-		float newRotation = owner.getRotation() + angularSpeed * dt;
-		owner.setRotation(newRotation);
-	}
-
-	if (!Maths::nearZero(forwardSpeed))
-	{
-		Vector2 newPosition = owner.getPosition() + owner.getForward() * forwardSpeed * dt;
+		if (!Maths::nearZero(velocity.lengthSq()))
+		{
+			velocity.normalize();
+		}
+		Vector2 newPosition = owner.getPosition() + velocity * speed * dt;
 		owner.setPosition(newPosition);
 	}
 }
