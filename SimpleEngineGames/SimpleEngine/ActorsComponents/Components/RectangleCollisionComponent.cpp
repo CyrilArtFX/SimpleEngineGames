@@ -61,6 +61,18 @@ bool RectangleCollisionComponent::intersectWithRectCollision(const RectangleColl
 		|| collision.intersectWithPoint(Vector2{ scaledRect1.x, scaledRect1.y });
 }
 
+bool RectangleCollisionComponent::intersectWithHeight(const float height) const
+{
+	Rectangle scaledRect = getTransformedRectangle();
+	return height >= scaledRect.y && height <= scaledRect.y + scaledRect.height;
+}
+
+bool RectangleCollisionComponent::intersectWithWidth(const float width) const
+{
+	Rectangle scaledRect = getTransformedRectangle();
+	return width >= scaledRect.x && width <= scaledRect.x + scaledRect.width;
+}
+
 void RectangleCollisionComponent::debug(Renderer& renderer)
 {
 	int mousePosX, mousePosY;

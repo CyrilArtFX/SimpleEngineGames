@@ -40,6 +40,9 @@ public:
 	Renderer& getRenderer() { return renderer; }
 	Camera& getCamera() { return camera; }
 
+	int getScreenWidth();
+	int getScreenHeight();
+
 private:
 	void processInput();
 	void update(float dt);

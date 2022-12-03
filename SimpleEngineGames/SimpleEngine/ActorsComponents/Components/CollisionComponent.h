@@ -1,7 +1,7 @@
 #pragma once
 #include "../Component.h"
-#include "../../Utils/Vector2.h"
-#include "../../Renderer.h"
+#include <SimpleEngine/Utils/Vector2.h>
+#include <SimpleEngine/Renderer.h>
 
 
 class CollisionComponent : public Component
@@ -15,6 +15,9 @@ public:
 	virtual bool intersectWithPoint(const Vector2& point) const;
 	virtual bool intersectWithCircleCollision(const class CircleCollisionComponent& collision) const;
 	virtual bool intersectWithRectCollision(const class RectangleCollisionComponent& collision) const;
+
+	virtual bool intersectWithHeight(const float height) const;
+	virtual bool intersectWithWidth(const float width) const;
 
 	virtual void drawDebug(Renderer& renderer, Color debugColor);
 };

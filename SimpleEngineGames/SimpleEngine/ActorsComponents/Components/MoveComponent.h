@@ -16,8 +16,10 @@ public:
 	void setSpeed(float speedP);
 
 	void update(float dt) override;
+	void revertLastMovement(bool revertOnlyX, bool revertOnlyY);
 
 protected:
 	Vector2 velocity{ Vector2::zero };
 	float speed{ 0.0f };
+	Vector2 actorPosBeforeMovement;
 };

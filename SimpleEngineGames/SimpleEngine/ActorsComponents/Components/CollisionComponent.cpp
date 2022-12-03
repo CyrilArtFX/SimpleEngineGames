@@ -1,5 +1,5 @@
 #include "CollisionComponent.h"
-#include "../../Game.h"
+#include <SimpleEngine/Game.h>
 
 bool CollisionComponent::intersectWithPoint(const Vector2& point) const
 {
@@ -12,6 +12,16 @@ bool CollisionComponent::intersectWithCircleCollision(const CircleCollisionCompo
 }
 
 bool CollisionComponent::intersectWithRectCollision(const RectangleCollisionComponent& collision) const
+{
+	return false;
+}
+
+bool CollisionComponent::intersectWithHeight(const float height) const
+{
+	return false;
+}
+
+bool CollisionComponent::intersectWithWidth(const float width) const
 {
 	return false;
 }

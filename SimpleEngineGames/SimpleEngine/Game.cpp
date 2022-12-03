@@ -154,6 +154,16 @@ void Game::removeActor(Actor* actor)
 	}
 }
 
+int Game::getScreenWidth()
+{
+	return window.getWidth();
+}
+
+int Game::getScreenHeight()
+{
+	return window.getHeight();
+}
+
 void Game::render()
 {
 	renderer.beginDraw();

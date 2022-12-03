@@ -20,6 +20,9 @@ public:
 	bool intersectWithCircleCollision(const class CircleCollisionComponent& collision) const override;
 	bool intersectWithRectCollision(const class RectangleCollisionComponent& collision) const override;
 
+	bool intersectWithHeight(const float height) const override;
+	bool intersectWithWidth(const float width) const override;
+
 	void debug(Renderer& renderer) override;
 	void drawDebug(Renderer& renderer, Color debugColor) override;
 

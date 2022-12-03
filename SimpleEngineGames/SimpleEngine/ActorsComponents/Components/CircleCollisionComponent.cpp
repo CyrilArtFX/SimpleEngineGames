@@ -40,6 +40,20 @@ bool CircleCollisionComponent::intersectWithRectCollision(const RectangleCollisi
 	return collision.intersectWithCircleCollision(*this);
 }
 
+bool CircleCollisionComponent::intersectWithHeight(const float height) const
+{
+	float centerY = getCenter().y;
+	float circleHeight = getRadius();
+	return height >= centerY - circleHeight && height <= centerY + circleHeight;
+}
+
+bool CircleCollisionComponent::intersectWithWidth(const float width) const
+{
+	float centerX = getCenter().x;
+	float circleWidth = getRadius();
+	return width >= centerX - circleWidth && width <= centerX + circleWidth;
+}
+
 void CircleCollisionComponent::debug(Renderer& renderer)
 {
 	int mousePosX, mousePosY;
