@@ -1,7 +1,7 @@
 #include "Actor.h"
 #include <algorithm>
-#include "../Utils/Maths.h"
-#include "../Game.h"
+#include <SimpleEngine/Utils/Maths.h>
+#include <SimpleEngine/Game.h>
 #include "Component.h"
 
 Actor::Actor() : game(Game::instance())

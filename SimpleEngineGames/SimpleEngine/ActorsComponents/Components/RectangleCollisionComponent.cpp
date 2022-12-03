@@ -1,7 +1,9 @@
 #include "RectangleCollisionComponent.h"
 #include "../Actor.h"
-#include "../../Game.h"
-#include "../../Utils/Log.h"
+#include "CircleCollisionComponent.h"
+#include <SimpleEngine/Game.h>
+#include <SimpleEngine/Utils/Log.h>
+#include <SimpleEngine/Utils/Maths.h>
 
 Rectangle RectangleCollisionComponent::getTransformedRectangle() const
 {
@@ -27,7 +29,24 @@ bool RectangleCollisionComponent::intersectWithPoint(const Vector2& point) const
 
 bool RectangleCollisionComponent::intersectWithCircleCollision(const CircleCollisionComponent& collision) const
 {
-	return false;
+	Rectangle scaledRect = getTransformedRectangle();
+	float halfWidth = scaledRect.width / 2;
+	float halfHeight = scaledRect.height / 2;
+	float circleRadius = collision.getRadius();
+	Vector2 circleCenter = collision.getCenter();
+
+	Vector2 rectCenter = Vector2{ scaledRect.x + halfWidth, scaledRect.y + halfHeight };
+	Vector2 circleDistance = Vector2{ fabs(circleCenter.x - rectCenter.x), fabs(circleCenter.y - rectCenter.y) };
+
+	if (circleDistance.x > (halfWidth + circleRadius)) return false;
+	if (circleDistance.y > (halfHeight + circleRadius)) return false;
+
+	if (circleDistance.x <= (halfWidth)) return true;
+	if (circleDistance.y <= (halfHeight)) return true;
+
+	float cornerDistanceSq = (circleDistance.x - halfWidth) * (circleDistance.x - halfWidth) 
+		+ (circleDistance.y - halfHeight) * (circleDistance.y - halfHeight);
+	return (cornerDistanceSq <= (circleRadius * circleRadius));
 }
 
 bool RectangleCollisionComponent::intersectWithRectCollision(const RectangleCollisionComponent& collision) const

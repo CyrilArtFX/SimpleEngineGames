@@ -1,6 +1,6 @@
 #pragma once
 #include "DrawComponent.h"
-#include "../../Texture.h"
+#include <SimpleEngine/Texture.h>
 
 class DrawSpriteComponent : public DrawComponent
 {

@@ -1,7 +1,7 @@
 #pragma once
 #include "MoveComponent.h"
 #include "CircleCollisionComponent.h"
-#include "../../Utils/Vector2.h"
+#include <SimpleEngine/Utils/Vector2.h>
 #include <SDL_stdinc.h>
 #include <SDL_scancode.h>
 

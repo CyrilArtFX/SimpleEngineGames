@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "SDL_stdinc.h"
-#include "../Utils/Vector2.h"
+#include <SimpleEngine/Utils/Vector2.h>
 using std::vector;
 
 class Game;

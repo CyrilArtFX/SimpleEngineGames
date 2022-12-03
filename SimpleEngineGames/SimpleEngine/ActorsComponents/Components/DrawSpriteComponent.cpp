@@ -1,5 +1,5 @@
 #include "DrawSpriteComponent.h"
-#include "../../Utils/Rectangle.h"
+#include <SimpleEngine/Utils/Rectangle.h>
 
 DrawSpriteComponent::DrawSpriteComponent(Actor* ownerP, Texture& textureP, int drawOrderP) :
 	DrawComponent(ownerP, drawOrderP), texture(textureP), texWidth(textureP.getWidth()), texHeight(textureP.getHeight())

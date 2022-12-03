@@ -1,5 +1,5 @@
 #include "DrawTextComponent.h"
-#include "../../Game.h"
+#include <SimpleEngine/Game.h>
 
 DrawTextComponent::DrawTextComponent(Actor* ownerP, Font* fontP, string textP, Color colorP, int drawOrderP) :
 	DrawComponent(ownerP, drawOrderP), font(fontP), text(textP), color(colorP)

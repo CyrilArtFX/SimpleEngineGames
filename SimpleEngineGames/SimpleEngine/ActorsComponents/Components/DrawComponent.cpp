@@ -1,6 +1,6 @@
 #include "DrawComponent.h"
 #include "../Actor.h"
-#include "../../Game.h"
+#include <SimpleEngine/Game.h>
 
 DrawComponent::DrawComponent(Actor* ownerP, int drawOrderP) : Component(ownerP), drawOrder(drawOrderP)
 {

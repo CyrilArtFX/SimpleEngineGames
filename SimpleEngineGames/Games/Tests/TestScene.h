@@ -1,5 +1,5 @@
 #pragma once
-#include "../../SimpleEngine/Scene.h"
+#include <SimpleEngine/Scene.h>
 
 class TestScene : public Scene
 {

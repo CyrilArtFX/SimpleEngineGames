@@ -1,7 +1,8 @@
 #include "CircleCollisionComponent.h"
 #include "../Actor.h"
-#include "../../Game.h"
-#include "../../Utils/Log.h"
+#include "RectangleCollisionComponent.h"
+#include <SimpleEngine/Game.h>
+#include <SimpleEngine/Utils/Log.h>
 
 float CircleCollisionComponent::getRadius() const
 {
@@ -36,7 +37,7 @@ bool CircleCollisionComponent::intersectWithCircleCollision(const CircleCollisio
 
 bool CircleCollisionComponent::intersectWithRectCollision(const RectangleCollisionComponent& collision) const
 {
-	return false;
+	return collision.intersectWithCircleCollision(*this);
 }
 
 void CircleCollisionComponent::debug(Renderer& renderer)

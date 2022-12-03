@@ -1,6 +1,6 @@
 #pragma once
 #include "../Component.h"
-#include "../../Utils/Vector2.h"
+#include <SimpleEngine/Utils/Vector2.h>
 
 class MoveComponent : public Component
 {

@@ -1,6 +1,6 @@
 #include "Component.h"
 #include "Actor.h"
-#include "../Renderer.h"
+#include <SimpleEngine/Renderer.h>
 
 Component::Component(Actor* ownerP, int updateOrderP) : owner(*ownerP), updateOrder(updateOrderP)
 {

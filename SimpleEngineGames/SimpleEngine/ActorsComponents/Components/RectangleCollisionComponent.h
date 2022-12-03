@@ -1,7 +1,7 @@
 #pragma once
 #include "CollisionComponent.h"
-#include "../../Utils/Rectangle.h"
-#include "../../Utils/Vector2.h"
+#include <SimpleEngine/Utils/Rectangle.h>
+#include <SimpleEngine/Utils/Vector2.h>
 
 //  note : rectangle collision doesn't support actor rotation                                                                                                                                          (aled)
 

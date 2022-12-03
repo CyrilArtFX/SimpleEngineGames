@@ -1,7 +1,9 @@
 #pragma once
 #include "DrawComponent.h"
-#include "../../Utils/Rectangle.h"
-#include "../../Utils/Color.h"
+#include <SimpleEngine/Utils/Rectangle.h>
+#include <SimpleEngine/Utils/Color.h>
+
+//  note : rectangle drawing doesn't support actor rotation
 
 class DrawRectComponent : public DrawComponent
 {
