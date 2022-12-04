@@ -40,18 +40,44 @@ bool CircleCollisionComponent::intersectWithRectCollision(const RectangleCollisi
 	return collision.intersectWithCircleCollision(*this);
 }
 
-bool CircleCollisionComponent::intersectWithHeight(const float height) const
+bool CircleCollisionComponent::intersectWithY(const float y) const
 {
 	float centerY = getCenter().y;
 	float circleHeight = getRadius();
-	return height >= centerY - circleHeight && height <= centerY + circleHeight;
+	return y >= centerY - circleHeight && y <= centerY + circleHeight;
 }
 
-bool CircleCollisionComponent::intersectWithWidth(const float width) const
+bool CircleCollisionComponent::intersectWithX(const float x) const
 {
 	float centerX = getCenter().x;
 	float circleWidth = getRadius();
-	return width >= centerX - circleWidth && width <= centerX + circleWidth;
+	return x >= centerX - circleWidth && x <= centerX + circleWidth;
+}
+
+float CircleCollisionComponent::nearestYPosOfY(const float y) const
+{
+	float yPos = getCenter().y;
+	if (yPos > y)
+	{
+		return y + getRadius();
+	}
+	else
+	{
+		return y - getRadius();
+	}
+}
+
+float CircleCollisionComponent::nearestXPosOfX(const float x) const
+{
+	float xPos = getCenter().x;
+	if (xPos > x)
+	{
+		return x + getRadius();
+	}
+	else
+	{
+		return x - getRadius();
+	}
 }
 
 void CircleCollisionComponent::debug(Renderer& renderer)

@@ -16,14 +16,24 @@ bool CollisionComponent::intersectWithRectCollision(const RectangleCollisionComp
 	return false;
 }
 
-bool CollisionComponent::intersectWithHeight(const float height) const
+bool CollisionComponent::intersectWithY(const float y) const
 {
 	return false;
 }
 
-bool CollisionComponent::intersectWithWidth(const float width) const
+bool CollisionComponent::intersectWithX(const float x) const
 {
 	return false;
+}
+
+float CollisionComponent::nearestYPosOfY(const float y) const
+{
+	return y;
+}
+
+float CollisionComponent::nearestXPosOfX(const float x) const
+{
+	return x;
 }
 
 void CollisionComponent::drawDebug(Renderer& renderer, Color debugColor)

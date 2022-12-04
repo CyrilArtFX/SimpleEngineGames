@@ -12,10 +12,15 @@ void ScreenBorderInteractionComponent::SetInteractions(ScreenBorderInteractions 
 int ScreenBorderInteractionComponent::CheckBordersInteractions()
 {
 	Vector2 velocity = Vector2::zero;
+	Vector2 actorPos = owner.getPosition();
+	float upBorderY = owner.getGame().getCamera().getCamPos().y;
+	float downBorderY = owner.getGame().getScreenHeight() + owner.getGame().getCamera().getCamPos().y;
+	float leftBorderX = owner.getGame().getCamera().getCamPos().x;
+	float rightBorderX = owner.getGame().getScreenWidth() + owner.getGame().getCamera().getCamPos().x;
 	int returnValue = 0;
 
 	//  check up interaction
-	if (colComponent->intersectWithHeight(0.0f + owner.getGame().getCamera().getCamPos().y))
+	if (colComponent->intersectWithY(upBorderY))
 	{
 		switch (upInteraction)
 		{
@@ -25,6 +30,18 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 
 			case ScreenBorderInteractions::Bounce:
 				moveComponent->revertLastMovement(false, true);
+				velocity = moveComponent->getVelocity();
+				moveComponent->setVelocity(Vector2{ velocity.x, -velocity.y });
+				break;
+
+			case ScreenBorderInteractions::SmoothBlock:
+				moveComponent->revertLastMovement(false, true);
+				actorPos.y = colComponent->nearestYPosOfY(upBorderY);
+				break;
+
+			case ScreenBorderInteractions::SmoothBounce:
+				moveComponent->revertLastMovement(false, true);
+				actorPos.y = colComponent->nearestYPosOfY(upBorderY);
 				velocity = moveComponent->getVelocity();
 				moveComponent->setVelocity(Vector2{ velocity.x, -velocity.y });
 				break;
@@ -39,7 +56,7 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 	}
 
 	//  check down interaction
-	if (colComponent->intersectWithHeight(owner.getGame().getScreenHeight() + owner.getGame().getCamera().getCamPos().y))
+	if (colComponent->intersectWithY(downBorderY))
 	{
 		switch (upInteraction)
 		{
@@ -49,6 +66,18 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 
 			case ScreenBorderInteractions::Bounce:
 				moveComponent->revertLastMovement(false, true);
+				velocity = moveComponent->getVelocity();
+				moveComponent->setVelocity(Vector2{ velocity.x, -velocity.y });
+				break;
+
+			case ScreenBorderInteractions::SmoothBlock:
+				moveComponent->revertLastMovement(false, true);
+				actorPos.y = colComponent->nearestYPosOfY(downBorderY);
+				break;
+
+			case ScreenBorderInteractions::SmoothBounce:
+				moveComponent->revertLastMovement(false, true);
+				actorPos.y = colComponent->nearestYPosOfY(downBorderY);
 				velocity = moveComponent->getVelocity();
 				moveComponent->setVelocity(Vector2{ velocity.x, -velocity.y });
 				break;
@@ -63,7 +92,7 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 	}
 
 	//  check left interaction
-	if (colComponent->intersectWithWidth(0.0f + owner.getGame().getCamera().getCamPos().x))
+	if (colComponent->intersectWithX(leftBorderX))
 	{
 		switch (upInteraction)
 		{
@@ -73,6 +102,18 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 
 			case ScreenBorderInteractions::Bounce:
 				moveComponent->revertLastMovement(true, false);
+				velocity = moveComponent->getVelocity();
+				moveComponent->setVelocity(Vector2{ -velocity.x, velocity.y });
+				break;
+
+			case ScreenBorderInteractions::SmoothBlock:
+				moveComponent->revertLastMovement(true, false);
+				actorPos.x = colComponent->nearestYPosOfY(leftBorderX);
+				break;
+
+			case ScreenBorderInteractions::SmoothBounce:
+				moveComponent->revertLastMovement(true, false);
+				actorPos.x = colComponent->nearestYPosOfY(leftBorderX);
 				velocity = moveComponent->getVelocity();
 				moveComponent->setVelocity(Vector2{ -velocity.x, velocity.y });
 				break;
@@ -98,7 +139,7 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 	}
 
 	//  check right interaction
-	if (colComponent->intersectWithWidth(owner.getGame().getScreenWidth() + owner.getGame().getCamera().getCamPos().x))
+	if (colComponent->intersectWithX(rightBorderX))
 	{
 		switch (upInteraction)
 		{
@@ -108,6 +149,18 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 
 			case ScreenBorderInteractions::Bounce:
 				moveComponent->revertLastMovement(true, false);
+				velocity = moveComponent->getVelocity();
+				moveComponent->setVelocity(Vector2{ -velocity.x, velocity.y });
+				break;
+
+			case ScreenBorderInteractions::SmoothBlock:
+				moveComponent->revertLastMovement(true, false);
+				actorPos.x = colComponent->nearestYPosOfY(rightBorderX);
+				break;
+
+			case ScreenBorderInteractions::SmoothBounce:
+				moveComponent->revertLastMovement(true, false);
+				actorPos.x = colComponent->nearestYPosOfY(rightBorderX);
 				velocity = moveComponent->getVelocity();
 				moveComponent->setVelocity(Vector2{ -velocity.x, velocity.y });
 				break;
@@ -132,6 +185,7 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 		}
 	}
 
+	owner.setPosition(actorPos);
 	return returnValue;
 }
 

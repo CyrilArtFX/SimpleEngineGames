@@ -16,8 +16,11 @@ public:
 	virtual bool intersectWithCircleCollision(const class CircleCollisionComponent& collision) const;
 	virtual bool intersectWithRectCollision(const class RectangleCollisionComponent& collision) const;
 
-	virtual bool intersectWithHeight(const float height) const;
-	virtual bool intersectWithWidth(const float width) const;
+	virtual bool intersectWithY(const float y) const;
+	virtual bool intersectWithX(const float x) const;
+
+	virtual float nearestYPosOfY(const float y) const;
+	virtual float nearestXPosOfX(const float x) const;
 
 	virtual void drawDebug(Renderer& renderer, Color debugColor);
 };

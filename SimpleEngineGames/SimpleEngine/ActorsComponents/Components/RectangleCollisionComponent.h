@@ -22,8 +22,11 @@ public:
 	bool intersectWithCircleCollision(const class CircleCollisionComponent& collision) const override;
 	bool intersectWithRectCollision(const class RectangleCollisionComponent& collision) const override;
 
-	bool intersectWithHeight(const float height) const;
-	bool intersectWithWidth(const float width) const;
+	bool intersectWithY(const float y) const override;
+	bool intersectWithX(const float x) const override;
+
+	float nearestYPosOfY(const float y) const override;
+	float nearestXPosOfX(const float x) const override;
 
 	void debug(Renderer& renderer) override;
 	void drawDebug(Renderer& renderer, Color debugColor) override;

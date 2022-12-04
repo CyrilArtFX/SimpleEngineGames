@@ -4,7 +4,7 @@
 //  this component does not uses speed and velocity from 'MoveComponent'
 //  it derives from 'MoveComponent' only for practical reasons like the usage of 'ScreenBorderInteractionComponent'
 //  i may reorganize the move components to make it better
-//  i should also put the enable axis part in an interface so 'MouseMoveComponent' and 'InputMoveComponent' does not have code replication
+//  i should also put the enable axis part in the new 'MoveComponent' so 'MouseMoveComponent' and 'InputMoveComponent' does not have code replication
 
 class MouseMovComponent : public MoveComponent
 {

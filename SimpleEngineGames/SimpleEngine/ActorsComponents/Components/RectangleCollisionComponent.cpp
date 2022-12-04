@@ -61,16 +61,44 @@ bool RectangleCollisionComponent::intersectWithRectCollision(const RectangleColl
 		|| collision.intersectWithPoint(Vector2{ scaledRect1.x, scaledRect1.y });
 }
 
-bool RectangleCollisionComponent::intersectWithHeight(const float height) const
+bool RectangleCollisionComponent::intersectWithY(const float y) const
 {
 	Rectangle scaledRect = getTransformedRectangle();
-	return height >= scaledRect.y && height <= scaledRect.y + scaledRect.height;
+	return y >= scaledRect.y && y <= scaledRect.y + scaledRect.height;
 }
 
-bool RectangleCollisionComponent::intersectWithWidth(const float width) const
+bool RectangleCollisionComponent::intersectWithX(const float x) const
 {
 	Rectangle scaledRect = getTransformedRectangle();
-	return width >= scaledRect.x && width <= scaledRect.x + scaledRect.width;
+	return x >= scaledRect.x && x <= scaledRect.x + scaledRect.width;
+}
+
+float RectangleCollisionComponent::nearestYPosOfY(const float y) const
+{
+	Rectangle scaledRect = getTransformedRectangle();
+	float yCenter = scaledRect.y + scaledRect.height / 2.0f;
+	if (yCenter > y)
+	{
+		return y - rectangle.y;
+	}
+	else
+	{
+		return y - rectangle.y - scaledRect.height;
+	}
+}
+
+float RectangleCollisionComponent::nearestXPosOfX(const float x) const
+{
+	Rectangle scaledRect = getTransformedRectangle();
+	float xCenter = scaledRect.x + scaledRect.width / 2.0f;
+	if (xCenter > x)
+	{
+		return x - rectangle.x;
+	}
+	else
+	{
+		return x - rectangle.x - scaledRect.width;
+	}
 }
 
 void RectangleCollisionComponent::debug(Renderer& renderer)

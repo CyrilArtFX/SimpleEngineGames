@@ -6,6 +6,6 @@ PlayerPaddle::PlayerPaddle() : Paddle()
 	mouseMoveComp->setEnableXMovement(false);
 
 	screenBorderInterComp = new ScreenBorderInteractionComponent(this, mouseMoveComp, rectColComp);
-	screenBorderInterComp->SetInteractions(ScreenBorderInteractions::Block, ScreenBorderInteractions::Block, ScreenBorderInteractions::Block, ScreenBorderInteractions::Block);
+	screenBorderInterComp->SetInteractions(ScreenBorderInteractions::SmoothBlock, ScreenBorderInteractions::SmoothBlock, ScreenBorderInteractions::SmoothBlock, ScreenBorderInteractions::SmoothBlock);
 	screenBorderInterComp->autoUpdate = true;
 }
