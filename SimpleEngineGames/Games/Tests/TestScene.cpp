@@ -3,6 +3,7 @@
 #include <SimpleEngine/Game.h>
 #include <SimpleEngine/ActorsComponents/Actor.h>
 #include <SimpleEngine/ActorsComponents/Components/DrawRectComponent.h>
+#include <SimpleEngine/ActorsComponents/Components/DrawCircleComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/DrawTextComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/CircleCollisionComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/RectangleCollisionComponent.h>
@@ -33,10 +34,18 @@ void TestScene::load(Game* game)
 	auto ccc = new CircleCollisionComponent(testRect);
 	ccc->setRadius(100.0f);
 	ccc->setOffset(Vector2{ 100.0f, 100.0f });
-	auto mc = new MoveComponent(testRect);
-	mc->setSpeed(200.0f);
+
+	auto testCircle = new Actor();
+	testCircle->setPosition(Vector2{ 250.0f, 400.0f });
+	testCircle->setScale(0.3f);
+	auto dcc = new DrawCircleComponent(testCircle, Vector2{ 0.0f, 0.0f }, 50.0f, Color::magenta, 50);
+	auto ccc2 = new CircleCollisionComponent(testCircle);
+	ccc2->setRadius(50.0f);
+	ccc2->setOffset(Vector2{ 0.0f, 0.0f });
+	auto mc = new MoveComponent(testCircle);
+	mc->setSpeed(450.0f);
 	mc->setVelocity(Vector2{ 0.8f, 0.3f });
-	auto sbic = new ScreenBorderInteractionComponent(testRect, mc, ccc);
+	auto sbic = new ScreenBorderInteractionComponent(testCircle, mc, ccc2);
 	sbic->SetInteractions(ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Bounce);
 	sbic->autoUpdate = true;
 

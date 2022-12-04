@@ -92,13 +92,13 @@ void Renderer::drawDebugRect(const Actor& actor, const Rectangle& rect, Color co
 
 }
 
-void Renderer::drawDebugCircle(const Actor& actor, const Vector2& center, int radius, Color color)
+void Renderer::drawDebugCircle(const Actor& actor, const Vector2& circleOffset, int radius, Color color)
 {
 	//  midpoint circle algorithm 
 	//  (found on https://stackoverflow.com/questions/38334081/howto-draw-circles-arcs-and-vector-graphics-in-sdl)
 	Vector2 camPos = Game::instance().getCamera().getCamPos();
-	const int centreX = static_cast<int>(actor.getPosition().x + center.x - camPos.x);
-	const int centreY = static_cast<int>(actor.getPosition().y + center.y - camPos.y);
+	const int centreX = static_cast<int>(actor.getPosition().x + circleOffset.x - camPos.x);
+	const int centreY = static_cast<int>(actor.getPosition().y + circleOffset.y - camPos.y);
 
 	radius *= actor.getScale();
 	const int diameter = radius * 2;
@@ -154,7 +154,30 @@ void Renderer::drawRect(const Actor& actor, const Rectangle& rect, Color color)
 
 	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
 	SDL_RenderFillRect(SDLRenderer, &drawRect);
+}
 
+void Renderer::drawCircle(const Actor& actor, const Vector2& circleOffset, int radius, Color color)
+{
+	//  surely not the best optimized circle algorithm
+	//  (found on https://stackoverflow.com/questions/65723827/sdl2-function-to-draw-a-filled-circle)
+	Vector2 camPos = Game::instance().getCamera().getCamPos();
+	const int centreX = static_cast<int>(actor.getPosition().x + circleOffset.x - camPos.x);
+	const int centreY = static_cast<int>(actor.getPosition().y + circleOffset.y - camPos.y);
+	radius *= actor.getScale();
+
+	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
+	for (int w = 0; w < radius * 2; w++)
+	{
+		for (int h = 0; h < radius * 2; h++)
+		{
+			int dx = radius - w;
+			int dy = radius - h;
+			if ((dx * dx + dy * dy) <= (radius * radius))
+			{
+				SDL_RenderDrawPoint(SDLRenderer, centreX + dx, centreY + dy);
+			}
+		}
+	}
 }
 
 void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip) const

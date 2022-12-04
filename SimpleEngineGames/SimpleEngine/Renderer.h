@@ -35,11 +35,12 @@ public:
 	void drawDrawComponents();
 
 	void drawRect(const Actor& actor, const Rectangle& rect, Color color);
+	void drawCircle(const Actor& actor, const Vector2& circleOffset, int radius, Color color);
 	void drawSprite(const Actor& actor, const class Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip) const;
 	void drawText(const Actor& actor, const class DrawTextComponent* text, int width, int height);
 
 	void drawDebugRect(const Actor& actor, const Rectangle& rect, Color color);
-	void drawDebugCircle(const Actor& actor, const Vector2& center, int radius, Color color);
+	void drawDebugCircle(const Actor& actor, const Vector2& circleOffset, int radius, Color color);
 
 private:
 	SDL_Renderer* SDLRenderer{ nullptr };

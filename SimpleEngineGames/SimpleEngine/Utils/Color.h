@@ -14,6 +14,9 @@ struct Color
 	static const Color red;
 	static const Color green;
 	static const Color blue;
+	static const Color magenta;
+	static const Color yellow;
+	static const Color cyan;
 
 	Color() = default;
 	Color(int rP, int gP, int bP, int aP) : r{ rP }, g{ gP }, b{ bP }, a{ aP } {}

@@ -22,7 +22,7 @@ enum class ScreenBorderInteractions
 class ScreenBorderInteractionComponent : public Component
 {
 public:
-	ScreenBorderInteractionComponent(Actor* ownerP, MoveComponent* moveComponentP, CollisionComponent* colComponentP) : Component(ownerP), moveComponent(moveComponentP), colComponent(colComponentP) {}
+	ScreenBorderInteractionComponent(Actor* ownerP, MoveComponent* moveComponentP, CollisionComponent* colComponentP) : Component(ownerP, 200), moveComponent(moveComponentP), colComponent(colComponentP) {}
 	ScreenBorderInteractionComponent() = delete;
 	ScreenBorderInteractionComponent(const ScreenBorderInteractionComponent&) = delete;
 	ScreenBorderInteractionComponent& operator=(const ScreenBorderInteractionComponent&) = delete;
