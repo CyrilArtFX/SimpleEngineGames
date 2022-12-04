@@ -15,7 +15,7 @@ public:
 	float getSpeed() const { return speed; }
 	void setSpeed(float speedP);
 
-	void update(float dt) override;
+	virtual void update(float dt) override;
 	void revertLastMovement(bool revertOnlyX, bool revertOnlyY);
 
 protected:

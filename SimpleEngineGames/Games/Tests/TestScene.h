@@ -4,8 +4,8 @@
 class TestScene : public Scene
 {
 public:
-	TestScene();
-	~TestScene();
+	TestScene() : Scene() {}
+	~TestScene() {}
 	TestScene(const TestScene&) = delete;
 	TestScene& operator=(const TestScene&) = delete;
 

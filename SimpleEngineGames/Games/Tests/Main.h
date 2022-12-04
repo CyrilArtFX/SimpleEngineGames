@@ -1,5 +1,5 @@
 #pragma once
-#include "SimpleEngine/Game.h"
+#include <SimpleEngine/Game.h>
 #include "TestScene.h"
 
 void run()

@@ -13,14 +13,6 @@
 #include <SimpleEngine/Utils/Rectangle.h>
 #include <SimpleEngine/Utils/Color.h>
 
-TestScene::TestScene() : Scene()
-{
-}
-
-TestScene::~TestScene()
-{
-}
-
 void TestScene::load(Game* game)
 {
 	//  load assets, create actors and setup base pos of camera here
