@@ -1,5 +1,6 @@
 #include "ScreenBorderInteractionComponent.h"
 #include <SimpleEngine/Game.h>
+#include <iostream>
 
 void ScreenBorderInteractionComponent::SetInteractions(ScreenBorderInteractions upInteractionP, ScreenBorderInteractions downInteractionP, ScreenBorderInteractions leftInteractionP, ScreenBorderInteractions rightInteractionP)
 {
@@ -58,7 +59,7 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 	//  check down interaction
 	if (colComponent->intersectWithY(downBorderY))
 	{
-		switch (upInteraction)
+		switch (downInteraction)
 		{
 			case ScreenBorderInteractions::Block:
 				moveComponent->revertLastMovement(false, true);
@@ -94,7 +95,7 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 	//  check left interaction
 	if (colComponent->intersectWithX(leftBorderX))
 	{
-		switch (upInteraction)
+		switch (leftInteraction)
 		{
 			case ScreenBorderInteractions::Block:
 				moveComponent->revertLastMovement(true, false);
@@ -141,7 +142,7 @@ int ScreenBorderInteractionComponent::CheckBordersInteractions()
 	//  check right interaction
 	if (colComponent->intersectWithX(rightBorderX))
 	{
-		switch (upInteraction)
+		switch (rightInteraction)
 		{
 			case ScreenBorderInteractions::Block:
 				moveComponent->revertLastMovement(true, false);

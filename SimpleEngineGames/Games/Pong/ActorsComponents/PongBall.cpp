@@ -1,6 +1,8 @@
 #include "PongBall.h"
 #include <SimpleEngine/Utils/Log.h>
 #include <SimpleEngine/Game.h>
+#include <SimpleEngine/ActorsComponents/Components/RectangleCollisionComponent.h>
+#include <iostream>
 
 PongBall::PongBall() : Actor()
 {
@@ -13,7 +15,7 @@ PongBall::PongBall() : Actor()
 	moveComp->setVelocity(Vector2{ 1.0f, -1.0f });
 
 	screenBorderInterComp = new ScreenBorderInteractionComponent(this, moveComp, circleColComp);
-	screenBorderInterComp->SetInteractions(ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Bounce);
+	screenBorderInterComp->SetInteractions(ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Return, ScreenBorderInteractions::Bounce);
 
 	resetPos();
 	resumeMovement();
@@ -21,9 +23,21 @@ PongBall::PongBall() : Actor()
 
 void PongBall::updateActor(float dt)
 {
-	screenBorderInterComp->CheckBordersInteractions();
+	int screenReturn = screenBorderInterComp->CheckBordersInteractions();
+	if (screenReturn == 3)
+	{
+		resetPos();
+	}
 
-	if (leftPaddle) Log::info("Left Paddle is assigned.");
+	if (leftPaddle) 
+	{
+		if (leftPaddle->GetCol()->intersectWithCircleCollision(*circleColComp))
+		{
+			moveComp->revertLastMovement(true, false);
+			reverseXMovement();
+		}
+	}
+
 	if (rightPaddle) Log::info("Right Paddle is assigned.");
 }
 
@@ -36,6 +50,13 @@ void PongBall::setPaddles(Paddle* leftPaddleP, Paddle* rightPaddleP)
 void PongBall::resetPos()
 {
 	setPosition(Vector2{ getGame().getScreenWidth() / 2.0f, getGame().getScreenHeight() / 2.0f });
+	reverseXMovement();
+}
+
+void PongBall::reverseXMovement()
+{
+	Vector2 velocity = moveComp->getVelocity();
+	moveComp->setVelocity(Vector2{ -velocity.x, velocity.y });
 }
 
 void PongBall::pauseMovement()

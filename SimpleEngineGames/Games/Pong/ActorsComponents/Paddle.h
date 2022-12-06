@@ -10,6 +10,8 @@ public:
 	Paddle(const Paddle&) = delete;
 	Paddle& operator=(const Paddle&) = delete;
 
+	RectangleCollisionComponent* GetCol() { return rectColComp; }
+
 protected:
 	DrawRectComponent* drawRectComp;
 	RectangleCollisionComponent* rectColComp;

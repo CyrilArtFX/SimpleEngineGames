@@ -17,5 +17,8 @@ void PongScene::load(Game* game)
 	leftPaddle->setPosition(Vector2{ 10.0f, 300.0f });
 
 
+	ball->setPaddles(leftPaddle, nullptr);
+
+
 	game->getCamera().setCamPos(Vector2{ 0.0f, 0.0f });
 }

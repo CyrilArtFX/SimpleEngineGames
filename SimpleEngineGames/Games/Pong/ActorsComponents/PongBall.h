@@ -17,6 +17,7 @@ public:
 
 	void setPaddles(Paddle* leftPaddleP, Paddle* rightPaddleP);
 	void resetPos();
+	void reverseXMovement();
 	void pauseMovement();
 	void resumeMovement();
 
