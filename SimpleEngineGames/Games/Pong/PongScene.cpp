@@ -3,6 +3,7 @@
 #include <SimpleEngine/Game.h>
 #include "ActorsComponents/PongBall.h"
 #include "ActorsComponents/PlayerPaddle.h"
+#include "ActorsComponents/PongManager.h"
 
 void PongScene::load(Game* game)
 {
@@ -16,8 +17,12 @@ void PongScene::load(Game* game)
 	auto leftPaddle = new PlayerPaddle();
 	leftPaddle->setPosition(Vector2{ 10.0f, 300.0f });
 
+	auto rightPaddle = new PlayerPaddle();
+	rightPaddle->setPosition(Vector2{ game->getScreenWidth() - 20.0f, 300.0f });
 
-	ball->setPaddles(leftPaddle, nullptr);
+	auto manager = new PongManager(ball, Assets::getFont("pixeled30"));
+
+	ball->setPaddles(leftPaddle, rightPaddle);
 
 
 	game->getCamera().setCamPos(Vector2{ 0.0f, 0.0f });

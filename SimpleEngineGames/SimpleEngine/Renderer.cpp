@@ -205,11 +205,11 @@ void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcR
 	delete srcSDL;
 }
 
-void Renderer::drawText(const Actor& actor, const class DrawTextComponent* text, int width, int height)
+void Renderer::drawText(const Actor& actor, const class DrawTextComponent* text, int width, int height, Vector2 offset)
 {
 	Vector2 camPos = Game::instance().getCamera().getCamPos();
 	SDL_Rect dstRect;
-	Vector2 position = actor.getPosition() - camPos;
+	Vector2 position = actor.getPosition() - camPos + offset;
 	float rotation = actor.getRotation();
 	float scale = actor.getScale();
 

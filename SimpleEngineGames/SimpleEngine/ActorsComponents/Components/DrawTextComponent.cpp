@@ -1,8 +1,8 @@
 #include "DrawTextComponent.h"
 #include <SimpleEngine/Game.h>
 
-DrawTextComponent::DrawTextComponent(Actor* ownerP, Font* fontP, string textP, Color colorP, int drawOrderP) :
-	DrawComponent(ownerP, drawOrderP), font(fontP), text(textP), color(colorP)
+DrawTextComponent::DrawTextComponent(Actor* ownerP, Font* fontP, string textP, Color colorP, Vector2 offsetP, int drawOrderP) :
+	DrawComponent(ownerP, drawOrderP), font(fontP), text(textP), color(colorP), offset(offsetP)
 {
 	recalculateSDLTexture();
 }
@@ -47,5 +47,5 @@ void DrawTextComponent::recalculateSDLTexture()
 
 void DrawTextComponent::draw(Renderer& renderer)
 {
-	renderer.drawText(owner, this, width, height);
+	renderer.drawText(owner, this, width, height, offset);
 }

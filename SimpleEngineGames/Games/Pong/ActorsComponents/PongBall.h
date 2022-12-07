@@ -6,6 +6,8 @@
 #include <SimpleEngine/ActorsComponents/Components/MoveComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/ScreenBorderInteractionComponent.h>
 
+class PongManager;
+
 class PongBall : public Actor
 {
 public:
@@ -16,8 +18,10 @@ public:
 	void updateActor(float dt) override;
 
 	void setPaddles(Paddle* leftPaddleP, Paddle* rightPaddleP);
+	void setManager(PongManager* gameManagerP);
 	void resetPos();
 	void reverseXMovement();
+	void setDirectedYMovement(Rectangle colRect);
 	void pauseMovement();
 	void resumeMovement();
 
@@ -28,11 +32,16 @@ private:
 	Paddle* leftPaddle{ nullptr };
 	Paddle* rightPaddle{ nullptr };
 
+	PongManager* gameManager{ nullptr };
+
 	DrawCircleComponent* drawCircleComp;
 	CircleCollisionComponent* circleColComp;
 	MoveComponent* moveComp;
 	ScreenBorderInteractionComponent* screenBorderInterComp;
 
-	float speed{ 300.0f };
+	float baseSpeed{ 300.0f };
+	float speed{ 0.0f };
+	float directMultiplier{ 1.5f };
+	float speedBoost{ 15.0f };
 };
 

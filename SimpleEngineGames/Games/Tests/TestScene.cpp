@@ -53,7 +53,7 @@ void TestScene::load(Game* game)
 
 	auto testText = new Actor();
 	testText->setPosition(Vector2{ 0.0f, 200.0f });
-	auto dtc = new DrawTextComponent(testText, Assets::getFont("pixeled20"), "LET'S GO CA MARCHE", Color::green, 200);
+	auto dtc = new DrawTextComponent(testText, Assets::getFont("pixeled20"), "LET'S GO CA MARCHE", Color::green, Vector2::zero, 200);
 
 	game->getCamera().setCamPos(Vector2{ -100.0f, 0.0f });
 }

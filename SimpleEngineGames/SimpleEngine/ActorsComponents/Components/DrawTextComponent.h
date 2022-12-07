@@ -8,7 +8,7 @@ using std::string;
 class DrawTextComponent : public DrawComponent
 {
 public:
-	DrawTextComponent(Actor* ownerP, Font* fontP, string textP, Color colorP, int drawOrderP = 100);
+	DrawTextComponent(Actor* ownerP, Font* fontP, string textP, Color colorP, Vector2 offsetP, int drawOrderP = 100);
 	virtual ~DrawTextComponent();
 	DrawTextComponent() = delete;
 	DrawTextComponent(const DrawTextComponent&) = delete;
@@ -29,5 +29,6 @@ protected:
 	SDL_Texture* SDLTexture{ nullptr };
 	int width{ 0 };
 	int height{ 0 };
+	Vector2 offset{ Vector2::zero };
 };
 

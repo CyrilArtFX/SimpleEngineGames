@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Games\Pong\ActorsComponents\Paddle.cpp" />
     <ClCompile Include="Games\Pong\ActorsComponents\PongBall.cpp" />
+    <ClCompile Include="Games\Pong\ActorsComponents\PongManager.cpp" />
     <ClCompile Include="Games\Pong\PongScene.cpp" />
     <ClCompile Include="Games\Pong\ActorsComponents\PlayerPaddle.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawCircleComponent.cpp" />
@@ -57,6 +58,7 @@
   <ItemGroup>
     <ClInclude Include="Games\Pong\ActorsComponents\Paddle.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\PongBall.h" />
+    <ClInclude Include="Games\Pong\ActorsComponents\PongManager.h" />
     <ClInclude Include="Games\Pong\Main.h" />
     <ClInclude Include="Games\Pong\PongScene.h" />
     <ClInclude Include="Games\Tests\Main.h" />
