@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Games\Pong\ActorsComponents\CPUPaddle.cpp" />
     <ClCompile Include="Games\Pong\ActorsComponents\Paddle.cpp" />
     <ClCompile Include="Games\Pong\ActorsComponents\PongBall.cpp" />
     <ClCompile Include="Games\Pong\ActorsComponents\PongManager.cpp" />
@@ -56,6 +57,7 @@
     <ClCompile Include="SimpleEngine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Games\Pong\ActorsComponents\CPUPaddle.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\Paddle.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\PongBall.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\PongManager.h" />
