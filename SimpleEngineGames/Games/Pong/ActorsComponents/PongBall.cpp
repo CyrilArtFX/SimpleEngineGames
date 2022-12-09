@@ -56,9 +56,11 @@ void PongBall::updateActor(float dt)
 			moveComp->setSpeed(speed);
 		}
 	}
+
+	rightPaddle->updateVelocity(getPosition().y);
 }
 
-void PongBall::setPaddles(Paddle* leftPaddleP, Paddle* rightPaddleP)
+void PongBall::setPaddles(PlayerPaddle* leftPaddleP, CPUPaddle* rightPaddleP)
 {
 	leftPaddle = leftPaddleP;
 	rightPaddle = rightPaddleP;

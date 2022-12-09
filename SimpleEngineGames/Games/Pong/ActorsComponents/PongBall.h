@@ -1,6 +1,7 @@
 #pragma once
 #include <SimpleEngine/ActorsComponents/Actor.h>
-#include "Paddle.h"
+#include "PlayerPaddle.h"
+#include "CPUPaddle.h"
 #include <SimpleEngine/ActorsComponents/Components/DrawCircleComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/CircleCollisionComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/MoveComponent.h>
@@ -17,7 +18,7 @@ public:
 
 	void updateActor(float dt) override;
 
-	void setPaddles(Paddle* leftPaddleP, Paddle* rightPaddleP);
+	void setPaddles(PlayerPaddle* leftPaddleP, CPUPaddle* rightPaddleP);
 	void setManager(PongManager* gameManagerP);
 	void resetPos();
 	void reverseXMovement();
@@ -29,8 +30,8 @@ public:
 	float getSpeed() const { return speed; }
 
 private:
-	Paddle* leftPaddle{ nullptr };
-	Paddle* rightPaddle{ nullptr };
+	PlayerPaddle* leftPaddle{ nullptr };
+	CPUPaddle* rightPaddle{ nullptr };
 
 	PongManager* gameManager{ nullptr };
 

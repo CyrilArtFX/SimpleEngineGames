@@ -14,13 +14,35 @@ PongManager::PongManager(PongBall* ballP, Font* fontP) : Actor(), ball(ballP), f
 void PongManager::ScoreAtLeft()
 {
 	scoreRight++;
-	rightDrawTextComp->setText(std::to_string(scoreRight));
+	if (scoreRight >= maxScore)
+	{
+		ResetScores();
+	}
+	else
+	{
+		rightDrawTextComp->setText(std::to_string(scoreRight));
+	}
 	ball->resetPos();
 }
 
 void PongManager::ScoreAtRight()
 {
 	scoreLeft++;
-	leftDrawTextComp->setText(std::to_string(scoreLeft));
+	if (scoreLeft >= maxScore)
+	{
+		ResetScores();
+	}
+	else
+	{
+		leftDrawTextComp->setText(std::to_string(scoreLeft));
+	}
 	ball->resetPos();
+}
+
+void PongManager::ResetScores()
+{
+	scoreLeft = 0;
+	scoreRight = 0;
+	leftDrawTextComp->setText(std::to_string(scoreLeft));
+	rightDrawTextComp->setText(std::to_string(scoreRight));
 }

@@ -14,6 +14,9 @@ public:
 	void ScoreAtRight();
 
 private:
+	void ResetScores();
+
+
 	DrawTextComponent* leftDrawTextComp;
 	DrawTextComponent* rightDrawTextComp;
 
@@ -23,5 +26,6 @@ private:
 
 	int scoreLeft{ 0 };
 	int scoreRight{ 0 };
+	int maxScore{ 3 };
 };
 
