@@ -15,7 +15,10 @@ public:
 
 	int getDrawOrder() const { return drawOrder; }
 
+	void setWillDraw(bool willDrawP);
+
 protected:
 	int drawOrder;
+	bool willDraw{ true };
 };
 

@@ -47,5 +47,8 @@ void DrawTextComponent::recalculateSDLTexture()
 
 void DrawTextComponent::draw(Renderer& renderer)
 {
-	renderer.drawText(owner, this, width, height, offset);
+	if (willDraw)
+	{
+		renderer.drawText(owner, this, width, height, offset);
+	}
 }

@@ -1,7 +1,5 @@
 #pragma once
 #include <SimpleEngine/ActorsComponents/Actor.h>
-#include "PlayerPaddle.h"
-#include "CPUPaddle.h"
 #include <SimpleEngine/ActorsComponents/Components/DrawCircleComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/CircleCollisionComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/MoveComponent.h>
@@ -17,22 +15,20 @@ public:
 	PongBall& operator=(const PongBall&) = delete;
 
 	void updateActor(float dt) override;
+	void testCollision(class RectangleCollisionComponent* col, bool testAtRight);
 
-	void setPaddles(PlayerPaddle* leftPaddleP, CPUPaddle* rightPaddleP);
 	void setManager(PongManager* gameManagerP);
 	void resetPos();
 	void reverseXMovement();
 	void setDirectedYMovement(Rectangle colRect);
 	void pauseMovement();
 	void resumeMovement();
+	void SetDrawValue(bool value);
 
 	void setSpeed(float speedP);
 	float getSpeed() const { return speed; }
 
 private:
-	PlayerPaddle* leftPaddle{ nullptr };
-	CPUPaddle* rightPaddle{ nullptr };
-
 	PongManager* gameManager{ nullptr };
 
 	DrawCircleComponent* drawCircleComp;

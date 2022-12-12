@@ -11,6 +11,7 @@ public:
 	Paddle& operator=(const Paddle&) = delete;
 
 	RectangleCollisionComponent* GetCol() { return rectColComp; }
+	void SetDrawValue(bool value);
 
 protected:
 	DrawRectComponent* drawRectComp;

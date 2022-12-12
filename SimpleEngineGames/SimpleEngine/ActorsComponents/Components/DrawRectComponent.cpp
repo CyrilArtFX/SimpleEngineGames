@@ -21,5 +21,8 @@ void DrawRectComponent::setColor(const Color colorP)
 
 void DrawRectComponent::draw(Renderer& renderer) 
 {
-	renderer.drawRect(owner, rect, color);
+	if (willDraw)
+	{
+		renderer.drawRect(owner, rect, color);
+	}
 }

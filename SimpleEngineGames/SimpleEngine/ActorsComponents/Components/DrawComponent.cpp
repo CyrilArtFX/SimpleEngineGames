@@ -15,3 +15,8 @@ DrawComponent::~DrawComponent()
 void DrawComponent::draw(Renderer& renderer)
 {
 }
+
+void DrawComponent::setWillDraw(bool willDrawP)
+{
+	willDraw = willDrawP;
+}

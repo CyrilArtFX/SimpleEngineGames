@@ -18,6 +18,9 @@ void DrawSpriteComponent::setTexture(const Texture& textureP)
 
 void DrawSpriteComponent::draw(Renderer& renderer)
 {
-	Vector2 origin{ texWidth / 2.0f, texHeight / 2.0f };
-	renderer.drawSprite(owner, texture, Rectangle::nullRect, origin, Renderer::Flip::None);
+	if (willDraw)
+	{
+		Vector2 origin{ texWidth / 2.0f, texHeight / 2.0f };
+		renderer.drawSprite(owner, texture, Rectangle::nullRect, origin, Renderer::Flip::None);
+	}
 }

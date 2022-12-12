@@ -26,5 +26,8 @@ void DrawCircleComponent::setColor(const Color colorP)
 
 void DrawCircleComponent::draw(Renderer& renderer)
 {
-	renderer.drawCircle(owner, offset, radius, color);
+	if (willDraw)
+	{
+		renderer.drawCircle(owner, offset, radius, color);
+	}
 }

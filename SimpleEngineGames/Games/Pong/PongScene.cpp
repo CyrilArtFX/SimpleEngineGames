@@ -21,9 +21,7 @@ void PongScene::load(Game* game)
 	auto rightPaddle = new CPUPaddle();
 	rightPaddle->setPosition(Vector2{ game->getScreenWidth() - 20.0f, 300.0f });
 
-	auto manager = new PongManager(ball, Assets::getFont("pixeled30"));
-
-	ball->setPaddles(leftPaddle, rightPaddle);
+	auto manager = new PongManager(ball, leftPaddle, rightPaddle, Assets::getFont("pixeled30"));
 
 
 	game->getCamera().setCamPos(Vector2{ 0.0f, 0.0f });

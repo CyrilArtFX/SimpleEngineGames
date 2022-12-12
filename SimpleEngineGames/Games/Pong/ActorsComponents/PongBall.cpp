@@ -32,38 +32,18 @@ void PongBall::updateActor(float dt)
 	{
 		gameManager->ScoreAtRight();
 	}
-
-	if (leftPaddle) 
-	{
-		if (leftPaddle->GetCol()->intersectWithCircleCollision(*circleColComp) && moveComp->getVelocity().x < 0.0f)
-		{
-			moveComp->revertLastMovement(true, false);
-			reverseXMovement();
-			setDirectedYMovement(leftPaddle->GetCol()->getTransformedRectangle());
-			speed += speedBoost;
-			moveComp->setSpeed(speed);
-		}
-	}
-
-	if (rightPaddle)
-	{
-		if (rightPaddle->GetCol()->intersectWithCircleCollision(*circleColComp) && moveComp->getVelocity().x > 0.0f)
-		{
-			moveComp->revertLastMovement(true, false);
-			reverseXMovement();
-			setDirectedYMovement(rightPaddle->GetCol()->getTransformedRectangle());
-			speed += speedBoost;
-			moveComp->setSpeed(speed);
-		}
-	}
-
-	rightPaddle->updateVelocity(getPosition().y);
 }
 
-void PongBall::setPaddles(PlayerPaddle* leftPaddleP, CPUPaddle* rightPaddleP)
+void PongBall::testCollision(RectangleCollisionComponent* col, bool testAtRight)
 {
-	leftPaddle = leftPaddleP;
-	rightPaddle = rightPaddleP;
+	if (col->intersectWithCircleCollision(*circleColComp) && (testAtRight ? moveComp->getVelocity().x > 0.0f : moveComp->getVelocity().x < 0.0f))
+	{
+		moveComp->revertLastMovement(true, false);
+		reverseXMovement();
+		setDirectedYMovement(col->getTransformedRectangle());
+		speed += speedBoost;
+		moveComp->setSpeed(speed);
+	}
 }
 
 void PongBall::setManager(PongManager* gameManagerP)
@@ -100,6 +80,11 @@ void PongBall::pauseMovement()
 void PongBall::resumeMovement()
 {
 	moveComp->setSpeed(speed);
+}
+
+void PongBall::SetDrawValue(bool value)
+{
+	drawCircleComp->setWillDraw(value);
 }
 
 void PongBall::setSpeed(float speedP)

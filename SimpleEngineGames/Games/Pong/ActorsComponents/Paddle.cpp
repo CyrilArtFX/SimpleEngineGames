@@ -10,3 +10,8 @@ Paddle::Paddle() : Actor()
 	rectColComp = new RectangleCollisionComponent(this);
 	rectColComp->setRectangle(rect);
 }
+
+void Paddle::SetDrawValue(bool value)
+{
+	drawRectComp->setWillDraw(value);
+}
