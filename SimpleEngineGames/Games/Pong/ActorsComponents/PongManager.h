@@ -1,6 +1,7 @@
 #pragma once
 #include <SimpleEngine/ActorsComponents/Actor.h>
 #include <SimpleEngine/ActorsComponents/Components/DrawTextComponent.h>
+#include <SimpleEngine/ActorsComponents/Components/DrawRectComponent.h>
 #include "PongBall.h"
 #include "PlayerPaddle.h"
 #include "CPUPaddle.h"
@@ -26,6 +27,9 @@ private:
 	DrawTextComponent* leftDrawTextComp;
 	DrawTextComponent* rightDrawTextComp;
 	DrawTextComponent* victoryDrawTextComp;
+	DrawTextComponent* resetDrawTextComp;
+
+	DrawRectComponent* lineDrawRectComps[15];
 
 	Font* font;
 
@@ -37,6 +41,6 @@ private:
 	int scoreRight{ 0 };
 	int maxScore{ 3 };
 
-	bool isGamePaused{ false };
+	bool isGamePaused{ true };
 };
 

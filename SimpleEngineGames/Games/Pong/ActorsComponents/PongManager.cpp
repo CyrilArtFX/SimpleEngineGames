@@ -8,11 +8,24 @@ PongManager::PongManager(PongBall* ballP, PlayerPaddle* leftPaddleP, CPUPaddle* 
 	rightDrawTextComp = new DrawTextComponent(this, font, "0",
 		Color::white, Vector2{ 700.0f, 0.0f }, 1000);
 
-	victoryDrawTextComp = new DrawTextComponent(this, font, "NO PLAYER WINS !", 
-		Color::white, Vector2{ 170.0f, 200.0f }, 1000);
-	victoryDrawTextComp->setWillDraw(false);
+	victoryDrawTextComp = new DrawTextComponent(this, font, "             PONG", //  yeah I feel bad for doing this, I will make a 'centered' option on DrawTextComponent
+		Color::white, Vector2{ 170.0f, 180.0f }, 1000);
+
+	resetDrawTextComp = new DrawTextComponent(this, font, "PRESS LEFT CLICK TO PLAY",
+		Color::white, Vector2{ 60.0f, 330.0f }, 1000);
+
+
+	for (int i = 0; i < 15; i++)
+	{
+		lineDrawRectComps[i] = new DrawRectComponent(this, Rectangle{ 399.0f, i * 40.0f, 2.0f, 20.0f }, Color::white, 10);
+		lineDrawRectComps[i]->setWillDraw(false);
+	}
 
 	ball->setManager(this);
+	ball->pauseMovement();
+	ball->SetDrawValue(false);
+	leftPaddle->SetDrawValue(false);
+	rightPaddle->SetDrawValue(false);
 }
 
 void PongManager::updateActor(float dt)
@@ -87,6 +100,11 @@ void PongManager::PauseGame()
 	leftPaddle->SetDrawValue(false);
 	rightPaddle->SetDrawValue(false);
 	victoryDrawTextComp->setWillDraw(true);
+	resetDrawTextComp->setWillDraw(true);
+	for (int i = 0; i < 15; i++)
+	{
+		lineDrawRectComps[i]->setWillDraw(false);
+	}
 }
 
 void PongManager::ResumeGame()
@@ -97,4 +115,9 @@ void PongManager::ResumeGame()
 	leftPaddle->SetDrawValue(true);
 	rightPaddle->SetDrawValue(true);
 	victoryDrawTextComp->setWillDraw(false);
+	resetDrawTextComp->setWillDraw(false);
+	for (int i = 0; i < 15; i++)
+	{
+		lineDrawRectComps[i]->setWillDraw(true);
+	}
 }
