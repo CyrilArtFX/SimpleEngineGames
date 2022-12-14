@@ -13,6 +13,7 @@ public:
 	PongManager& operator=(const PongManager&) = delete;
 
 	void updateActor(float dt) override;
+	void actorInput(const Uint8* keyState, const Uint32 mouseState) override;
 
 	void ScoreAtLeft();
 	void ScoreAtRight();
@@ -24,6 +25,7 @@ private:
 
 	DrawTextComponent* leftDrawTextComp;
 	DrawTextComponent* rightDrawTextComp;
+	DrawTextComponent* victoryDrawTextComp;
 
 	Font* font;
 

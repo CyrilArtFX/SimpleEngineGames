@@ -20,6 +20,7 @@ public:
 	void setManager(PongManager* gameManagerP);
 	void resetPos();
 	void reverseXMovement();
+	void setRandomYVelocity();
 	void setDirectedYMovement(Rectangle colRect);
 	void pauseMovement();
 	void resumeMovement();

@@ -6,14 +6,16 @@
 class CPUPaddle : public Paddle
 {
 public:
-	CPUPaddle();
+	CPUPaddle(Vector2 startPosP);
 	CPUPaddle(const CPUPaddle&) = delete;
 	CPUPaddle& operator=(const CPUPaddle&) = delete;
 
 	void updateVelocity(float ballPosY);
+	void resetPos();
 
 private:
 	MoveComponent* moveComp;
 	ScreenBorderInteractionComponent* screenBorderInterComp;
+	Vector2 startPos;
 };
 

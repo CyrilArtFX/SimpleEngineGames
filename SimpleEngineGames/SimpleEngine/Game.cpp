@@ -86,16 +86,11 @@ void Game::processInput()
 
 	const Uint32 mouseState = SDL_GetMouseState(nullptr, nullptr);
 
-	if (mouseState == SDL_BUTTON_LEFT)
-	{
-		Log::info("clic de souris maguel");
-	}
-
 	//  actor input
 	isUpdatingActors = true;
 	for (auto actor : actors)
 	{
-		actor->processInput(keyboardState);
+		actor->processInput(keyboardState, mouseState);
 	}
 	isUpdatingActors = false;
 }

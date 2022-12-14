@@ -1,6 +1,6 @@
 #include "InputMoveComponent.h"
 
-void InputMoveComponent::processInput(const Uint8* keyState)
+void InputMoveComponent::processInput(const Uint8* keyState, const Uint32 mouseState)
 {
 	if (enableYAxis)
 	{

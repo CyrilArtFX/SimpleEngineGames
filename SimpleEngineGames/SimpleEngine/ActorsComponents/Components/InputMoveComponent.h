@@ -12,7 +12,7 @@ public:
 	InputMoveComponent(const InputMoveComponent&) = delete;
 	InputMoveComponent& operator=(const InputMoveComponent&) = delete;
 
-	void processInput(const Uint8* keyState);
+	void processInput(const Uint8* keyState, const Uint32 mouseState) override;
 
 	void setEnableXMovement(bool enable);
 	bool getEnableXMovement() const { return enableXAxis; }

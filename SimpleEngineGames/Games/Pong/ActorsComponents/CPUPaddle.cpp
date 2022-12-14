@@ -1,6 +1,6 @@
 #include "CPUPaddle.h"
 
-CPUPaddle::CPUPaddle() : Paddle()
+CPUPaddle::CPUPaddle(Vector2 startPosP) : Paddle(), startPos(startPosP)
 {
 	moveComp = new MoveComponent(this);
 	moveComp->setSpeed(150.0f);
@@ -8,6 +8,8 @@ CPUPaddle::CPUPaddle() : Paddle()
 	screenBorderInterComp = new ScreenBorderInteractionComponent(this, moveComp, rectColComp);
 	screenBorderInterComp->SetInteractions(ScreenBorderInteractions::SmoothBlock, ScreenBorderInteractions::SmoothBlock, ScreenBorderInteractions::SmoothBlock, ScreenBorderInteractions::SmoothBlock);
 	screenBorderInterComp->autoUpdate = true;
+
+	setPosition(startPosP);
 }
 
 void CPUPaddle::updateVelocity(float ballPosY)
@@ -31,4 +33,9 @@ void CPUPaddle::updateVelocity(float ballPosY)
 			moveComp->setVelocity(Vector2{ 0.0f, 1.0f });
 		}
 	}
+}
+
+void CPUPaddle::resetPos()
+{
+	setPosition(startPos);
 }

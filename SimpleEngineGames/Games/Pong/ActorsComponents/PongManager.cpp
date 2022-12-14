@@ -8,6 +8,10 @@ PongManager::PongManager(PongBall* ballP, PlayerPaddle* leftPaddleP, CPUPaddle* 
 	rightDrawTextComp = new DrawTextComponent(this, font, "0",
 		Color::white, Vector2{ 700.0f, 0.0f }, 1000);
 
+	victoryDrawTextComp = new DrawTextComponent(this, font, "NO PLAYER WINS !", 
+		Color::white, Vector2{ 170.0f, 200.0f }, 1000);
+	victoryDrawTextComp->setWillDraw(false);
+
 	ball->setManager(this);
 }
 
@@ -22,18 +26,30 @@ void PongManager::updateActor(float dt)
 	}
 }
 
+void PongManager::actorInput(const Uint8* keyState, const Uint32 mouseState)
+{
+	if (mouseState == SDL_BUTTON_LEFT)
+	{
+		ResumeGame();
+		ResetScores();
+	}
+}
+
 void PongManager::ScoreAtLeft()
 {
 	scoreRight++;
 	if (scoreRight >= maxScore)
 	{
 		ball->resetPos();
+		rightDrawTextComp->setText(std::to_string(scoreRight));
+		victoryDrawTextComp->setText("RIGHT PLAYER WINS !");
 		PauseGame();
 	}
 	else
 	{
-		rightDrawTextComp->setText(std::to_string(scoreRight));
 		ball->resetPos();
+		rightDrawTextComp->setText(std::to_string(scoreRight));
+		rightPaddle->resetPos();
 	}
 }
 
@@ -43,12 +59,15 @@ void PongManager::ScoreAtRight()
 	if (scoreLeft >= maxScore)
 	{
 		ball->resetPos();
+		leftDrawTextComp->setText(std::to_string(scoreLeft));
+		victoryDrawTextComp->setText("LEFT PLAYER WINS !");
 		PauseGame();
 	}
 	else
 	{
-		leftDrawTextComp->setText(std::to_string(scoreLeft));
 		ball->resetPos();
+		leftDrawTextComp->setText(std::to_string(scoreLeft));
+		rightPaddle->resetPos();
 	}
 }
 
@@ -67,6 +86,7 @@ void PongManager::PauseGame()
 	ball->SetDrawValue(false);
 	leftPaddle->SetDrawValue(false);
 	rightPaddle->SetDrawValue(false);
+	victoryDrawTextComp->setWillDraw(true);
 }
 
 void PongManager::ResumeGame()
@@ -76,4 +96,5 @@ void PongManager::ResumeGame()
 	ball->SetDrawValue(true);
 	leftPaddle->SetDrawValue(true);
 	rightPaddle->SetDrawValue(true);
+	victoryDrawTextComp->setWillDraw(false);
 }
