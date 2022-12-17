@@ -3,16 +3,16 @@
 PongManager::PongManager(PongBall* ballP, PlayerPaddle* leftPaddleP, CPUPaddle* rightPaddleP, Font* fontP) : Actor(), ball(ballP), leftPaddle(leftPaddleP), rightPaddle(rightPaddleP), font(fontP)
 {
 	leftDrawTextComp = new DrawTextComponent(this, font, "0",
-		Color::white, Vector2{ 90.0f, 0.0f }, 1000);
+		Color::white, Vector2{ 100.0f, 0.0f }, true, 1000);
 
 	rightDrawTextComp = new DrawTextComponent(this, font, "0",
-		Color::white, Vector2{ 700.0f, 0.0f }, 1000);
+		Color::white, Vector2{ 700.0f, 0.0f }, true, 1000);
 
-	victoryDrawTextComp = new DrawTextComponent(this, font, "             PONG", //  yeah I feel bad for doing this, I will make a 'centered' option on DrawTextComponent
-		Color::white, Vector2{ 170.0f, 180.0f }, 1000);
+	victoryDrawTextComp = new DrawTextComponent(this, font, "PONG",
+		Color::white, Vector2{ 400.0f, 180.0f }, true, 1000);
 
 	resetDrawTextComp = new DrawTextComponent(this, font, "PRESS LEFT CLICK TO PLAY",
-		Color::white, Vector2{ 60.0f, 330.0f }, 1000);
+		Color::white, Vector2{ 400.0f, 330.0f }, true, 1000);
 
 
 	for (int i = 0; i < 15; i++)

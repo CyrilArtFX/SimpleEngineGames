@@ -1,8 +1,8 @@
 #include "DrawTextComponent.h"
 #include <SimpleEngine/Game.h>
 
-DrawTextComponent::DrawTextComponent(Actor* ownerP, Font* fontP, string textP, Color colorP, Vector2 offsetP, int drawOrderP) :
-	DrawComponent(ownerP, drawOrderP), font(fontP), text(textP), color(colorP), offset(offsetP)
+DrawTextComponent::DrawTextComponent(Actor* ownerP, Font* fontP, string textP, Color colorP, Vector2 offsetP, bool centeredP, int drawOrderP) :
+	DrawComponent(ownerP, drawOrderP), font(fontP), text(textP), color(colorP), offset(offsetP), centered(centeredP)
 {
 	recalculateSDLTexture();
 }
@@ -42,6 +42,11 @@ void DrawTextComponent::recalculateSDLTexture()
 	width = sdl_surface->w;
 	height = sdl_surface->h;
 
+	if (centered)
+	{
+		centeredOffsetX = width / 2.0f;
+	}
+
 	SDL_FreeSurface(sdl_surface);
 }
 
@@ -49,6 +54,31 @@ void DrawTextComponent::draw(Renderer& renderer)
 {
 	if (willDraw)
 	{
-		renderer.drawText(owner, this, width, height, offset);
+		renderer.drawText(owner, this, width, height, getRealOffset());
+	}
+}
+
+void DrawTextComponent::setCentered(bool centeredP)
+{
+	centered = centeredP;
+	if (centered)
+	{
+		centeredOffsetX = width / 2.0f;
+	}
+	else
+	{
+		centeredOffsetX = 0.0f;
+	}
+}
+
+Vector2 DrawTextComponent::getRealOffset()
+{
+	if (centered)
+	{
+		return Vector2{ offset.x - centeredOffsetX, offset.y };
+	}
+	else
+	{
+		return offset;
 	}
 }
