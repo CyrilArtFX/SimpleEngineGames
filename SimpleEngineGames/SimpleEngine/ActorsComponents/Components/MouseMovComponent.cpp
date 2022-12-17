@@ -5,37 +5,19 @@
 void MouseMovComponent::update(float dt)
 {
 	actorPosBeforeMovement = owner.getPosition();
-	int mousePosX, mousePosY;
-	SDL_GetMouseState(&mousePosX, &mousePosY);
-	Vector2 newPosition = owner.getPosition();
+	int mouse_pos_x, mouse_pos_y;
+	SDL_GetMouseState(&mouse_pos_x, &mouse_pos_y);
+	Vector2 new_position = owner.getPosition();
 
 	if (enableXAxis)
 	{
-		newPosition.x = mousePosX;
+		new_position.x = mouse_pos_x;
 	}
 
 	if (enableYAxis)
 	{
-		newPosition.y = mousePosY;
+		new_position.y = mouse_pos_y;
 	}
 
-	owner.setPosition(newPosition);
-}
-
-void MouseMovComponent::setEnableXMovement(bool enable)
-{
-	enableXAxis = enable;
-	if (!enableXAxis)
-	{
-		velocity.x = 0.0f;
-	}
-}
-
-void MouseMovComponent::setEnableYMovement(bool enable)
-{
-	enableYAxis = enable;
-	if (!enableYAxis)
-	{
-		velocity.y = 0.0f;
-	}
+	owner.setPosition(new_position);
 }

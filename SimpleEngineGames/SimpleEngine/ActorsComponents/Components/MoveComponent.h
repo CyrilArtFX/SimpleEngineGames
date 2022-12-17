@@ -10,16 +10,20 @@ public:
 	MoveComponent(const MoveComponent&) = delete;
 	MoveComponent& operator=(const MoveComponent&) = delete;
 
-	Vector2 getVelocity() const { return velocity; }
-	void setVelocity(Vector2 velocityP);
-	float getSpeed() const { return speed; }
-	void setSpeed(float speedP);
+	void revertLastMovement(bool revertX, bool revertY);
 
-	virtual void update(float dt) override;
-	void revertLastMovement(bool revertOnlyX, bool revertOnlyY);
+	void setEnableXMovement(bool enable);
+	bool getEnableXMovement() const { return enableXAxis; }
+	void setEnableYMovement(bool enable);
+	bool getEnableYMovement() const { return enableYAxis; }
+
+	virtual void stopXMovement();
+	virtual void stopYMovement();
+	virtual void reverseXMovement();
+	virtual void reverseYMovement();
 
 protected:
-	Vector2 velocity{ Vector2::zero };
-	float speed{ 0.0f };
-	Vector2 actorPosBeforeMovement;
+	bool enableXAxis{ true };
+	bool enableYAxis{ true };
+	Vector2 actorPosBeforeMovement{ Vector2::zero };
 };

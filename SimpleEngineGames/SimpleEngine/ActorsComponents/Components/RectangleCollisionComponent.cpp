@@ -22,95 +22,95 @@ void RectangleCollisionComponent::setRectangle(Rectangle rectangleP)
 
 bool RectangleCollisionComponent::intersectWithPoint(const Vector2& point) const
 {
-	Rectangle scaledRect = getTransformedRectangle();
-	return point.x >= scaledRect.x && point.x <= scaledRect.x + scaledRect.width
-		&& point.y >= scaledRect.y && point.y <= scaledRect.y + scaledRect.height;
+	Rectangle scaled_rect = getTransformedRectangle();
+	return point.x >= scaled_rect.x && point.x <= scaled_rect.x + scaled_rect.width
+		&& point.y >= scaled_rect.y && point.y <= scaled_rect.y + scaled_rect.height;
 }
 
 bool RectangleCollisionComponent::intersectWithCircleCollision(const CircleCollisionComponent& collision) const
 {
-	Rectangle scaledRect = getTransformedRectangle();
-	float halfWidth = scaledRect.width / 2;
-	float halfHeight = scaledRect.height / 2;
-	float circleRadius = collision.getRadius();
-	Vector2 circleCenter = collision.getCenter();
+	Rectangle scaled_rect = getTransformedRectangle();
+	float half_width = scaled_rect.width / 2;
+	float half_height = scaled_rect.height / 2;
+	float circle_radius = collision.getRadius();
+	Vector2 circle_center = collision.getCenter();
 
-	Vector2 rectCenter = Vector2{ scaledRect.x + halfWidth, scaledRect.y + halfHeight };
-	Vector2 circleDistance = Vector2{ fabs(circleCenter.x - rectCenter.x), fabs(circleCenter.y - rectCenter.y) };
+	Vector2 rect_center = Vector2{ scaled_rect.x + half_width, scaled_rect.y + half_height };
+	Vector2 circle_distance = Vector2{ fabs(circle_center.x - rect_center.x), fabs(circle_center.y - rect_center.y) };
 
-	if (circleDistance.x > (halfWidth + circleRadius)) return false;
-	if (circleDistance.y > (halfHeight + circleRadius)) return false;
+	if (circle_distance.x > (half_width + circle_radius)) return false;
+	if (circle_distance.y > (half_height + circle_radius)) return false;
 
-	if (circleDistance.x <= (halfWidth)) return true;
-	if (circleDistance.y <= (halfHeight)) return true;
+	if (circle_distance.x <= (half_width)) return true;
+	if (circle_distance.y <= (half_height)) return true;
 
-	float cornerDistanceSq = (circleDistance.x - halfWidth) * (circleDistance.x - halfWidth) 
-		+ (circleDistance.y - halfHeight) * (circleDistance.y - halfHeight);
-	return (cornerDistanceSq <= (circleRadius * circleRadius));
+	float corner_distance_sq = (circle_distance.x - half_width) * (circle_distance.x - half_width) 
+		+ (circle_distance.y - half_height) * (circle_distance.y - half_height);
+	return (corner_distance_sq <= (circle_radius * circle_radius));
 }
 
 bool RectangleCollisionComponent::intersectWithRectCollision(const RectangleCollisionComponent& collision) const
 {
-	Rectangle scaledRect1 = getTransformedRectangle();
-	Rectangle scaledRect2 = collision.getTransformedRectangle();
+	Rectangle scaled_rect_1 = getTransformedRectangle();
+	Rectangle scaled_rect_2 = collision.getTransformedRectangle();
 
-	return intersectWithPoint(Vector2{ scaledRect2.x, scaledRect2.y })
-		|| intersectWithPoint(Vector2{ scaledRect2.x + scaledRect2.width, scaledRect2.y })
-		|| intersectWithPoint(Vector2{ scaledRect2.x, scaledRect2.y + scaledRect2.height })
-		|| intersectWithPoint(Vector2{ scaledRect2.x + scaledRect2.width, scaledRect2.y + scaledRect2.height })
-		|| collision.intersectWithPoint(Vector2{ scaledRect1.x, scaledRect1.y });
+	return intersectWithPoint(Vector2{ scaled_rect_2.x, scaled_rect_2.y })
+		|| intersectWithPoint(Vector2{ scaled_rect_2.x + scaled_rect_2.width, scaled_rect_2.y })
+		|| intersectWithPoint(Vector2{ scaled_rect_2.x, scaled_rect_2.y + scaled_rect_2.height })
+		|| intersectWithPoint(Vector2{ scaled_rect_2.x + scaled_rect_2.width, scaled_rect_2.y + scaled_rect_2.height })
+		|| collision.intersectWithPoint(Vector2{ scaled_rect_1.x, scaled_rect_1.y });
 }
 
 bool RectangleCollisionComponent::intersectWithY(const float y) const
 {
-	Rectangle scaledRect = getTransformedRectangle();
-	return y >= scaledRect.y && y <= scaledRect.y + scaledRect.height;
+	Rectangle scaled_rect = getTransformedRectangle();
+	return y >= scaled_rect.y && y <= scaled_rect.y + scaled_rect.height;
 }
 
 bool RectangleCollisionComponent::intersectWithX(const float x) const
 {
-	Rectangle scaledRect = getTransformedRectangle();
-	return x >= scaledRect.x && x <= scaledRect.x + scaledRect.width;
+	Rectangle scaled_rect = getTransformedRectangle();
+	return x >= scaled_rect.x && x <= scaled_rect.x + scaled_rect.width;
 }
 
 float RectangleCollisionComponent::nearestYPosOfY(const float y) const
 {
-	Rectangle scaledRect = getTransformedRectangle();
-	float yCenter = scaledRect.y + scaledRect.height / 2.0f;
-	if (yCenter > y)
+	Rectangle scaled_rect = getTransformedRectangle();
+	float y_center = scaled_rect.y + scaled_rect.height / 2.0f;
+	if (y_center > y)
 	{
 		return y - rectangle.y;
 	}
 	else
 	{
-		return y - rectangle.y - scaledRect.height;
+		return y - rectangle.y - scaled_rect.height;
 	}
 }
 
 float RectangleCollisionComponent::nearestXPosOfX(const float x) const
 {
-	Rectangle scaledRect = getTransformedRectangle();
-	float xCenter = scaledRect.x + scaledRect.width / 2.0f;
-	if (xCenter > x)
+	Rectangle scaled_rect = getTransformedRectangle();
+	float x_center = scaled_rect.x + scaled_rect.width / 2.0f;
+	if (x_center > x)
 	{
 		return x - rectangle.x;
 	}
 	else
 	{
-		return x - rectangle.x - scaledRect.width;
+		return x - rectangle.x - scaled_rect.width;
 	}
 }
 
 void RectangleCollisionComponent::debug(Renderer& renderer)
 {
-	int mousePosX, mousePosY;
-	SDL_GetMouseState(&mousePosX, &mousePosY);
-	Vector2 mousePos = Vector2{
-		mousePosX + owner.getGame().getCamera().getCamPos().x,
-		mousePosY + owner.getGame().getCamera().getCamPos().y
+	int mouse_pos_x, mouse_pos_y;
+	SDL_GetMouseState(&mouse_pos_x, &mouse_pos_y);
+	Vector2 mouse_pos = Vector2{
+		mouse_pos_x + owner.getGame().getCamera().getCamPos().x,
+		mouse_pos_y + owner.getGame().getCamera().getCamPos().y
 	};
 
-	if (intersectWithPoint(mousePos))
+	if (intersectWithPoint(mouse_pos))
 	{
 		drawDebug(renderer, Color::white);
 	}

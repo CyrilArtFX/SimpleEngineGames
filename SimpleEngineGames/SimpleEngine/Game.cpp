@@ -4,9 +4,9 @@
 
 bool Game::initialize(const char* windowName, int windowWidth, int windowHeight, Color backgroundColor)
 {
-	bool isWindowInit = window.initialize(windowName, windowWidth, windowHeight);
-	bool isRendererInit = renderer.initialize(window, backgroundColor);
-	return isWindowInit && isRendererInit;
+	bool is_window_init = window.initialize(windowName, windowWidth, windowHeight);
+	bool is_renderer_init = renderer.initialize(window, backgroundColor);
+	return is_window_init && is_renderer_init;
 }
 
 void Game::loadScene(Scene* sceneP)
@@ -77,20 +77,20 @@ void Game::processInput()
 	}
 
 	// Keyboard state
-	const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
+	const Uint8* keyboard_state = SDL_GetKeyboardState(nullptr);
 	// Escape: quit game
-	if (keyboardState[SDL_SCANCODE_ESCAPE])
+	if (keyboard_state[SDL_SCANCODE_ESCAPE])
 	{
 		isRunning = false;
 	}
 
-	const Uint32 mouseState = SDL_GetMouseState(nullptr, nullptr);
+	const Uint32 mouse_state = SDL_GetMouseState(nullptr, nullptr);
 
 	//  actor input
 	isUpdatingActors = true;
 	for (auto actor : actors)
 	{
-		actor->processInput(keyboardState, mouseState);
+		actor->processInput(keyboard_state, mouse_state);
 	}
 	isUpdatingActors = false;
 }
@@ -106,24 +106,24 @@ void Game::update(float dt)
 	isUpdatingActors = false;
 
 	//  move pending actors to actors
-	for (auto pendingActor : pendingActors)
+	for (auto pending_actor : pendingActors)
 	{
-		actors.emplace_back(pendingActor);
+		actors.emplace_back(pending_actor);
 	}
 	pendingActors.clear();
 
 	//  delete dead actors
-	vector<Actor*> deadActors;
+	vector<Actor*> dead_actors;
 	for (auto actor : actors)
 	{
 		if (actor->getState() == Actor::ActorState::Dead)
 		{
-			deadActors.emplace_back(actor);
+			dead_actors.emplace_back(actor);
 		}
 	}
-	for (auto deadActor : deadActors)
+	for (auto dead_actor : dead_actors)
 	{
-		delete deadActor;
+		delete dead_actor;
 	}
 }
 

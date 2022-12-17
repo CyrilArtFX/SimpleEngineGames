@@ -29,24 +29,6 @@ void InputMoveComponent::processInput(const Uint8* keyState, const Uint32 mouseS
 	}
 }
 
-void InputMoveComponent::setEnableXMovement(bool enable)
-{
-	enableXAxis = enable;
-	if (!enableXAxis)
-	{
-		velocity.x = 0.0f;
-	}
-}
-
-void InputMoveComponent::setEnableYMovement(bool enable)
-{
-	enableYAxis = enable;
-	if (!enableYAxis)
-	{
-		velocity.y = 0.0f;
-	}
-}
-
 void InputMoveComponent::setForwardKey(SDL_Scancode key)
 {
 	forwardKey = key;

@@ -41,6 +41,7 @@
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\RectangleCollisionComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawSpriteComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\VelocityMoveComponent.cpp" />
     <ClCompile Include="SimpleEngine\Assets.cpp" />
     <ClCompile Include="SimpleEngine\Camera.cpp" />
     <ClCompile Include="SimpleEngine\Game.cpp" />
@@ -80,6 +81,7 @@
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\RectangleCollisionComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawSpriteComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\VelocityMoveComponent.h" />
     <ClInclude Include="SimpleEngine\Assets.h" />
     <ClInclude Include="SimpleEngine\Camera.h" />
     <ClInclude Include="SimpleEngine\Game.h" />

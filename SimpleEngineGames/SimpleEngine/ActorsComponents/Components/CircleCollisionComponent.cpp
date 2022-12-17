@@ -42,22 +42,22 @@ bool CircleCollisionComponent::intersectWithRectCollision(const RectangleCollisi
 
 bool CircleCollisionComponent::intersectWithY(const float y) const
 {
-	float centerY = getCenter().y;
-	float circleHeight = getRadius();
-	return y >= centerY - circleHeight && y <= centerY + circleHeight;
+	float center_y = getCenter().y;
+	float circle_radius = getRadius();
+	return y >= center_y - circle_radius && y <= center_y + circle_radius;
 }
 
 bool CircleCollisionComponent::intersectWithX(const float x) const
 {
-	float centerX = getCenter().x;
-	float circleWidth = getRadius();
-	return x >= centerX - circleWidth && x <= centerX + circleWidth;
+	float center_x = getCenter().x;
+	float circle_radius = getRadius();
+	return x >= center_x - circle_radius && x <= center_x + circle_radius;
 }
 
 float CircleCollisionComponent::nearestYPosOfY(const float y) const
 {
-	float yPos = getCenter().y;
-	if (yPos > y)
+	float y_pos = getCenter().y;
+	if (y_pos > y)
 	{
 		return y + getRadius();
 	}
@@ -69,8 +69,8 @@ float CircleCollisionComponent::nearestYPosOfY(const float y) const
 
 float CircleCollisionComponent::nearestXPosOfX(const float x) const
 {
-	float xPos = getCenter().x;
-	if (xPos > x)
+	float x_pos = getCenter().x;
+	if (x_pos > x)
 	{
 		return x + getRadius();
 	}
@@ -82,14 +82,14 @@ float CircleCollisionComponent::nearestXPosOfX(const float x) const
 
 void CircleCollisionComponent::debug(Renderer& renderer)
 {
-	int mousePosX, mousePosY;
-	SDL_GetMouseState(&mousePosX, &mousePosY);
-	Vector2 mousePos = Vector2{
-		mousePosX + owner.getGame().getCamera().getCamPos().x,
-		mousePosY + owner.getGame().getCamera().getCamPos().y
+	int mouse_pos_x, mouse_pos_y;
+	SDL_GetMouseState(&mouse_pos_x, &mouse_pos_y);
+	Vector2 mouse_pos = Vector2{
+		mouse_pos_x + owner.getGame().getCamera().getCamPos().x,
+		mouse_pos_y + owner.getGame().getCamera().getCamPos().y
 	};
 
-	if (intersectWithPoint(mousePos))
+	if (intersectWithPoint(mouse_pos))
 	{
 		drawDebug(renderer, Color::white);
 	}

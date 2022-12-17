@@ -5,9 +5,9 @@
 void run()
 {
 	auto& game = Game::instance();
-	bool isGameInit = game.initialize("Pong", 800, 600, Color::black);
+	bool is_game_init = game.initialize("Pong", 800, 600, Color::black);
 
-	if (isGameInit)
+	if (is_game_init)
 	{
 		game.loadScene(new PongScene());
 		game.loop();

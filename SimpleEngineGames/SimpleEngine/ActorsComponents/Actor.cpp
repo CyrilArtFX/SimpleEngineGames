@@ -66,11 +66,11 @@ void Actor::updateActor(float dt)
 void Actor::addComponent(Component* component)
 {
 	//  we must insert the component in the right place in the vector depending of the component's update order
-	int myOrder = component->getUpdateOrder();
+	int my_order = component->getUpdateOrder();
 	auto iter = begin(components);
 	for (; iter != end(components); ++iter)
 	{
-		if (myOrder < (*iter)->getUpdateOrder())
+		if (my_order < (*iter)->getUpdateOrder())
 		{
 			break;
 		}

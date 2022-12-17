@@ -2,7 +2,7 @@
 #include <SimpleEngine/ActorsComponents/Actor.h>
 #include <SimpleEngine/ActorsComponents/Components/DrawCircleComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/CircleCollisionComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/MoveComponent.h>
+#include <SimpleEngine/ActorsComponents/Components/VelocityMoveComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/ScreenBorderInteractionComponent.h>
 
 class PongManager;
@@ -15,26 +15,26 @@ public:
 	PongBall& operator=(const PongBall&) = delete;
 
 	void updateActor(float dt) override;
-	void testCollision(class RectangleCollisionComponent* col, bool testAtRight);
+	void TestCollision(class RectangleCollisionComponent* col, bool testAtRight);
 
-	void setManager(PongManager* gameManagerP);
-	void resetPos();
-	void reverseXMovement();
-	void setRandomYVelocity();
-	void setDirectedYMovement(Rectangle colRect);
-	void pauseMovement();
-	void resumeMovement();
+	void SetManager(PongManager* gameManagerP);
+	void ResetPos();
+	void ReverseXMovement();
+	void SetRandomYVelocity();
+	void SetDirectedYMovement(Rectangle colRect);
+	void PauseMovement();
+	void ResumeMovement();
 	void SetDrawValue(bool value);
 
-	void setSpeed(float speedP);
-	float getSpeed() const { return speed; }
+	void SetSpeed(float speedP);
+	float GetSpeed() const { return speed; }
 
 private:
 	PongManager* gameManager{ nullptr };
 
 	DrawCircleComponent* drawCircleComp;
 	CircleCollisionComponent* circleColComp;
-	MoveComponent* moveComp;
+	VelocityMoveComponent* moveComp;
 	ScreenBorderInteractionComponent* screenBorderInterComp;
 
 	float baseSpeed{ 300.0f };

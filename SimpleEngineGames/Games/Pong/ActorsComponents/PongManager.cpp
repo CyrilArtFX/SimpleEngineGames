@@ -21,8 +21,8 @@ PongManager::PongManager(PongBall* ballP, PlayerPaddle* leftPaddleP, CPUPaddle* 
 		lineDrawRectComps[i]->setWillDraw(false);
 	}
 
-	ball->setManager(this);
-	ball->pauseMovement();
+	ball->SetManager(this);
+	ball->PauseMovement();
 	ball->SetDrawValue(false);
 	leftPaddle->SetDrawValue(false);
 	rightPaddle->SetDrawValue(false);
@@ -32,10 +32,10 @@ void PongManager::updateActor(float dt)
 {
 	if(!isGamePaused)
 	{
-		ball->testCollision(leftPaddle->GetCol(), false);
-		ball->testCollision(rightPaddle->GetCol(), true);
+		ball->TestCollision(leftPaddle->GetCol(), false);
+		ball->TestCollision(rightPaddle->GetCol(), true);
 
-		rightPaddle->updateVelocity(ball->getPosition().y);
+		rightPaddle->UpdateVelocity(ball->getPosition().y);
 	}
 }
 
@@ -53,16 +53,16 @@ void PongManager::ScoreAtLeft()
 	scoreRight++;
 	if (scoreRight >= maxScore)
 	{
-		ball->resetPos();
+		ball->ResetPos();
 		rightDrawTextComp->setText(std::to_string(scoreRight));
 		victoryDrawTextComp->setText("RIGHT PLAYER WINS !");
 		PauseGame();
 	}
 	else
 	{
-		ball->resetPos();
+		ball->ResetPos();
 		rightDrawTextComp->setText(std::to_string(scoreRight));
-		rightPaddle->resetPos();
+		rightPaddle->ResetPos();
 	}
 }
 
@@ -71,16 +71,16 @@ void PongManager::ScoreAtRight()
 	scoreLeft++;
 	if (scoreLeft >= maxScore)
 	{
-		ball->resetPos();
+		ball->ResetPos();
 		leftDrawTextComp->setText(std::to_string(scoreLeft));
 		victoryDrawTextComp->setText("LEFT PLAYER WINS !");
 		PauseGame();
 	}
 	else
 	{
-		ball->resetPos();
+		ball->ResetPos();
 		leftDrawTextComp->setText(std::to_string(scoreLeft));
-		rightPaddle->resetPos();
+		rightPaddle->ResetPos();
 	}
 }
 
@@ -95,7 +95,7 @@ void PongManager::ResetScores()
 void PongManager::PauseGame()
 {
 	isGamePaused = true;
-	ball->pauseMovement();
+	ball->PauseMovement();
 	ball->SetDrawValue(false);
 	leftPaddle->SetDrawValue(false);
 	rightPaddle->SetDrawValue(false);
@@ -110,7 +110,7 @@ void PongManager::PauseGame()
 void PongManager::ResumeGame()
 {
 	isGamePaused = false;
-	ball->resumeMovement();
+	ball->ResumeMovement();
 	ball->SetDrawValue(true);
 	leftPaddle->SetDrawValue(true);
 	rightPaddle->SetDrawValue(true);

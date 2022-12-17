@@ -1,6 +1,6 @@
 #pragma once
 #include "Paddle.h"
-#include <SimpleEngine/ActorsComponents/Components/MoveComponent.h>
+#include <SimpleEngine/ActorsComponents/Components/VelocityMoveComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/ScreenBorderInteractionComponent.h>
 
 class CPUPaddle : public Paddle
@@ -10,11 +10,11 @@ public:
 	CPUPaddle(const CPUPaddle&) = delete;
 	CPUPaddle& operator=(const CPUPaddle&) = delete;
 
-	void updateVelocity(float ballPosY);
-	void resetPos();
+	void UpdateVelocity(float ballPosY);
+	void ResetPos();
 
 private:
-	MoveComponent* moveComp;
+	VelocityMoveComponent* moveComp;
 	ScreenBorderInteractionComponent* screenBorderInterComp;
 	Vector2 startPos;
 };

@@ -36,13 +36,13 @@ void DrawTextComponent::recalculateSDLTexture()
 		SDL_DestroyTexture(SDLTexture);
 	}
 
-	auto sdlSurface = TTF_RenderText_Solid(font->getSdlFont(), text.c_str(), color.toSDLColor());
-	SDLTexture = SDL_CreateTextureFromSurface(owner.getGame().getRenderer().toSDLRenderer(), sdlSurface);
+	auto sdl_surface = TTF_RenderText_Solid(font->getSdlFont(), text.c_str(), color.toSDLColor());
+	SDLTexture = SDL_CreateTextureFromSurface(owner.getGame().getRenderer().toSDLRenderer(), sdl_surface);
 
-	width = sdlSurface->w;
-	height = sdlSurface->h;
+	width = sdl_surface->w;
+	height = sdl_surface->h;
 
-	SDL_FreeSurface(sdlSurface);
+	SDL_FreeSurface(sdl_surface);
 }
 
 void DrawTextComponent::draw(Renderer& renderer)

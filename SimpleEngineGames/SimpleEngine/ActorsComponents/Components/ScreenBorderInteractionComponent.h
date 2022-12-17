@@ -29,8 +29,8 @@ public:
 	ScreenBorderInteractionComponent(const ScreenBorderInteractionComponent&) = delete;
 	ScreenBorderInteractionComponent& operator=(const ScreenBorderInteractionComponent&) = delete;
 
-	void SetInteractions(ScreenBorderInteractions upInteractionP, ScreenBorderInteractions downInteractionP, ScreenBorderInteractions leftInteractionP, ScreenBorderInteractions rightInteractionP);
-	int CheckBordersInteractions();
+	void setInteractions(ScreenBorderInteractions upInteractionP, ScreenBorderInteractions downInteractionP, ScreenBorderInteractions leftInteractionP, ScreenBorderInteractions rightInteractionP);
+	int checkBordersInteractions();
 
 	void update(float dt) override;
 	bool autoUpdate = false; //  if true, the update will run the 'CheckBordersInteractions' function (the block and bounce intersections types will work, but not the return one)

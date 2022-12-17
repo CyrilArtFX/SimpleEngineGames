@@ -11,7 +11,6 @@
 #include "ActorsComponents/Components/DrawTextComponent.h"
 #include "ActorsComponents/Components/CollisionComponent.h"
 #include "Game.h"
-#include <iostream>
 #include <SDL_ttf.h>
 
 Renderer::Renderer() : SDLRenderer(nullptr)
@@ -67,28 +66,28 @@ void Renderer::endDraw()
 
 void Renderer::drawDrawComponents()
 {
-	for (auto drawComponent : drawComponents)
+	for (auto draw_component : drawComponents)
 	{
-		drawComponent->draw(*this);
+		draw_component->draw(*this);
 	}
 }
 
 void Renderer::drawDebugRect(const Actor& actor, const Rectangle& rect, Color color)
 {
-	Vector2 camPos = Game::instance().getCamera().getCamPos();
-	SDL_Rect drawRect;
-	Vector2 position = actor.getPosition() - camPos;
+	Vector2 cam_pos = Game::instance().getCamera().getCamPos();
+	SDL_Rect draw_rect;
+	Vector2 position = actor.getPosition() - cam_pos;
 	float scale = actor.getScale();
 
-	drawRect.w = static_cast<int>(rect.width * scale);
-	drawRect.h = static_cast<int>(rect.height * scale);
+	draw_rect.w = static_cast<int>(rect.width * scale);
+	draw_rect.h = static_cast<int>(rect.height * scale);
 
-	drawRect.x = static_cast<int>(rect.x + position.x);
-	drawRect.y = static_cast<int>(rect.y + position.y);
+	draw_rect.x = static_cast<int>(rect.x + position.x);
+	draw_rect.y = static_cast<int>(rect.y + position.y);
 
 
 	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
-	SDL_RenderDrawRect(SDLRenderer, &drawRect);
+	SDL_RenderDrawRect(SDLRenderer, &draw_rect);
 
 }
 
@@ -96,9 +95,9 @@ void Renderer::drawDebugCircle(const Actor& actor, const Vector2& circleOffset, 
 {
 	//  midpoint circle algorithm 
 	//  (found on https://stackoverflow.com/questions/38334081/howto-draw-circles-arcs-and-vector-graphics-in-sdl)
-	Vector2 camPos = Game::instance().getCamera().getCamPos();
-	const int centreX = static_cast<int>(actor.getPosition().x + circleOffset.x - camPos.x);
-	const int centreY = static_cast<int>(actor.getPosition().y + circleOffset.y - camPos.y);
+	Vector2 cam_pos = Game::instance().getCamera().getCamPos();
+	const int centre_x = static_cast<int>(actor.getPosition().x + circleOffset.x - cam_pos.x);
+	const int centre_y = static_cast<int>(actor.getPosition().y + circleOffset.y - cam_pos.y);
 
 	radius *= actor.getScale();
 	const int diameter = radius * 2;
@@ -113,14 +112,14 @@ void Renderer::drawDebugCircle(const Actor& actor, const Vector2& circleOffset, 
 	{
 		SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
 
-		SDL_RenderDrawPoint(SDLRenderer, centreX + x, centreY - y);
-		SDL_RenderDrawPoint(SDLRenderer, centreX + x, centreY + y);
-		SDL_RenderDrawPoint(SDLRenderer, centreX - x, centreY - y);
-		SDL_RenderDrawPoint(SDLRenderer, centreX - x, centreY + y);
-		SDL_RenderDrawPoint(SDLRenderer, centreX + y, centreY - x);
-		SDL_RenderDrawPoint(SDLRenderer, centreX + y, centreY + x);
-		SDL_RenderDrawPoint(SDLRenderer, centreX - y, centreY - x);
-		SDL_RenderDrawPoint(SDLRenderer, centreX - y, centreY + x);
+		SDL_RenderDrawPoint(SDLRenderer, centre_x + x, centre_y - y);
+		SDL_RenderDrawPoint(SDLRenderer, centre_x + x, centre_y + y);
+		SDL_RenderDrawPoint(SDLRenderer, centre_x - x, centre_y - y);
+		SDL_RenderDrawPoint(SDLRenderer, centre_x - x, centre_y + y);
+		SDL_RenderDrawPoint(SDLRenderer, centre_x + y, centre_y - x);
+		SDL_RenderDrawPoint(SDLRenderer, centre_x + y, centre_y + x);
+		SDL_RenderDrawPoint(SDLRenderer, centre_x - y, centre_y - x);
+		SDL_RenderDrawPoint(SDLRenderer, centre_x - y, centre_y + x);
 
 		if (error <= 0)
 		{
@@ -140,29 +139,29 @@ void Renderer::drawDebugCircle(const Actor& actor, const Vector2& circleOffset, 
 
 void Renderer::drawRect(const Actor& actor, const Rectangle& rect, Color color)
 {
-	Vector2 camPos = Game::instance().getCamera().getCamPos();
-	SDL_Rect drawRect;
-	Vector2 position = actor.getPosition() - camPos;
+	Vector2 cam_pos = Game::instance().getCamera().getCamPos();
+	SDL_Rect draw_rect;
+	Vector2 position = actor.getPosition() - cam_pos;
 	float scale = actor.getScale();
 	
-	drawRect.w = static_cast<int>(rect.width * scale);
-	drawRect.h = static_cast<int>(rect.height * scale);
+	draw_rect.w = static_cast<int>(rect.width * scale);
+	draw_rect.h = static_cast<int>(rect.height * scale);
 
-	drawRect.x = static_cast<int>(rect.x + position.x);
-	drawRect.y = static_cast<int>(rect.y + position.y);
+	draw_rect.x = static_cast<int>(rect.x + position.x);
+	draw_rect.y = static_cast<int>(rect.y + position.y);
 
 
 	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
-	SDL_RenderFillRect(SDLRenderer, &drawRect);
+	SDL_RenderFillRect(SDLRenderer, &draw_rect);
 }
 
 void Renderer::drawCircle(const Actor& actor, const Vector2& circleOffset, int radius, Color color)
 {
 	//  surely not the best optimized circle algorithm
 	//  (found on https://stackoverflow.com/questions/65723827/sdl2-function-to-draw-a-filled-circle)
-	Vector2 camPos = Game::instance().getCamera().getCamPos();
-	const int centreX = static_cast<int>(actor.getPosition().x + circleOffset.x - camPos.x);
-	const int centreY = static_cast<int>(actor.getPosition().y + circleOffset.y - camPos.y);
+	Vector2 cam_pos = Game::instance().getCamera().getCamPos();
+	const int centre_x = static_cast<int>(actor.getPosition().x + circleOffset.x - cam_pos.x);
+	const int centre_y = static_cast<int>(actor.getPosition().y + circleOffset.y - cam_pos.y);
 	radius *= actor.getScale();
 
 	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
@@ -174,7 +173,7 @@ void Renderer::drawCircle(const Actor& actor, const Vector2& circleOffset, int r
 			int dy = radius - h;
 			if ((dx * dx + dy * dy) <= (radius * radius))
 			{
-				SDL_RenderDrawPoint(SDLRenderer, centreX + dx, centreY + dy);
+				SDL_RenderDrawPoint(SDLRenderer, centre_x + dx, centre_y + dy);
 			}
 		}
 	}
@@ -182,47 +181,47 @@ void Renderer::drawCircle(const Actor& actor, const Vector2& circleOffset, int r
 
 void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip) const
 {
-	Vector2 camPos = Game::instance().getCamera().getCamPos();
-	SDL_Rect dstRect;
-	Vector2 position = actor.getPosition() - camPos;
+	Vector2 cam_pos = Game::instance().getCamera().getCamPos();
+	SDL_Rect dst_rect;
+	Vector2 position = actor.getPosition() - cam_pos;
 	float rotation = actor.getRotation();
 	float scale = actor.getScale();
 
-	dstRect.w = static_cast<int>(tex.getWidth() * scale);
-	dstRect.h = static_cast<int>(tex.getHeight() * scale);
+	dst_rect.w = static_cast<int>(tex.getWidth() * scale);
+	dst_rect.h = static_cast<int>(tex.getHeight() * scale);
 
-	dstRect.x = static_cast<int>(position.x - origin.x);
-	dstRect.y = static_cast<int>(position.y - origin.y);
+	dst_rect.x = static_cast<int>(position.x - origin.x);
+	dst_rect.y = static_cast<int>(position.y - origin.y);
 
-	SDL_Rect* srcSDL = nullptr;
+	SDL_Rect* src_SDL = nullptr;
 	if (srcRect != Rectangle::nullRect)
 	{
-		srcSDL = new SDL_Rect{ Maths::round(srcRect.x), Maths::round(srcRect.y), 
+		src_SDL = new SDL_Rect{ Maths::round(srcRect.x), Maths::round(srcRect.y), 
 			Maths::round(srcRect.width), Maths::round(srcRect.height) };
 	}
 
-	SDL_RenderCopyEx(SDLRenderer, tex.toSDLTexture(), srcSDL, &dstRect, -Maths::toDegrees(rotation), nullptr, SDL_FLIP_NONE);
-	delete srcSDL;
+	SDL_RenderCopyEx(SDLRenderer, tex.toSDLTexture(), src_SDL, &dst_rect, -Maths::toDegrees(rotation), nullptr, SDL_FLIP_NONE);
+	delete src_SDL;
 }
 
 void Renderer::drawText(const Actor& actor, const class DrawTextComponent* text, int width, int height, Vector2 offset)
 {
-	Vector2 camPos = Game::instance().getCamera().getCamPos();
-	SDL_Rect dstRect;
-	Vector2 position = actor.getPosition() - camPos + offset;
+	Vector2 cam_pos = Game::instance().getCamera().getCamPos();
+	SDL_Rect dst_rect;
+	Vector2 position = actor.getPosition() - cam_pos + offset;
 	float rotation = actor.getRotation();
 	float scale = actor.getScale();
 
-	dstRect.w = static_cast<int>(scale * width);
-	dstRect.h = static_cast<int>(scale * height);
+	dst_rect.w = static_cast<int>(scale * width);
+	dst_rect.h = static_cast<int>(scale * height);
 
-	dstRect.x = static_cast<int>(position.x);
-	dstRect.y = static_cast<int>(position.y);
+	dst_rect.x = static_cast<int>(position.x);
+	dst_rect.y = static_cast<int>(position.y);
 
-	SDL_Rect* srcSDL = nullptr;
+	SDL_Rect* src_SDL = nullptr;
 
-	SDL_RenderCopyEx(SDLRenderer, text->toSDLTexture(), srcSDL, &dstRect, -Maths::toDegrees(rotation), nullptr, SDL_FLIP_NONE);
-	delete srcSDL;
+	SDL_RenderCopyEx(SDLRenderer, text->toSDLTexture(), src_SDL, &dst_rect, -Maths::toDegrees(rotation), nullptr, SDL_FLIP_NONE);
+	delete src_SDL;
 }
 
 void Renderer::close()
@@ -232,11 +231,11 @@ void Renderer::close()
 
 void Renderer::addDrawComponent(DrawComponent* drawComponent)
 {
-	int spriteDrawOrder = drawComponent->getDrawOrder();
+	int sprite_draw_order = drawComponent->getDrawOrder();
 	auto iter = begin(drawComponents);
 	for (; iter != end(drawComponents); ++iter)
 	{
-		if (spriteDrawOrder < (*iter)->getDrawOrder())
+		if (sprite_draw_order < (*iter)->getDrawOrder())
 		{
 			break;
 		}

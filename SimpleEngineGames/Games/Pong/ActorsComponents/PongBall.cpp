@@ -13,82 +13,81 @@ PongBall::PongBall() : Actor()
 	circleColComp = new CircleCollisionComponent(this);
 	circleColComp->setRadius(10.0f);
 
-	moveComp = new MoveComponent(this);
+	moveComp = new VelocityMoveComponent(this);
 	moveComp->setVelocity(Vector2{ 1.0f, 0.0f });
-	setRandomYVelocity();
+	SetRandomYVelocity();
 
 	screenBorderInterComp = new ScreenBorderInteractionComponent(this, moveComp, circleColComp);
-	screenBorderInterComp->SetInteractions(ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Return, ScreenBorderInteractions::Return);
+	screenBorderInterComp->setInteractions(ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Bounce, ScreenBorderInteractions::Return, ScreenBorderInteractions::Return);
 
-	resetPos();
-	resumeMovement();
+	ResetPos();
+	ResumeMovement();
 }
 
 void PongBall::updateActor(float dt)
 {
-	int screenReturn = screenBorderInterComp->CheckBordersInteractions();
-	if (screenReturn == 3)
+	int screen_return = screenBorderInterComp->checkBordersInteractions();
+	if (screen_return == 3)
 	{
 		gameManager->ScoreAtLeft();
 	}
-	else if (screenReturn == 4)
+	else if (screen_return == 4)
 	{
 		gameManager->ScoreAtRight();
 	}
 }
 
-void PongBall::testCollision(RectangleCollisionComponent* col, bool testAtRight)
+void PongBall::TestCollision(RectangleCollisionComponent* col, bool testAtRight)
 {
 	if (col->intersectWithCircleCollision(*circleColComp) && (testAtRight ? moveComp->getVelocity().x > 0.0f : moveComp->getVelocity().x < 0.0f))
 	{
 		moveComp->revertLastMovement(true, false);
-		reverseXMovement();
-		setDirectedYMovement(col->getTransformedRectangle());
+		ReverseXMovement();
+		SetDirectedYMovement(col->getTransformedRectangle());
 		speed += speedBoost;
 		moveComp->setSpeed(speed);
 	}
 }
 
-void PongBall::setManager(PongManager* gameManagerP)
+void PongBall::SetManager(PongManager* gameManagerP)
 {
 	gameManager = gameManagerP;
 }
 
-void PongBall::resetPos()
+void PongBall::ResetPos()
 {
 	speed = baseSpeed;
 	moveComp->setSpeed(speed);
 	setPosition(Vector2{ getGame().getScreenWidth() / 2.0f, getGame().getScreenHeight() / 2.0f });
-	reverseXMovement();
-	setRandomYVelocity();
+	ReverseXMovement();
+	SetRandomYVelocity();
 }
 
-void PongBall::reverseXMovement()
+void PongBall::ReverseXMovement()
 {
-	Vector2 velocity = moveComp->getVelocity();
-	moveComp->setVelocity(Vector2{ -velocity.x, velocity.y });
+	moveComp->reverseXMovement();
 }
 
-void PongBall::setRandomYVelocity()
+void PongBall::SetRandomYVelocity()
 {
 	Vector2 velocity = moveComp->getVelocity();
 	float random = Random::getFloatRange(-1.0f, 1.0f);
 	moveComp->setVelocity(Vector2{ velocity.x, random});
 }
 
-void PongBall::setDirectedYMovement(Rectangle colRect)
+void PongBall::SetDirectedYMovement(Rectangle colRect)
 {
-	float newVelocityY = (getPosition().y - colRect.y - (colRect.height / 2)) / colRect.height * directMultiplier;
+	float new_velocity_y = (getPosition().y - colRect.y - (colRect.height / 2)) / colRect.height * directMultiplier;
 	Vector2 velocity = moveComp->getVelocity();
-	moveComp->setVelocity(Vector2{ velocity.x, newVelocityY });
+	moveComp->setVelocity(Vector2{ velocity.x, new_velocity_y });
 }
 
-void PongBall::pauseMovement()
+void PongBall::PauseMovement()
 {
 	moveComp->setSpeed(0.0f);
 }
 
-void PongBall::resumeMovement()
+void PongBall::ResumeMovement()
 {
 	moveComp->setSpeed(speed);
 }
@@ -98,7 +97,7 @@ void PongBall::SetDrawValue(bool value)
 	drawCircleComp->setWillDraw(value);
 }
 
-void PongBall::setSpeed(float speedP)
+void PongBall::SetSpeed(float speedP)
 {
 	speed = speedP;
 }
