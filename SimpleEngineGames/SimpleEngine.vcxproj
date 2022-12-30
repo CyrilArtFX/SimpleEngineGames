@@ -28,6 +28,8 @@
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawCircleComponent.cpp" />
     <ClCompile Include="Games\Tests\TestScene.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\MouseMovComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\ScreenBorderInteractionComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Actor.cpp" />
@@ -68,6 +70,8 @@
     <ClInclude Include="Games\Tests\TestScene.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\PlayerPaddle.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawCircleComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\MouseMovComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\ScreenBorderInteractionComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Actor.h" />

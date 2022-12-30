@@ -20,7 +20,7 @@ void TestScene::load(Game* game)
 
 	Assets::loadFont("Pixeled.ttf", "pixeled20", 20);
 
-	auto test_rect = new Actor();
+	/*auto test_rect = new Actor();
 	test_rect->setPosition(Vector2{ 100.0f, 100.0f });
 	auto drc = new DrawRectComponent(test_rect, Rectangle{ 0.0f, 0.0f, 200.0f, 200.0f }, Color::blue, 100);
 	auto ccc = new CircleCollisionComponent(test_rect);
@@ -55,5 +55,7 @@ void TestScene::load(Game* game)
 	test_text->setPosition(Vector2{ 0.0f, 200.0f });
 	auto dtc = new DrawTextComponent(test_text, Assets::getFont("pixeled20"), "LET'S GO CA MARCHE", Color::green, Vector2::zero, 200);
 
-	game->getCamera().setCamPos(Vector2{ -100.0f, 0.0f });
+	game->getCamera().setCamPos(Vector2{ -100.0f, 0.0f });*/
+
+	auto test_grid = new Actor();
 }
