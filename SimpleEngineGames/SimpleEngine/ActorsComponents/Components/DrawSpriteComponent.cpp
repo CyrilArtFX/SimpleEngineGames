@@ -1,8 +1,8 @@
 #include "DrawSpriteComponent.h"
 #include <SimpleEngine/Utils/Rectangle.h>
 
-DrawSpriteComponent::DrawSpriteComponent(Actor* ownerP, Texture& textureP, int drawOrderP) :
-	DrawComponent(ownerP, drawOrderP), texture(textureP), texWidth(textureP.getWidth()), texHeight(textureP.getHeight())
+DrawSpriteComponent::DrawSpriteComponent(Actor* ownerP, Texture& textureP, Vector2 offsetP, int drawOrderP) :
+	DrawComponent(ownerP, drawOrderP), texture(textureP), texWidth(textureP.getWidth()), texHeight(textureP.getHeight()), offset(offsetP)
 {
 }
 
@@ -21,6 +21,6 @@ void DrawSpriteComponent::draw(Renderer& renderer)
 	if (willDraw)
 	{
 		Vector2 origin{ texWidth / 2.0f, texHeight / 2.0f };
-		renderer.drawSprite(owner, texture, Rectangle::nullRect, origin, Renderer::Flip::None);
+		renderer.drawSprite(owner, texture, Rectangle::nullRect, Vector2::zero, Renderer::Flip::None, offset);
 	}
 }

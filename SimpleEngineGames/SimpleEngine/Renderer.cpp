@@ -137,6 +137,42 @@ void Renderer::drawDebugCircle(const Actor& actor, const Vector2& circleOffset, 
 	}
 }
 
+void Renderer::drawTileRect(const Rectangle& tile, Color color)
+{
+	SDL_Rect draw_rect;
+
+	draw_rect.w = static_cast<int>(tile.width);
+	draw_rect.h = static_cast<int>(tile.height);
+
+	draw_rect.x = static_cast<int>(tile.x);
+	draw_rect.y = static_cast<int>(tile.y);
+
+
+	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
+	SDL_RenderFillRect(SDLRenderer, &draw_rect);
+}
+
+void Renderer::drawTileSprite(const Rectangle& tile, const Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip)
+{
+	SDL_Rect dst_rect;
+
+	dst_rect.w = static_cast<int>(tile.width);
+	dst_rect.h = static_cast<int>(tile.height);
+
+	dst_rect.x = static_cast<int>(tile.x - origin.x);
+	dst_rect.y = static_cast<int>(tile.y - origin.y);
+
+	SDL_Rect* src_SDL = nullptr;
+	if (srcRect != Rectangle::nullRect)
+	{
+		src_SDL = new SDL_Rect{ Maths::round(srcRect.x), Maths::round(srcRect.y),
+			Maths::round(srcRect.width), Maths::round(srcRect.height) };
+	}
+
+	SDL_RenderCopyEx(SDLRenderer, tex.toSDLTexture(), src_SDL, &dst_rect, 0.0f, nullptr, SDL_FLIP_NONE);
+	delete src_SDL;
+}
+
 void Renderer::drawRect(const Actor& actor, const Rectangle& rect, Color color)
 {
 	Vector2 cam_pos = Game::instance().getCamera().getCamPos();
@@ -179,11 +215,11 @@ void Renderer::drawCircle(const Actor& actor, const Vector2& circleOffset, int r
 	}
 }
 
-void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip) const
+void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip, Vector2 offset) const
 {
 	Vector2 cam_pos = Game::instance().getCamera().getCamPos();
 	SDL_Rect dst_rect;
-	Vector2 position = actor.getPosition() - cam_pos;
+	Vector2 position = actor.getPosition() - cam_pos + offset;
 	float rotation = actor.getRotation();
 	float scale = actor.getScale();
 

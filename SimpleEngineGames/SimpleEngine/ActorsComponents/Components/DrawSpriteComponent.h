@@ -5,7 +5,7 @@
 class DrawSpriteComponent : public DrawComponent
 {
 public:
-	DrawSpriteComponent(Actor* ownerP, Texture& textureP, int drawOrderP = 100);
+	DrawSpriteComponent(Actor* ownerP, Texture& textureP, Vector2 offsetP, int drawOrderP = 100);
 	virtual ~DrawSpriteComponent();
 	DrawSpriteComponent() = delete;
 	DrawSpriteComponent(const DrawSpriteComponent&) = delete;
@@ -21,5 +21,6 @@ protected:
 	Texture texture;
 	int texWidth;
 	int texHeight;
+	Vector2 offset{ Vector2::zero };
 };
 

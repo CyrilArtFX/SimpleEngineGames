@@ -25,10 +25,12 @@ int ScreenBorderInteractionComponent::checkBordersInteractions()
 		{
 			case ScreenBorderInteractions::Block:
 				moveComponent->revertLastMovement(false, true);
+				actor_pos.y = owner.getPosition().y;
 				break;
 
 			case ScreenBorderInteractions::Bounce:
 				moveComponent->revertLastMovement(false, true);
+				actor_pos.y = owner.getPosition().y;
 				moveComponent->reverseYMovement();
 				break;
 
@@ -59,10 +61,12 @@ int ScreenBorderInteractionComponent::checkBordersInteractions()
 		{
 			case ScreenBorderInteractions::Block:
 				moveComponent->revertLastMovement(false, true);
+				actor_pos.y = owner.getPosition().y;
 				break;
 
 			case ScreenBorderInteractions::Bounce:
 				moveComponent->revertLastMovement(false, true);
+				actor_pos.y = owner.getPosition().y;
 				moveComponent->reverseYMovement();
 				break;
 
@@ -93,10 +97,12 @@ int ScreenBorderInteractionComponent::checkBordersInteractions()
 		{
 			case ScreenBorderInteractions::Block:
 				moveComponent->revertLastMovement(true, false);
+				actor_pos.x = owner.getPosition().x;
 				break;
 
 			case ScreenBorderInteractions::Bounce:
 				moveComponent->revertLastMovement(true, false);
+				actor_pos.x = owner.getPosition().x;
 				moveComponent->reverseXMovement();
 				break;
 
@@ -138,10 +144,12 @@ int ScreenBorderInteractionComponent::checkBordersInteractions()
 		{
 			case ScreenBorderInteractions::Block:
 				moveComponent->revertLastMovement(true, false);
+				actor_pos.x = owner.getPosition().x;
 				break;
 
 			case ScreenBorderInteractions::Bounce:
 				moveComponent->revertLastMovement(true, false);
+				actor_pos.x = owner.getPosition().x;
 				moveComponent->reverseXMovement();
 				break;
 

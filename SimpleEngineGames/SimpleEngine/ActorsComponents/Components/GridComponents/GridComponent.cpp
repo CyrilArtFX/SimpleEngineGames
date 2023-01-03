@@ -1,8 +1,10 @@
 #include "GridComponent.h"
+#include <SimpleEngine/ActorsComponents/Actor.h>
+#include <SimpleEngine/Game.h>
 
 GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
-	drawTraduction[0] = new GridTileDrawComponent();
+	drawTraduction.push_back(new GridTileDraw());
 }
 
 GridComponent::~GridComponent()
@@ -64,7 +66,7 @@ int GridComponent::getGridElement(int indexX, int indexY) const
 	return -1;
 }
 
-void GridComponent::setDrawTraduction(int traductionIndex, GridTileDrawComponent* traduction)
+void GridComponent::setDrawTraduction(int traductionIndex, GridTileDraw* traduction)
 {
 	if (traductionIndex >= 0)
 	{
@@ -74,7 +76,7 @@ void GridComponent::setDrawTraduction(int traductionIndex, GridTileDrawComponent
 			drawTraduction.resize(traductionIndex + 1);
 			for (int i = drawTraductionSize; i <= traductionIndex; i++)
 			{
-				drawTraduction[traductionIndex] = new GridTileDrawComponent();
+				drawTraduction[i] = new GridTileDraw();
 			}
 		}
 
@@ -82,7 +84,7 @@ void GridComponent::setDrawTraduction(int traductionIndex, GridTileDrawComponent
 	}
 }
 
-GridTileDrawComponent* GridComponent::getDrawTraduction(int traductionIndex) const
+GridTileDraw* GridComponent::getDrawTraduction(int traductionIndex) const
 {
 	if (traductionIndex >= 0 && traductionIndex < drawTraduction.size())
 	{
@@ -94,16 +96,28 @@ GridTileDrawComponent* GridComponent::getDrawTraduction(int traductionIndex) con
 	}
 }
 
+void GridComponent::setTileSize(Vector2 tileSizeP)
+{
+	tileSize = tileSizeP;
+}
+
 void GridComponent::draw(Renderer& renderer)
 {
-	if (gridWidth > 0 && gridHeight > 0)
+	if (willDraw)
 	{
-		for (int i = 0; i < gridWidth; i++)
+		if (gridWidth > 0 && gridHeight > 0)
 		{
-			for (int j = 0; j < gridHeight; j++)
+			if (tileSize.x > 0 && tileSize.y > 0)
 			{
-				//  get element 'i * gridHeight + j' of the grid
-				//  and draw it's traduction
+				for (int i = 0; i < gridWidth; i++)
+				{
+					for (int j = 0; j < gridHeight; j++)
+					{
+						Vector2 tilePos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
+						Rectangle tile = Rectangle{ tilePos.x + (i * tileSize.x), tilePos.y + (j * tileSize.y), tileSize.x, tileSize.y };
+						drawTraduction[grid[i * gridHeight + j]]->draw(renderer, tile);
+					}
+				}
 			}
 		}
 	}

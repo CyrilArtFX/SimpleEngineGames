@@ -129,7 +129,13 @@
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridComponent.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawComponent.cpp">
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDraw.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawRectangle.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawSprite.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -254,7 +260,13 @@
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridComponent.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawComponent.h">
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDraw.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawRectangle.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawSprite.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

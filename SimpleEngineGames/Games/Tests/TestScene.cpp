@@ -5,10 +5,14 @@
 #include <SimpleEngine/ActorsComponents/Components/DrawRectComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/DrawCircleComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/DrawTextComponent.h>
+#include <SimpleEngine/ActorsComponents/Components/DrawSpriteComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/CircleCollisionComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/RectangleCollisionComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/InputMoveComponent.h>
 #include <SimpleEngine/ActorsComponents/Components/ScreenBorderInteractionComponent.h>
+#include <SimpleEngine/ActorsComponents/Components/GridComponents/GridComponent.h>
+#include <SimpleEngine/ActorsComponents/Components/GridComponents/GridTileDrawRectangle.h>
+#include <SimpleEngine/ActorsComponents/Components/GridComponents/GridTileDrawSprite.h>
 #include <SimpleEngine/Utils/Vector2.h>
 #include <SimpleEngine/Utils/Rectangle.h>
 #include <SimpleEngine/Utils/Color.h>
@@ -19,6 +23,7 @@ void TestScene::load(Game* game)
 	Assets::setAssetsPath("Games/Tests/Assets/");
 
 	Assets::loadFont("Pixeled.ttf", "pixeled20", 20);
+	Assets::loadTexture(game->getRenderer(), "Bekipan.png", "bekipan");
 
 	/*auto test_rect = new Actor();
 	test_rect->setPosition(Vector2{ 100.0f, 100.0f });
@@ -57,5 +62,36 @@ void TestScene::load(Game* game)
 
 	game->getCamera().setCamPos(Vector2{ -100.0f, 0.0f });*/
 
+	auto test_sprite = new Actor();
+	auto dsc = new DrawSpriteComponent(test_sprite, Assets::getTexture("bekipan"), Vector2{0.0f, 0.0f});
+	auto rcc = new RectangleCollisionComponent(test_sprite);
+	rcc->setRectangle(Rectangle{ 0.0f, 0.0f, 200.0f, 200.0f });
+	auto imc = new InputMoveComponent(test_sprite);
+	imc->setSpeed(100.0f);
+	auto sbic2 = new ScreenBorderInteractionComponent(test_sprite, imc, rcc);
+	sbic2->setInteractions(ScreenBorderInteractions::Block, ScreenBorderInteractions::Block, ScreenBorderInteractions::Block, ScreenBorderInteractions::Block);
+	sbic2->autoUpdate = true;
+	test_sprite->setPosition(Vector2{ 300.0f, 200.0f });
+
 	auto test_grid = new Actor();
+	auto gc = new GridComponent(test_grid);
+
+	gc->setGridSize(6, 4);
+	gc->setTileSize(Vector2{ 50.0f, 35.0f });
+
+	gc->setDrawTraduction(0, new GridTileDrawRectangle(Color::yellow));
+	gc->setDrawTraduction(1, new GridTileDrawRectangle(Color::magenta));
+	gc->setDrawTraduction(5, new GridTileDrawRectangle(Color::cyan));
+	gc->setDrawTraduction(3, new GridTileDrawSprite(Assets::getTexture("bekipan")));
+
+	gc->setGridElement(0, 2, 1);
+	gc->setGridElement(1, 1, 1);
+	gc->setGridElement(1, 3, 1);
+	gc->setGridElement(3, 0, 1);
+	gc->setGridElement(5, 2, 1);
+	gc->setGridElement(0, 0, 3);
+	gc->setGridElement(4, 3, 5);
+
+	test_grid->setPosition(Vector2{ 156.0f, 243.0f });
+	//game->getCamera().setCamPos(Vector2{ 140.0f, -100.0f });
 }
