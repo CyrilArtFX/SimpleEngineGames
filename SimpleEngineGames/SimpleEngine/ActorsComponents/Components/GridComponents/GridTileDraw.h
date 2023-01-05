@@ -8,6 +8,6 @@ public:
 	GridTileDraw();
 	virtual ~GridTileDraw();
 
-	virtual void draw(Renderer& renderer, Rectangle tile);
+	virtual void draw(Renderer& renderer, Rectangle tile, int traductionIndex);
 };
 

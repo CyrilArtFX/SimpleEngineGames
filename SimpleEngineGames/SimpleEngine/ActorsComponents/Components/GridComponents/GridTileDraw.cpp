@@ -8,6 +8,6 @@ GridTileDraw::~GridTileDraw()
 {
 }
 
-void GridTileDraw::draw(Renderer& renderer, Rectangle tile)
+void GridTileDraw::draw(Renderer& renderer, Rectangle tile, int traductionIndex)
 {
 }

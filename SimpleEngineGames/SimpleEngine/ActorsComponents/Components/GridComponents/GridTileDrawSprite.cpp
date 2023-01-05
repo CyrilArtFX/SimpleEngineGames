@@ -8,7 +8,7 @@ GridTileDrawSprite::~GridTileDrawSprite()
 {
 }
 
-void GridTileDrawSprite::draw(Renderer& renderer, Rectangle tile)
+void GridTileDrawSprite::draw(Renderer& renderer, Rectangle tile, int traductionIndex)
 {
 	renderer.drawTileSprite(tile, texture, Rectangle::nullRect, Vector2::zero, Renderer::Flip::None);
 }

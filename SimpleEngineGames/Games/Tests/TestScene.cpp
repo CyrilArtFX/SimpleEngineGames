@@ -63,7 +63,7 @@ void TestScene::load(Game* game)
 	game->getCamera().setCamPos(Vector2{ -100.0f, 0.0f });*/
 
 	auto test_sprite = new Actor();
-	auto dsc = new DrawSpriteComponent(test_sprite, Assets::getTexture("bekipan"), Vector2{0.0f, 0.0f});
+	auto dsc = new DrawSpriteComponent(test_sprite, Assets::getTexture("bekipan"), Vector2{ 0.0f, 0.0f });
 	auto rcc = new RectangleCollisionComponent(test_sprite);
 	rcc->setRectangle(Rectangle{ 0.0f, 0.0f, 200.0f, 200.0f });
 	auto imc = new InputMoveComponent(test_sprite);
@@ -79,9 +79,9 @@ void TestScene::load(Game* game)
 	gc->setGridSize(6, 4);
 	gc->setTileSize(Vector2{ 50.0f, 35.0f });
 
-	gc->setDrawTraduction(0, new GridTileDrawRectangle(Color::yellow));
-	gc->setDrawTraduction(1, new GridTileDrawRectangle(Color::magenta));
-	gc->setDrawTraduction(5, new GridTileDrawRectangle(Color::cyan));
+	gc->setDrawTraduction(0, new GridTileDrawRectangle(Color::yellow, Rectangle{ 0.05f, 0.05f, 0.9f, 0.9f }));
+	gc->setDrawTraduction(1, new GridTileDrawRectangle(Color::magenta, Rectangle{ 0.05f, 0.05f, 0.9f, 0.9f }));
+	gc->setDrawTraduction(5, new GridTileDrawRectangle(Color::cyan, Rectangle{ 0.05f, 0.05f, 0.9f, 0.9f }));
 	gc->setDrawTraduction(3, new GridTileDrawSprite(Assets::getTexture("bekipan")));
 
 	gc->setGridElement(0, 2, 1);

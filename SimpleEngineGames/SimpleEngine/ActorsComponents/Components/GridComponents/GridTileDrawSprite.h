@@ -9,7 +9,7 @@ public:
 	GridTileDrawSprite() = delete;
 	virtual ~GridTileDrawSprite();
 
-	void draw(Renderer& renderer, Rectangle tile) override;
+	void draw(Renderer& renderer, Rectangle tile, int traductionIndex) override;
 
 private:
 	Texture& texture;

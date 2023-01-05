@@ -20,6 +20,7 @@ struct Rectangle
 	}
 
 	static const Rectangle nullRect;
+	static const Rectangle unitRect;
 
 	SDL_Rect toSDLRect() const
 	{

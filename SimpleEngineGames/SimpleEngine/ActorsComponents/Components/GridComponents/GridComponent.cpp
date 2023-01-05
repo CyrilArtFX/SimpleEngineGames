@@ -115,7 +115,7 @@ void GridComponent::draw(Renderer& renderer)
 					{
 						Vector2 tilePos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
 						Rectangle tile = Rectangle{ tilePos.x + (i * tileSize.x), tilePos.y + (j * tileSize.y), tileSize.x, tileSize.y };
-						drawTraduction[grid[i * gridHeight + j]]->draw(renderer, tile);
+						drawTraduction[grid[i * gridHeight + j]]->draw(renderer, tile, grid[i * gridHeight + j]);
 					}
 				}
 			}
