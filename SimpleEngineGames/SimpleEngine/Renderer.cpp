@@ -173,6 +173,21 @@ void Renderer::drawTileSprite(const Rectangle& tile, const Texture& tex, Rectang
 	delete src_SDL;
 }
 
+void Renderer::drawDebugTile(const Rectangle& tile, Color color)
+{
+	SDL_Rect draw_rect;
+
+	draw_rect.w = static_cast<int>(tile.width);
+	draw_rect.h = static_cast<int>(tile.height);
+
+	draw_rect.x = static_cast<int>(tile.x);
+	draw_rect.y = static_cast<int>(tile.y);
+
+
+	SDL_SetRenderDrawColor(SDLRenderer, color.r, color.g, color.b, color.a);
+	SDL_RenderDrawRect(SDLRenderer, &draw_rect);
+}
+
 void Renderer::drawRect(const Actor& actor, const Rectangle& rect, Color color)
 {
 	Vector2 cam_pos = Game::instance().getCamera().getCamPos();

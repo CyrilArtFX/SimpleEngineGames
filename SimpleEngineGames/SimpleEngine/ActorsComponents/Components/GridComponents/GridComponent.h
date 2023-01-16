@@ -4,6 +4,8 @@
 #include <vector>
 using std::vector;
 
+//  grid does not support scale currently
+
 class GridComponent : public DrawComponent
 {
 public:
@@ -26,7 +28,11 @@ public:
 	void setTileSize(Vector2 tileSizeP);
 	Vector2 getTileSize() const { return tileSize; }
 
+	//  all tiles values will return true, except for 0
+	bool intersectWithScreenPoint(Vector2 point, int* gridPosReturnX = NULL, int* gridPosReturnY = NULL);
+
 	void draw(Renderer& renderer) override;
+	void debug(Renderer& renderer) override;
 
 private:
 	int gridWidth{ 0 };

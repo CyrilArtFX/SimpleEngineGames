@@ -109,4 +109,9 @@ namespace Maths
 	{
 		return static_cast<int>(std::round(num));
 	}
+
+	inline int floor(float num)
+	{
+		return static_cast<int>(std::floor(num));
+	}
 }

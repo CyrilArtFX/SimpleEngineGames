@@ -44,6 +44,7 @@ public:
 
 	void drawTileRect(const Rectangle& tile, Color color);
 	void drawTileSprite(const Rectangle& tile, const class Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip);
+	void drawDebugTile(const Rectangle& tile, Color color);
 
 private:
 	SDL_Renderer* SDLRenderer{ nullptr };
