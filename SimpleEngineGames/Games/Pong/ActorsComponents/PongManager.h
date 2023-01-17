@@ -10,6 +10,7 @@ class PongManager : public Actor
 {
 public:
 	PongManager(PongBall* ballP, PlayerPaddle* leftPaddleP, CPUPaddle* rightPaddleP, Font* fontP);
+	PongManager() = delete;
 	PongManager(const PongManager&) = delete;
 	PongManager& operator=(const PongManager&) = delete;
 

@@ -114,7 +114,7 @@
     <ClCompile Include="Games\Pong\ActorsComponents\PlayerPaddle.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MouseMovComponent.cpp">
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MouseMoveComponent.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Games\Pong\ActorsComponents\PongManager.cpp">
@@ -136,6 +136,18 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawSprite.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Games\BrickBreaker\BreakerScene.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Games\BrickBreaker\ActorsComponents\BreakerPaddle.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Games\BrickBreaker\ActorsComponents\BreakerBall.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Games\BrickBreaker\ActorsComponents\BreakerManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -245,7 +257,7 @@
     <ClInclude Include="Games\Pong\ActorsComponents\PlayerPaddle.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MouseMovComponent.h">
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MouseMoveComponent.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Games\Pong\ActorsComponents\PongManager.h">
@@ -267,6 +279,21 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawSprite.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\BrickBreaker\Main.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\BrickBreaker\BreakerScene.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerPaddle.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerBall.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

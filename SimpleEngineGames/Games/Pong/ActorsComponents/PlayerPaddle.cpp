@@ -2,7 +2,7 @@
 
 PlayerPaddle::PlayerPaddle() : Paddle()
 {
-	mouseMoveComp = new MouseMovComponent(this);
+	mouseMoveComp = new MouseMoveComponent(this);
 	mouseMoveComp->setEnableXMovement(false);
 
 	screenBorderInterComp = new ScreenBorderInteractionComponent(this, mouseMoveComp, rectColComp);

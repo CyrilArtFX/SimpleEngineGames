@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Games\BrickBreaker\ActorsComponents\BreakerBall.cpp" />
+    <ClCompile Include="Games\BrickBreaker\ActorsComponents\BreakerManager.cpp" />
+    <ClCompile Include="Games\BrickBreaker\ActorsComponents\BreakerPaddle.cpp" />
+    <ClCompile Include="Games\BrickBreaker\BreakerScene.cpp" />
     <ClCompile Include="Games\Pong\ActorsComponents\CPUPaddle.cpp" />
     <ClCompile Include="Games\Pong\ActorsComponents\Paddle.cpp" />
     <ClCompile Include="Games\Pong\ActorsComponents\PongBall.cpp" />
@@ -32,7 +36,7 @@
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDraw.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawRectangle.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawSprite.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MouseMovComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MouseMoveComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\ScreenBorderInteractionComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Actor.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Component.cpp" />
@@ -62,6 +66,11 @@
     <ClCompile Include="SimpleEngine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerBall.h" />
+    <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerManager.h" />
+    <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerPaddle.h" />
+    <ClInclude Include="Games\BrickBreaker\BreakerScene.h" />
+    <ClInclude Include="Games\BrickBreaker\Main.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\CPUPaddle.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\Paddle.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\PongBall.h" />
@@ -76,7 +85,7 @@
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDraw.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawRectangle.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawSprite.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MouseMovComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MouseMoveComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\ScreenBorderInteractionComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Actor.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Component.h" />

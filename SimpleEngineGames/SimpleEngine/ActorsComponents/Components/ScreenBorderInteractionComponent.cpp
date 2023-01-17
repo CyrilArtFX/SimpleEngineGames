@@ -108,12 +108,12 @@ int ScreenBorderInteractionComponent::checkBordersInteractions()
 
 			case ScreenBorderInteractions::SmoothBlock:
 				moveComponent->revertLastMovement(true, false);
-				actor_pos.x = colComponent->nearestYPosOfY(left_border_x);
+				actor_pos.x = colComponent->nearestXPosOfX(left_border_x);
 				break;
 
 			case ScreenBorderInteractions::SmoothBounce:
 				moveComponent->revertLastMovement(true, false);
-				actor_pos.x = colComponent->nearestYPosOfY(left_border_x);
+				actor_pos.x = colComponent->nearestXPosOfX(left_border_x);
 				moveComponent->reverseXMovement();
 				break;
 
@@ -155,12 +155,12 @@ int ScreenBorderInteractionComponent::checkBordersInteractions()
 
 			case ScreenBorderInteractions::SmoothBlock:
 				moveComponent->revertLastMovement(true, false);
-				actor_pos.x = colComponent->nearestYPosOfY(right_border_x);
+				actor_pos.x = colComponent->nearestXPosOfX(right_border_x);
 				break;
 
 			case ScreenBorderInteractions::SmoothBounce:
 				moveComponent->revertLastMovement(true, false);
-				actor_pos.x = colComponent->nearestYPosOfY(right_border_x);
+				actor_pos.x = colComponent->nearestXPosOfX(right_border_x);
 				moveComponent->reverseXMovement();
 				break;
 

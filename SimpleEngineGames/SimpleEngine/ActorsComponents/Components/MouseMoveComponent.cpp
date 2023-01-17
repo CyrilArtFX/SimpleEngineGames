@@ -1,8 +1,8 @@
-#include "MouseMovComponent.h"
+#include "MouseMoveComponent.h"
 #include "../Actor.h"
 #include <SimpleEngine/Game.h>
 
-void MouseMovComponent::update(float dt)
+void MouseMoveComponent::update(float dt)
 {
 	actorPosBeforeMovement = owner.getPosition();
 	int mouse_pos_x, mouse_pos_y;
