@@ -79,10 +79,10 @@ void TestScene::load(Game* game)
 	gc->setGridSize(6, 4);
 	gc->setTileSize(Vector2{ 50.0f, 35.0f });
 
-	gc->setDrawTraduction(0, new GridTileDrawRectangle(Color::yellow, Rectangle{ 0.05f, 0.05f, 0.9f, 0.9f }));
-	gc->setDrawTraduction(1, new GridTileDrawRectangle(Color::magenta, Rectangle{ 0.05f, 0.05f, 0.9f, 0.9f }));
-	gc->setDrawTraduction(5, new GridTileDrawRectangle(Color::cyan, Rectangle{ 0.05f, 0.05f, 0.9f, 0.9f }));
-	gc->setDrawTraduction(3, new GridTileDrawSprite(Assets::getTexture("bekipan")));
+	gc->setTileTraduction(0, new TileTraduction{ new GridTileDrawRectangle(Color::yellow, Rectangle{ 0.05f, 0.05f, 0.9f, 0.9f }), true });
+	gc->setTileTraduction(1, new TileTraduction{ new GridTileDrawRectangle(Color::magenta, Rectangle{ 0.05f, 0.05f, 0.9f, 0.9f }), false });
+	gc->setTileTraduction(5, new TileTraduction{ new GridTileDrawRectangle(Color::cyan, Rectangle{ 0.05f, 0.05f, 0.9f, 0.9f }), false });
+	gc->setTileTraduction(3, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("bekipan")), true });
 
 	gc->setGridElement(0, 2, 1);
 	gc->setGridElement(1, 1, 1);

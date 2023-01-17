@@ -5,7 +5,7 @@
 
 GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
-	drawTraduction.push_back(new GridTileDraw());
+	tileTraduction.push_back(new TileTraduction);
 }
 
 GridComponent::~GridComponent()
@@ -67,29 +67,29 @@ int GridComponent::getGridElement(int indexX, int indexY) const
 	return -1;
 }
 
-void GridComponent::setDrawTraduction(int traductionIndex, GridTileDraw* traduction)
+void GridComponent::setTileTraduction(int traductionIndex, TileTraduction* traduction)
 {
 	if (traductionIndex >= 0)
 	{
-		int drawTraductionSize = drawTraduction.size();
-		if (traductionIndex >= drawTraductionSize)
+		int draw_traduction_size = tileTraduction.size();
+		if (traductionIndex >= draw_traduction_size)
 		{
-			drawTraduction.resize(traductionIndex + 1);
-			for (int i = drawTraductionSize; i <= traductionIndex; i++)
+			tileTraduction.resize(traductionIndex + 1);
+			for (int i = draw_traduction_size; i <= traductionIndex; i++)
 			{
-				drawTraduction[i] = new GridTileDraw();
+				tileTraduction[i] = new TileTraduction;
 			}
 		}
 
-		drawTraduction[traductionIndex] = traduction;
+		tileTraduction[traductionIndex] = traduction;
 	}
 }
 
-GridTileDraw* GridComponent::getDrawTraduction(int traductionIndex) const
+TileTraduction* GridComponent::getTileTraduction(int traductionIndex) const
 {
-	if (traductionIndex >= 0 && traductionIndex < drawTraduction.size())
+	if (traductionIndex >= 0 && traductionIndex < tileTraduction.size())
 	{
-		return drawTraduction[traductionIndex];
+		return tileTraduction[traductionIndex];
 	}
 	else
 	{
@@ -121,7 +121,7 @@ bool GridComponent::intersectWithScreenPoint(Vector2 point, int* gridPosReturnX,
 	*gridPosReturnX = tile_pos_intersection_x;
 	*gridPosReturnY = tile_pos_intersection_y;
 
-	return grid[tile_pos_intersection_x * gridHeight + tile_pos_intersection_y] != 0;
+	return tileTraduction[grid[tile_pos_intersection_x * gridHeight + tile_pos_intersection_y]]->colTraduction;
 }
 
 void GridComponent::draw(Renderer& renderer)
@@ -138,7 +138,7 @@ void GridComponent::draw(Renderer& renderer)
 					{
 						Vector2 grid_origin = owner.getPosition() - owner.getGame().getCamera().getCamPos();
 						Rectangle tile = Rectangle{ grid_origin.x + (i * tileSize.x), grid_origin.y + (j * tileSize.y), tileSize.x, tileSize.y };
-						drawTraduction[grid[i * gridHeight + j]]->draw(renderer, tile, grid[i * gridHeight + j]);
+						tileTraduction[grid[i * gridHeight + j]]->drawTraduction->draw(renderer, tile, grid[i * gridHeight + j]);
 					}
 				}
 			}

@@ -4,6 +4,15 @@
 #include <vector>
 using std::vector;
 
+
+struct TileTraduction
+{
+	GridTileDraw* drawTraduction{ new GridTileDraw() };
+	bool colTraduction{ false };
+};
+
+
+
 //  grid does not support scale currently
 
 class GridComponent : public DrawComponent
@@ -22,8 +31,8 @@ public:
 	bool setGridElement(int indexX, int indexY, int element);
 	int getGridElement(int indexX, int indexY) const;
 
-	void setDrawTraduction(int traductionIndex, GridTileDraw* traduction);
-	GridTileDraw* getDrawTraduction(int traductionIndex) const;
+	void setTileTraduction(int traductionIndex, TileTraduction* traduction);
+	TileTraduction* getTileTraduction(int traductionIndex) const;
 
 	void setTileSize(Vector2 tileSizeP);
 	Vector2 getTileSize() const { return tileSize; }
@@ -41,6 +50,6 @@ private:
 	Vector2 tileSize{ Vector2::zero };
 
 	vector<int> grid;
-	vector<GridTileDraw*> drawTraduction;
+	vector<TileTraduction*> tileTraduction;
 };
 
