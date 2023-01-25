@@ -106,20 +106,34 @@ bool GridComponent::intersectWithScreenPoint(Vector2 point, int* gridPosReturnX,
 {
 	Vector2 grid_origin_screen_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
 
-	if (point.x < grid_origin_screen_pos.x || point.y < grid_origin_screen_pos.y)
+	int tile_pos_intersection_x = 0, tile_pos_intersection_y = 0;
+
+	if (point.x < grid_origin_screen_pos.x || point.x > grid_origin_screen_pos.x + (gridWidth * tileSize.x))
+	{
+		tile_pos_intersection_x = -1;
+	}
+	if (point.y < grid_origin_screen_pos.y || point.y > grid_origin_screen_pos.y + (gridHeight * tileSize.y))
+	{
+		tile_pos_intersection_y = -1;
+	}
+
+	if (tile_pos_intersection_x == 0)
+	{
+		tile_pos_intersection_x = Maths::floor((point.x - grid_origin_screen_pos.x) / tileSize.x);
+	}
+	if (tile_pos_intersection_y == 0)
+	{
+		tile_pos_intersection_y = Maths::floor((point.y - grid_origin_screen_pos.y) / tileSize.y);
+	}
+
+	if (gridPosReturnX) *gridPosReturnX = tile_pos_intersection_x;
+	if (gridPosReturnY) *gridPosReturnY = tile_pos_intersection_y;
+
+
+	if (tile_pos_intersection_x == -1 || tile_pos_intersection_y == -1)
 	{
 		return false;
 	}
-	if (point.x > grid_origin_screen_pos.x + (gridWidth * tileSize.x) || point.y > grid_origin_screen_pos.y + (gridHeight * tileSize.y))
-	{
-		return false;
-	}
-
-	int tile_pos_intersection_x = Maths::floor((point.x - grid_origin_screen_pos.x) / tileSize.x);
-	int tile_pos_intersection_y = Maths::floor((point.y - grid_origin_screen_pos.y) / tileSize.y);
-
-	*gridPosReturnX = tile_pos_intersection_x;
-	*gridPosReturnY = tile_pos_intersection_y;
 
 	return tileTraduction[grid[tile_pos_intersection_x * gridHeight + tile_pos_intersection_y]]->colTraduction;
 }

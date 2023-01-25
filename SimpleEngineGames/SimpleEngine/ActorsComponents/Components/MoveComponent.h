@@ -11,6 +11,7 @@ public:
 	MoveComponent& operator=(const MoveComponent&) = delete;
 
 	void revertLastMovement(bool revertX, bool revertY);
+	Vector2 getBeforeLastMovementPosition() const { return actorPosBeforeMovement; }
 
 	void setEnableXMovement(bool enable);
 	bool getEnableXMovement() const { return enableXAxis; }

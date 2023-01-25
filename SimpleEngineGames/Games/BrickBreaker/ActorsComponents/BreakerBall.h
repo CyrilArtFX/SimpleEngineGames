@@ -14,8 +14,8 @@ public:
 	BreakerBall(const BreakerBall&) = delete;
 	BreakerBall& operator=(const BreakerBall&) = delete;
 
-	void updateActor(float dt) override;
-	void TestPaddleCollision(class RectangleCollisionComponent* col);
+	bool TestPaddleCollision(class RectangleCollisionComponent* col);
+	bool UpdateBall();
 
 	void SetManager(BreakerManager* gameManagerP);
 	void ResetPos();
@@ -28,6 +28,7 @@ public:
 
 	void SetSpeed(float speedP);
 	float GetSpeed() const { return speed; }
+	Vector2 GetPreviousPos() const{ return previousPos; }
 
 private:
 	BreakerManager* gameManager{ nullptr };
@@ -39,5 +40,6 @@ private:
 
 	float speed{ 300.0f };
 	float directMultiplier{ 1.5f };
+	Vector2 previousPos{ Vector2::zero };
 };
 

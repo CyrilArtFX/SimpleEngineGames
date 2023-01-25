@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Games\BrickBreaker\ActorsComponents\BreakerBall.cpp" />
+    <ClCompile Include="Games\BrickBreaker\ActorsComponents\BreakerGrid.cpp" />
     <ClCompile Include="Games\BrickBreaker\ActorsComponents\BreakerManager.cpp" />
     <ClCompile Include="Games\BrickBreaker\ActorsComponents\BreakerPaddle.cpp" />
     <ClCompile Include="Games\BrickBreaker\BreakerScene.cpp" />
@@ -67,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerBall.h" />
+    <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerGrid.h" />
     <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerManager.h" />
     <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerPaddle.h" />
     <ClInclude Include="Games\BrickBreaker\BreakerScene.h" />

@@ -16,23 +16,24 @@ BreakerBall::BreakerBall() : Actor()
 	ResetPos();
 }
 
-void BreakerBall::updateActor(float dt)
+bool BreakerBall::UpdateBall()
 {
+	previousPos = moveComp->getBeforeLastMovementPosition();
+
 	int screen_return = screenBorderInterComp->checkBordersInteractions();
-	if (screen_return == 2)
-	{
-		ResetPos();
-	}
+	return screen_return == 2;
 }
 
-void BreakerBall::TestPaddleCollision(RectangleCollisionComponent* col)
+bool BreakerBall::TestPaddleCollision(RectangleCollisionComponent* col)
 {
-	if (col->intersectWithCircleCollision(*circleColComp) && moveComp->getVelocity().y > 0.0f)
+	bool intersect_with_paddle = col->intersectWithCircleCollision(*circleColComp) && moveComp->getVelocity().y > 0.0f;
+	if (intersect_with_paddle)
 	{
 		moveComp->revertLastMovement(false, true);
 		ReverseYMovement();
 		SetDirectedXMovement(col->getTransformedRectangle());
 	}
+	return intersect_with_paddle;
 }
 
 void BreakerBall::SetManager(BreakerManager* gameManagerP)
