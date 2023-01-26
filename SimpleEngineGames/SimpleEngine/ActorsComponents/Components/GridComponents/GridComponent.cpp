@@ -16,8 +16,8 @@ void GridComponent::setGridSize(int gridWidthP, int gridHeightP)
 {
 	if (gridWidthP > 0 && gridHeightP > 0)
 	{
-		vector<int> newGrid;
-		newGrid.resize(gridWidthP * gridHeightP);
+		vector<int> new_grid;
+		new_grid.resize(gridWidthP * gridHeightP);
 
 		for (int i = 0; i < gridWidthP; i++)
 		{
@@ -25,17 +25,17 @@ void GridComponent::setGridSize(int gridWidthP, int gridHeightP)
 			{
 				if (i < gridWidth && j < gridHeight)
 				{
-					newGrid[i * gridHeightP + j] = grid[i * gridHeight + j];
+					new_grid[i * gridHeightP + j] = grid[i * gridHeight + j];
 				}
 				else
 				{
-					newGrid[i * gridHeightP + j] = 0;
+					new_grid[i * gridHeightP + j] = 0;
 				}
 			}
 		}
 
 		grid.resize(gridWidthP * gridHeightP);
-		grid = newGrid;
+		grid = new_grid;
 
 		gridWidth = gridWidthP;
 		gridHeight = gridHeightP;
@@ -173,8 +173,8 @@ void GridComponent::debug(Renderer& renderer)
 	int intersection_x, intersection_y;
 	if (intersectWithScreenPoint(mouse_pos, &intersection_x, &intersection_y))
 	{
-		Vector2 tilePos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
-		Rectangle tile = Rectangle{ tilePos.x + (intersection_x * tileSize.x), tilePos.y + (intersection_y * tileSize.y), tileSize.x, tileSize.y };
+		Vector2 tile_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
+		Rectangle tile = Rectangle{ tile_pos.x + (intersection_x * tileSize.x), tile_pos.y + (intersection_y * tileSize.y), tileSize.x, tileSize.y };
 		renderer.drawDebugTile(tile, Color::white);
 	}
 }

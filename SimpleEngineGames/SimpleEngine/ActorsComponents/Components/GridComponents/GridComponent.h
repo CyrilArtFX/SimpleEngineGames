@@ -37,7 +37,7 @@ public:
 	void setTileSize(Vector2 tileSizeP);
 	Vector2 getTileSize() const { return tileSize; }
 
-	//  all tiles values will return true, except for 0
+	//  will return true depending of the tile traduction of the intersected tile
 	bool intersectWithScreenPoint(Vector2 point, int* gridPosReturnX = NULL, int* gridPosReturnY = NULL);
 
 	void draw(Renderer& renderer) override;
