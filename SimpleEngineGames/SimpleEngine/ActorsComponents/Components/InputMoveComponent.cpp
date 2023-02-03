@@ -1,15 +1,16 @@
 #include "InputMoveComponent.h"
+#include <SimpleEngine/Game.h>
 
-void InputMoveComponent::processInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY)
+void InputMoveComponent::update(float dt)
 {
 	if (enableYAxis)
 	{
 		velocity.y = 0.0f;
-		if (keyState[forwardKey])
+		if (owner.getGame().getKeyState(SDL_SCANCODE_Z) == Pressed || owner.getGame().getKeyState(SDL_SCANCODE_Z) == Down)
 		{
 			velocity.y = -1.0f;
 		}
-		else if (keyState[backKey])
+		else if (owner.getGame().getKeyState(SDL_SCANCODE_S) == Pressed || owner.getGame().getKeyState(SDL_SCANCODE_S) == Down)
 		{
 			velocity.y = 1.0f;
 		}
@@ -18,11 +19,11 @@ void InputMoveComponent::processInput(const Uint8* keyState, const Uint32 mouseS
 	if (enableXAxis)
 	{
 		velocity.x = 0.0f;
-		if (keyState[rightKey])
+		if (owner.getGame().getKeyState(SDL_SCANCODE_D) == Pressed || owner.getGame().getKeyState(SDL_SCANCODE_D) == Down)
 		{
 			velocity.x = 1.0f;
 		}
-		else if (keyState[leftKey])
+		else if (owner.getGame().getKeyState(SDL_SCANCODE_Q) == Pressed || owner.getGame().getKeyState(SDL_SCANCODE_Q) == Down)
 		{
 			velocity.x = -1.0f;
 		}

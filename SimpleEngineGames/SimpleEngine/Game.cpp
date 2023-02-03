@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Timer.h"
 #include "Utils/Log.h"
+#include <iostream>
 
 bool Game::initialize(const char* windowName, int windowWidth, int windowHeight, Color backgroundColor)
 {
@@ -49,52 +50,149 @@ void Game::close()
 	SDL_Quit();
 }
 
+KeyState Game::getKeyState(SDL_Scancode keyCode)
+{
+	if (keys.find(keyCode) == keys.end())
+	{
+		return KeyState::Up;
+	}
+	else
+	{
+		return keys[keyCode];
+	}
+}
+
+Vector2 Game::getMousePosition()
+{
+	return mousePosition;
+}
+
 void Game::processInput()
 {
+	if (!pendingKeys.empty())
+	{
+		for (auto itr = pendingKeys.begin(); itr != pendingKeys.end(); itr++)
+		{
+			SDL_Scancode key_code = *itr;
+			switch (getKeyState(key_code))
+			{
+				case KeyState::Pressed:
+					keys[key_code] = KeyState::Down;
+				break;
+				case KeyState::Released:
+					keys[key_code] = KeyState::Up;
+				break;
+			}
+		}
+		pendingKeys.clear();
+	}
+
 	// SDL Event
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
-		switch (event.type)
+		switch (event.type) //  register all type of keys (keyboard and mouse buttons) in the map when they are pressed or released
 		{
-		case SDL_QUIT:
-			isRunning = false;
+			case SDL_QUIT: //  quit game if the window quit button is pressed
+				isRunning = false;
 			break;
-		case SDL_KEYDOWN:
-			if (event.key.keysym.scancode == SDL_SCANCODE_K)
-			{
-				if (debug)
+
+			case SDL_KEYDOWN: //  register the key as pressed in the map
+				if (keys.find(event.key.keysym.scancode) == keys.end())
 				{
-					Log::info("Disable debug mode");
+					keys.emplace(event.key.keysym.scancode, KeyState::Pressed);
+					pendingKeys.push_back(event.key.keysym.scancode);
 				}
 				else
 				{
-					Log::info("Enable debug mode");
+					keys[event.key.keysym.scancode] = KeyState::Pressed;
+					pendingKeys.push_back(event.key.keysym.scancode);
 				}
-				debug = !debug;
-			}
+			break;
+			case SDL_KEYUP: //  register the key as released in the map
+				keys[event.key.keysym.scancode] = KeyState::Released;
+				pendingKeys.push_back(event.key.keysym.scancode);
+			break;
+
+			default: //  part for the mouse (SDL_SCANCODE has been modified for this to be possible)
+				switch (event.key.keysym.scancode)
+				{
+					case SDL_MOUSE_LEFT_PRESSED: //  register left mouse code as pressed
+						if (keys.find(SDL_MOUSE_LEFT) == keys.end())
+						{
+							keys.emplace(SDL_MOUSE_LEFT, KeyState::Pressed);
+							pendingKeys.push_back(SDL_MOUSE_LEFT);
+						}
+						else
+						{
+							keys[SDL_MOUSE_LEFT] = KeyState::Pressed;
+							pendingKeys.push_back(SDL_MOUSE_LEFT);
+						}
+					break;
+					case SDL_MOUSE_LEFT_RELEASED: //  register left mouse code as released
+						keys[SDL_MOUSE_LEFT] = KeyState::Released;
+						pendingKeys.push_back(SDL_MOUSE_LEFT);
+					break;
+
+					case SDL_MOUSE_MIDDLE_PRESSED:  //  register middle mouse code as pressed
+						if (keys.find(SDL_MOUSE_MIDDLE) == keys.end())
+						{
+							keys.emplace(SDL_MOUSE_MIDDLE, KeyState::Pressed);
+							pendingKeys.push_back(SDL_MOUSE_MIDDLE);
+						}
+						else
+						{
+							keys[SDL_MOUSE_MIDDLE] = KeyState::Pressed;
+							pendingKeys.push_back(SDL_MOUSE_MIDDLE);
+						}
+					break;
+					case SDL_MOUSE_MIDDLE_RELEASED: //  register middle mouse code as released
+						keys[SDL_MOUSE_MIDDLE] = KeyState::Released;
+						pendingKeys.push_back(SDL_MOUSE_MIDDLE);
+					break;
+
+					case SDL_MOUSE_RIGHT_PRESSED: //  register right mouse code as pressed
+						if (keys.find(SDL_MOUSE_RIGHT) == keys.end())
+						{
+							keys.emplace(SDL_MOUSE_RIGHT, KeyState::Pressed);
+							pendingKeys.push_back(SDL_MOUSE_RIGHT);
+						}
+						else
+						{
+							keys[SDL_MOUSE_RIGHT] = KeyState::Pressed;
+							pendingKeys.push_back(SDL_MOUSE_RIGHT);
+						}
+					break;
+					case SDL_MOUSE_RIGHT_RELEASED: //  register right mouse code as released
+						keys[SDL_MOUSE_RIGHT] = KeyState::Released;
+						pendingKeys.push_back(SDL_MOUSE_RIGHT);
+					break;
+				}
+			break;
 		}
 	}
 
-	// Keyboard state
-	const Uint8* keyboard_state = SDL_GetKeyboardState(nullptr);
-	// Escape: quit game
-	if (keyboard_state[SDL_SCANCODE_ESCAPE])
+	if (getKeyState(SDL_SCANCODE_K) == KeyState::Pressed) //  enable or disable debug mode if K is pressed
+	{
+		if (debug)
+		{
+			Log::info("Disable debug mode");
+		}
+		else
+		{
+			Log::info("Enable debug mode");
+		}
+		debug = !debug;
+	}
+
+	if (getKeyState(SDL_SCANCODE_ESCAPE) == KeyState::Pressed) //  quit game if escape is pressed
 	{
 		isRunning = false;
 	}
 
 	int mouse_pos_x, mouse_pos_y;
-
-	const Uint32 mouse_state = SDL_GetMouseState(&mouse_pos_x, &mouse_pos_y);
-
-	//  actor input
-	isUpdatingActors = true;
-	for (auto actor : actors)
-	{
-		actor->processInput(keyboard_state, mouse_state, mouse_pos_x, mouse_pos_y);
-	}
-	isUpdatingActors = false;
+	SDL_GetMouseState(&mouse_pos_x, &mouse_pos_y); //  register mouse position
+	mousePosition = Vector2{ mouse_pos_x * 1.0f, mouse_pos_y * 1.0f };
 }
 
 void Game::update(float dt)

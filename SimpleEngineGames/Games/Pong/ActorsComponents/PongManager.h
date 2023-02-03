@@ -15,7 +15,6 @@ public:
 	PongManager& operator=(const PongManager&) = delete;
 
 	void updateActor(float dt) override;
-	void actorInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY) override;
 
 	void ScoreAtLeft();
 	void ScoreAtRight();

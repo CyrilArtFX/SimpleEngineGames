@@ -41,9 +41,6 @@ public:
 	void addComponent(Component* component);
 	void removeComponent(Component* component);
 
-	void processInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY);
-	virtual void actorInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY);
-
 private:
 	Game& game;
 	ActorState state{ ActorState::Active };

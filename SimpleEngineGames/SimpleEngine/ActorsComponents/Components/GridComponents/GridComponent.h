@@ -42,7 +42,6 @@ public:
 
 	void draw(Renderer& renderer) override;
 	void debug(Renderer& renderer) override;
-	void processInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY) override;
 
 private:
 	int gridWidth{ 0 };
@@ -52,8 +51,5 @@ private:
 
 	vector<int> grid;
 	vector<TileTraduction*> tileTraduction;
-
-	int mouseX{ 0 };
-	int mouseY{ 0 };
 };
 

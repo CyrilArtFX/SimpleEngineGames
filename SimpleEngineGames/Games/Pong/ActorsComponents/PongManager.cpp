@@ -1,4 +1,5 @@
 #include "PongManager.h"
+#include <SimpleEngine/Game.h>
 
 PongManager::PongManager(PongBall* ballP, PlayerPaddle* leftPaddleP, CPUPaddle* rightPaddleP, Font* fontP) : Actor(), ball(ballP), leftPaddle(leftPaddleP), rightPaddle(rightPaddleP), font(fontP)
 {
@@ -37,14 +38,13 @@ void PongManager::updateActor(float dt)
 
 		rightPaddle->UpdateVelocity(ball->getPosition().y);
 	}
-}
-
-void PongManager::actorInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY)
-{
-	if (mouseState == SDL_BUTTON_LEFT)
+	else 
 	{
-		ResumeGame();
-		ResetScores();
+		if (getGame().getKeyState(SDL_MOUSE_LEFT) == Pressed)
+		{
+			ResumeGame();
+			ResetScores();
+		}
 	}
 }
 

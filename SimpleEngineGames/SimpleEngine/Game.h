@@ -8,6 +8,15 @@
 #include "Scene.h"
 #include "ActorsComponents/Actor.h"
 using std::vector;
+using std::map;
+
+enum KeyState
+{
+	Up,
+	Down,
+	Pressed,
+	Released
+};
 
 class Game
 {
@@ -42,6 +51,8 @@ public:
 
 	int getScreenWidth();
 	int getScreenHeight();
+	KeyState getKeyState(SDL_Scancode keyCode);
+	Vector2 getMousePosition();
 
 private:
 	void processInput();
@@ -58,5 +69,8 @@ private:
 	bool isUpdatingActors{ false };
 	vector<Actor*> actors;
 	vector<Actor*> pendingActors;
-};
 
+	Vector2 mousePosition{ Vector2::zero };
+	map<SDL_Scancode, KeyState> keys;
+	vector<SDL_Scancode> pendingKeys;
+};

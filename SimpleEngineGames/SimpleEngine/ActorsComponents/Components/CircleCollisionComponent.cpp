@@ -82,9 +82,11 @@ float CircleCollisionComponent::nearestXPosOfX(const float x) const
 
 void CircleCollisionComponent::debug(Renderer& renderer)
 {
+	Vector2 screen_mouse_pos = owner.getGame().getMousePosition();
+
 	Vector2 mouse_pos = Vector2{
-		mouseX + owner.getGame().getCamera().getCamPos().x,
-		mouseY + owner.getGame().getCamera().getCamPos().y
+		screen_mouse_pos.x + owner.getGame().getCamera().getCamPos().x,
+		screen_mouse_pos.y + owner.getGame().getCamera().getCamPos().y
 	};
 
 	if (intersectWithPoint(mouse_pos))

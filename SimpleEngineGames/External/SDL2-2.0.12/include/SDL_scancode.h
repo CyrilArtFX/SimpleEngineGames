@@ -308,45 +308,45 @@ typedef enum
     SDL_SCANCODE_KP_COLON = 203,
     SDL_SCANCODE_KP_HASH = 204,
     SDL_SCANCODE_KP_SPACE = 205,
-    SDL_SCANCODE_KP_AT = 206,
-    SDL_SCANCODE_KP_EXCLAM = 207,
-    SDL_SCANCODE_KP_MEMSTORE = 208,
-    SDL_SCANCODE_KP_MEMRECALL = 209,
-    SDL_SCANCODE_KP_MEMCLEAR = 210,
-    SDL_SCANCODE_KP_MEMADD = 211,
-    SDL_SCANCODE_KP_MEMSUBTRACT = 212,
-    SDL_SCANCODE_KP_MEMMULTIPLY = 213,
-    SDL_SCANCODE_KP_MEMDIVIDE = 214,
-    SDL_SCANCODE_KP_PLUSMINUS = 215,
-    SDL_SCANCODE_KP_CLEAR = 216,
-    SDL_SCANCODE_KP_CLEARENTRY = 217,
-    SDL_SCANCODE_KP_BINARY = 218,
-    SDL_SCANCODE_KP_OCTAL = 219,
-    SDL_SCANCODE_KP_DECIMAL = 220,
-    SDL_SCANCODE_KP_HEXADECIMAL = 221,
+SDL_SCANCODE_KP_AT = 206,
+SDL_SCANCODE_KP_EXCLAM = 207,
+SDL_SCANCODE_KP_MEMSTORE = 208,
+SDL_SCANCODE_KP_MEMRECALL = 209,
+SDL_SCANCODE_KP_MEMCLEAR = 210,
+SDL_SCANCODE_KP_MEMADD = 211,
+SDL_SCANCODE_KP_MEMSUBTRACT = 212,
+SDL_SCANCODE_KP_MEMMULTIPLY = 213,
+SDL_SCANCODE_KP_MEMDIVIDE = 214,
+SDL_SCANCODE_KP_PLUSMINUS = 215,
+SDL_SCANCODE_KP_CLEAR = 216,
+SDL_SCANCODE_KP_CLEARENTRY = 217,
+SDL_SCANCODE_KP_BINARY = 218,
+SDL_SCANCODE_KP_OCTAL = 219,
+SDL_SCANCODE_KP_DECIMAL = 220,
+SDL_SCANCODE_KP_HEXADECIMAL = 221,
 
-    SDL_SCANCODE_LCTRL = 224,
-    SDL_SCANCODE_LSHIFT = 225,
-    SDL_SCANCODE_LALT = 226, /**< alt, option */
-    SDL_SCANCODE_LGUI = 227, /**< windows, command (apple), meta */
-    SDL_SCANCODE_RCTRL = 228,
-    SDL_SCANCODE_RSHIFT = 229,
-    SDL_SCANCODE_RALT = 230, /**< alt gr, option */
-    SDL_SCANCODE_RGUI = 231, /**< windows, command (apple), meta */
+SDL_SCANCODE_LCTRL = 224,
+SDL_SCANCODE_LSHIFT = 225,
+SDL_SCANCODE_LALT = 226, /**< alt, option */
+SDL_SCANCODE_LGUI = 227, /**< windows, command (apple), meta */
+SDL_SCANCODE_RCTRL = 228,
+SDL_SCANCODE_RSHIFT = 229,
+SDL_SCANCODE_RALT = 230, /**< alt gr, option */
+SDL_SCANCODE_RGUI = 231, /**< windows, command (apple), meta */
 
-    SDL_SCANCODE_MODE = 257,    /**< I'm not sure if this is really not covered
-                                 *   by any of the above, but since there's a
-                                 *   special KMOD_MODE for it I'm adding it here
-                                 */
+SDL_SCANCODE_MODE = 257,    /**< I'm not sure if this is really not covered
+                             *   by any of the above, but since there's a
+                             *   special KMOD_MODE for it I'm adding it here
+                             */
 
-    /* @} *//* Usage page 0x07 */
+                             /* @} *//* Usage page 0x07 */
 
-    /**
-     *  \name Usage page 0x0C
-     *
-     *  These values are mapped from usage page 0x0C (USB consumer page).
-     */
-    /* @{ */
+                             /**
+                              *  \name Usage page 0x0C
+                              *
+                              *  These values are mapped from usage page 0x0C (USB consumer page).
+                              */
+                              /* @{ */
 
     SDL_SCANCODE_AUDIONEXT = 258,
     SDL_SCANCODE_AUDIOPREV = 259,
@@ -373,7 +373,7 @@ typedef enum
      *
      *  These are values that Christian Walther added (for mac keyboard?).
      */
-    /* @{ */
+     /* @{ */
 
     SDL_SCANCODE_BRIGHTNESSDOWN = 275,
     SDL_SCANCODE_BRIGHTNESSUP = 276,
@@ -395,7 +395,7 @@ typedef enum
      *
      *  These values are mapped from usage page 0x0C (USB consumer page).
      */
-    /* @{ */
+     /* @{ */
 
     SDL_SCANCODE_AUDIOREWIND = 285,
     SDL_SCANCODE_AUDIOFASTFORWARD = 286,
@@ -404,8 +404,21 @@ typedef enum
 
     /* Add any other keys here. */
 
-    SDL_NUM_SCANCODES = 512 /**< not a key, just marks the number of scancodes
+    SDL_NUM_SCANCODES = 512, /**< not a key, just marks the number of scancodes
                                  for array bounds */
+
+
+    SDL_MOUSE_LEFT = 1000,
+    SDL_MOUSE_MIDDLE = 1001,
+    SDL_MOUSE_RIGHT = 1002,
+
+    SDL_MOUSE_LEFT_PRESSED = 65793,
+    SDL_MOUSE_LEFT_RELEASED = 65537,
+    SDL_MOUSE_MIDDLE_PRESSED = 65794,
+    SDL_MOUSE_MIDDLE_RELEASED = 65538,
+    SDL_MOUSE_RIGHT_PRESSED = 65795,
+    SDL_MOUSE_RIGHT_RELEASED = 65539
+
 } SDL_Scancode;
 
 #endif /* SDL_scancode_h_ */

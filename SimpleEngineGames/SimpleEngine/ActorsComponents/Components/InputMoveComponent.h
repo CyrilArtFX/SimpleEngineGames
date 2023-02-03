@@ -11,7 +11,7 @@ public:
 	InputMoveComponent(const InputMoveComponent&) = delete;
 	InputMoveComponent& operator=(const InputMoveComponent&) = delete;
 
-	void processInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY) override;
+	void update(float dt) override;
 
 	void setForwardKey(SDL_Scancode key);
 	void setBackKey(SDL_Scancode key);

@@ -23,10 +23,5 @@ public:
 	virtual float nearestXPosOfX(const float x) const;
 
 	virtual void drawDebug(Renderer& renderer, Color debugColor);
-	void processInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY) override;
-
-protected:
-	int mouseX{ 0 };
-	int mouseY{ 0 };
 };
 
