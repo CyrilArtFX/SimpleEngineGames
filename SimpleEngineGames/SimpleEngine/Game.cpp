@@ -84,13 +84,15 @@ void Game::processInput()
 		isRunning = false;
 	}
 
-	const Uint32 mouse_state = SDL_GetMouseState(nullptr, nullptr);
+	int mouse_pos_x, mouse_pos_y;
+
+	const Uint32 mouse_state = SDL_GetMouseState(&mouse_pos_x, &mouse_pos_y);
 
 	//  actor input
 	isUpdatingActors = true;
 	for (auto actor : actors)
 	{
-		actor->processInput(keyboard_state, mouse_state);
+		actor->processInput(keyboard_state, mouse_state, mouse_pos_x, mouse_pos_y);
 	}
 	isUpdatingActors = false;
 }

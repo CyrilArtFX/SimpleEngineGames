@@ -39,3 +39,9 @@ float CollisionComponent::nearestXPosOfX(const float x) const
 void CollisionComponent::drawDebug(Renderer& renderer, Color debugColor)
 {
 }
+
+void CollisionComponent::processInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY)
+{
+	mouseX = mousePosX;
+	mouseY = mousePosY;
+}

@@ -103,11 +103,9 @@ float RectangleCollisionComponent::nearestXPosOfX(const float x) const
 
 void RectangleCollisionComponent::debug(Renderer& renderer)
 {
-	int mouse_pos_x, mouse_pos_y;
-	SDL_GetMouseState(&mouse_pos_x, &mouse_pos_y);
 	Vector2 mouse_pos = Vector2{
-		mouse_pos_x + owner.getGame().getCamera().getCamPos().x,
-		mouse_pos_y + owner.getGame().getCamera().getCamPos().y
+		mouseX + owner.getGame().getCamera().getCamPos().x,
+		mouseY + owner.getGame().getCamera().getCamPos().y
 	};
 
 	if (intersectWithPoint(mouse_pos))

@@ -39,7 +39,7 @@ void PongManager::updateActor(float dt)
 	}
 }
 
-void PongManager::actorInput(const Uint8* keyState, const Uint32 mouseState)
+void PongManager::actorInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY)
 {
 	if (mouseState == SDL_BUTTON_LEFT)
 	{

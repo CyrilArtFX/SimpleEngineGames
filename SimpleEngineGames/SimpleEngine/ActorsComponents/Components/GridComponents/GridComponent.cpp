@@ -162,12 +162,9 @@ void GridComponent::draw(Renderer& renderer)
 
 void GridComponent::debug(Renderer& renderer)
 {
-	//  actually just a test
-	int mouse_pos_x, mouse_pos_y;
-	SDL_GetMouseState(&mouse_pos_x, &mouse_pos_y);
 	Vector2 mouse_pos = Vector2{
-		mouse_pos_x * 1.0f,
-		mouse_pos_y * 1.0f
+		mouseX * 1.0f,
+		mouseY * 1.0f
 	};
 
 	int intersection_x, intersection_y;
@@ -177,4 +174,10 @@ void GridComponent::debug(Renderer& renderer)
 		Rectangle tile = Rectangle{ tile_pos.x + (intersection_x * tileSize.x), tile_pos.y + (intersection_y * tileSize.y), tileSize.x, tileSize.y };
 		renderer.drawDebugTile(tile, Color::white);
 	}
+}
+
+void GridComponent::processInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY)
+{
+	mouseX = mousePosX;
+	mouseY = mousePosY;
 }

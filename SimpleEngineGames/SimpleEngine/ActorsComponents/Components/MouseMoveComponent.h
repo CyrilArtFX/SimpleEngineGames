@@ -10,5 +10,10 @@ public:
 	MouseMoveComponent& operator=(const MouseMoveComponent&) = delete;
 
 	void update(float dt) override;
+	void processInput(const Uint8* keyState, const Uint32 mouseState, int mousePosX, int mousePosY) override;
+
+private:
+	int mouseX{ 0 };
+	int mouseY{ 0 };
 };
 
