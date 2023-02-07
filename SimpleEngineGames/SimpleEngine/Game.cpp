@@ -1,7 +1,6 @@
 #include "Game.h"
 #include "Timer.h"
 #include "Utils/Log.h"
-#include <iostream>
 
 bool Game::initialize(const char* windowName, int windowWidth, int windowHeight, Color backgroundColor)
 {
@@ -62,6 +61,30 @@ KeyState Game::getKeyState(SDL_Scancode keyCode)
 	}
 }
 
+bool Game::isKeyDown(SDL_Scancode keyCode)
+{
+	KeyState state = getKeyState(keyCode);
+	return state == KeyState::Pressed || state == KeyState::Down;
+}
+
+bool Game::isKeyUp(SDL_Scancode keyCode)
+{
+	KeyState state = getKeyState(keyCode);
+	return state == KeyState::Released || state == KeyState::Up;
+}
+
+bool Game::isKeyPressed(SDL_Scancode keyCode)
+{
+	KeyState state = getKeyState(keyCode);
+	return state == KeyState::Pressed;
+}
+
+bool Game::isKeyReleased(SDL_Scancode keyCode)
+{
+	KeyState state = getKeyState(keyCode);
+	return state == KeyState::Released;
+}
+
 Vector2 Game::getMousePosition()
 {
 	return mousePosition;
@@ -87,11 +110,17 @@ void Game::processInput()
 		pendingKeys.clear();
 	}
 
+
+	int mouse_pos_x, mouse_pos_y;
+	Uint32 mouse_state = SDL_GetMouseState(&mouse_pos_x, &mouse_pos_y); //  register mouse position and get mouse button states
+	mousePosition = Vector2{ mouse_pos_x * 1.0f, mouse_pos_y * 1.0f };
+
+
 	// SDL Event
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
-		switch (event.type) //  register all type of keys (keyboard and mouse buttons) in the map when they are pressed or released
+		switch (event.type) //  register all type of keys (keyboard) in the map when they are pressed or released
 		{
 			case SDL_QUIT: //  quit game if the window quit button is pressed
 				isRunning = false;
@@ -105,74 +134,104 @@ void Game::processInput()
 				}
 				else
 				{
-					keys[event.key.keysym.scancode] = KeyState::Pressed;
-					pendingKeys.push_back(event.key.keysym.scancode);
+					if (keys[event.key.keysym.scancode] != KeyState::Down) //  prevent key to be set as pressed every two frames
+					{
+						keys[event.key.keysym.scancode] = KeyState::Pressed;
+						pendingKeys.push_back(event.key.keysym.scancode);
+					}
 				}
 			break;
 			case SDL_KEYUP: //  register the key as released in the map
-				keys[event.key.keysym.scancode] = KeyState::Released;
-				pendingKeys.push_back(event.key.keysym.scancode);
-			break;
-
-			default: //  part for the mouse (SDL_SCANCODE has been modified for this to be possible)
-				switch (event.key.keysym.scancode)
+				if (keys[event.key.keysym.scancode] != KeyState::Up) //  prevent key to be set as released every two frames
 				{
-					case SDL_MOUSE_LEFT_PRESSED: //  register left mouse code as pressed
-						if (keys.find(SDL_MOUSE_LEFT) == keys.end())
-						{
-							keys.emplace(SDL_MOUSE_LEFT, KeyState::Pressed);
-							pendingKeys.push_back(SDL_MOUSE_LEFT);
-						}
-						else
-						{
-							keys[SDL_MOUSE_LEFT] = KeyState::Pressed;
-							pendingKeys.push_back(SDL_MOUSE_LEFT);
-						}
-					break;
-					case SDL_MOUSE_LEFT_RELEASED: //  register left mouse code as released
-						keys[SDL_MOUSE_LEFT] = KeyState::Released;
-						pendingKeys.push_back(SDL_MOUSE_LEFT);
-					break;
-
-					case SDL_MOUSE_MIDDLE_PRESSED:  //  register middle mouse code as pressed
-						if (keys.find(SDL_MOUSE_MIDDLE) == keys.end())
-						{
-							keys.emplace(SDL_MOUSE_MIDDLE, KeyState::Pressed);
-							pendingKeys.push_back(SDL_MOUSE_MIDDLE);
-						}
-						else
-						{
-							keys[SDL_MOUSE_MIDDLE] = KeyState::Pressed;
-							pendingKeys.push_back(SDL_MOUSE_MIDDLE);
-						}
-					break;
-					case SDL_MOUSE_MIDDLE_RELEASED: //  register middle mouse code as released
-						keys[SDL_MOUSE_MIDDLE] = KeyState::Released;
-						pendingKeys.push_back(SDL_MOUSE_MIDDLE);
-					break;
-
-					case SDL_MOUSE_RIGHT_PRESSED: //  register right mouse code as pressed
-						if (keys.find(SDL_MOUSE_RIGHT) == keys.end())
-						{
-							keys.emplace(SDL_MOUSE_RIGHT, KeyState::Pressed);
-							pendingKeys.push_back(SDL_MOUSE_RIGHT);
-						}
-						else
-						{
-							keys[SDL_MOUSE_RIGHT] = KeyState::Pressed;
-							pendingKeys.push_back(SDL_MOUSE_RIGHT);
-						}
-					break;
-					case SDL_MOUSE_RIGHT_RELEASED: //  register right mouse code as released
-						keys[SDL_MOUSE_RIGHT] = KeyState::Released;
-						pendingKeys.push_back(SDL_MOUSE_RIGHT);
-					break;
+					keys[event.key.keysym.scancode] = KeyState::Released;
+					pendingKeys.push_back(event.key.keysym.scancode);
 				}
 			break;
 		}
 	}
 
-	if (getKeyState(SDL_SCANCODE_K) == KeyState::Pressed) //  enable or disable debug mode if K is pressed
+	//  register mouse button manually cause the way SDL treat them is different of keyboard inputs
+
+	if ((mouse_state & 1) == 1) //  left mouse button is currently down
+	{
+		if (keys.find(SDL_MOUSE_LEFT) == keys.end())
+		{
+			keys.emplace(SDL_MOUSE_LEFT, KeyState::Pressed);
+			pendingKeys.push_back(SDL_MOUSE_LEFT);
+		}
+		else
+		{
+			if (keys[SDL_MOUSE_LEFT] != KeyState::Down)
+			{
+				keys[SDL_MOUSE_LEFT] = KeyState::Pressed;
+				pendingKeys.push_back(SDL_MOUSE_LEFT);
+			}
+		}
+	}
+	else //  left mouse button is currently up
+	{
+		if (keys[SDL_MOUSE_LEFT] != KeyState::Up)
+		{
+			keys[SDL_MOUSE_LEFT] = KeyState::Released;
+			pendingKeys.push_back(SDL_MOUSE_LEFT);
+		}
+	}
+
+	if ((mouse_state & 2) == 2) //  middle mouse button is currently down
+	{
+		if (keys.find(SDL_MOUSE_MIDDLE) == keys.end())
+		{
+			keys.emplace(SDL_MOUSE_MIDDLE, KeyState::Pressed);
+			pendingKeys.push_back(SDL_MOUSE_MIDDLE);
+		}
+		else
+		{
+			if (keys[SDL_MOUSE_MIDDLE] != KeyState::Down)
+			{
+				keys[SDL_MOUSE_MIDDLE] = KeyState::Pressed;
+				pendingKeys.push_back(SDL_MOUSE_MIDDLE);
+			}
+		}
+	}
+	else //  middle mouse button is currently up
+	{
+		if (keys[SDL_MOUSE_MIDDLE] != KeyState::Up)
+		{
+			keys[SDL_MOUSE_MIDDLE] = KeyState::Released;
+			pendingKeys.push_back(SDL_MOUSE_MIDDLE);
+		}
+	}
+
+	if ((mouse_state & 4) == 4) //  right mouse button is currently down
+	{
+		if (keys.find(SDL_MOUSE_RIGHT) == keys.end())
+		{
+			keys.emplace(SDL_MOUSE_RIGHT, KeyState::Pressed);
+			pendingKeys.push_back(SDL_MOUSE_RIGHT);
+		}
+		else
+		{
+			if (keys[SDL_MOUSE_RIGHT] != KeyState::Down)
+			{
+				keys[SDL_MOUSE_RIGHT] = KeyState::Pressed;
+				pendingKeys.push_back(SDL_MOUSE_RIGHT);
+			}
+		}
+	}
+	else //  right mouse button is currently up
+	{
+		if (keys[SDL_MOUSE_RIGHT] != KeyState::Up)
+		{
+			keys[SDL_MOUSE_RIGHT] = KeyState::Released;
+			pendingKeys.push_back(SDL_MOUSE_RIGHT);
+		}
+	}
+
+
+	//  global inputs
+
+	if (isKeyPressed(SDL_SCANCODE_K)) //  enable or disable debug mode if K is pressed
 	{
 		if (debug)
 		{
@@ -185,14 +244,10 @@ void Game::processInput()
 		debug = !debug;
 	}
 
-	if (getKeyState(SDL_SCANCODE_ESCAPE) == KeyState::Pressed) //  quit game if escape is pressed
+	if (isKeyPressed(SDL_SCANCODE_ESCAPE)) //  quit game if escape is pressed
 	{
 		isRunning = false;
 	}
-
-	int mouse_pos_x, mouse_pos_y;
-	SDL_GetMouseState(&mouse_pos_x, &mouse_pos_y); //  register mouse position
-	mousePosition = Vector2{ mouse_pos_x * 1.0f, mouse_pos_y * 1.0f };
 }
 
 void Game::update(float dt)

@@ -1,16 +1,17 @@
 #include "InputMoveComponent.h"
 #include <SimpleEngine/Game.h>
+#include <SimpleEngine/Utils/Maths.h>
 
 void InputMoveComponent::update(float dt)
 {
 	if (enableYAxis)
 	{
 		velocity.y = 0.0f;
-		if (owner.getGame().getKeyState(SDL_SCANCODE_Z) == Pressed || owner.getGame().getKeyState(SDL_SCANCODE_Z) == Down)
+		if (owner.getGame().isKeyDown(forwardKey))
 		{
 			velocity.y = -1.0f;
 		}
-		else if (owner.getGame().getKeyState(SDL_SCANCODE_S) == Pressed || owner.getGame().getKeyState(SDL_SCANCODE_S) == Down)
+		else if (owner.getGame().isKeyDown(backKey))
 		{
 			velocity.y = 1.0f;
 		}
@@ -19,14 +20,27 @@ void InputMoveComponent::update(float dt)
 	if (enableXAxis)
 	{
 		velocity.x = 0.0f;
-		if (owner.getGame().getKeyState(SDL_SCANCODE_D) == Pressed || owner.getGame().getKeyState(SDL_SCANCODE_D) == Down)
+		if (owner.getGame().isKeyDown(rightKey))
 		{
 			velocity.x = 1.0f;
 		}
-		else if (owner.getGame().getKeyState(SDL_SCANCODE_Q) == Pressed || owner.getGame().getKeyState(SDL_SCANCODE_Q) == Down)
+		else if (owner.getGame().isKeyDown(leftKey))
 		{
 			velocity.x = -1.0f;
 		}
+	}
+
+
+	//  why does c++ is not capable of doing 'base.update(dt);' I am crying :((((((((((
+	actorPosBeforeMovement = owner.getPosition();
+	if (!Maths::nearZero(speed))
+	{
+		if (!Maths::nearZero(velocity.lengthSq()))
+		{
+			velocity.normalize();
+		}
+		Vector2 new_position = owner.getPosition() + velocity * speed * dt;
+		owner.setPosition(new_position);
 	}
 }
 

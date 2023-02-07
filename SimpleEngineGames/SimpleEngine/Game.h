@@ -52,6 +52,10 @@ public:
 	int getScreenWidth();
 	int getScreenHeight();
 	KeyState getKeyState(SDL_Scancode keyCode);
+	bool isKeyDown(SDL_Scancode keyCode);
+	bool isKeyUp(SDL_Scancode keyCode);
+	bool isKeyPressed(SDL_Scancode keyCode);
+	bool isKeyReleased(SDL_Scancode keyCode);
 	Vector2 getMousePosition();
 
 private:

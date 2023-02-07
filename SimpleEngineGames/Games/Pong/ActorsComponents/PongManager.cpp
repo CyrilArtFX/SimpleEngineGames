@@ -40,7 +40,7 @@ void PongManager::updateActor(float dt)
 	}
 	else 
 	{
-		if (getGame().getKeyState(SDL_MOUSE_LEFT) == Pressed)
+		if(getGame().isKeyPressed(SDL_MOUSE_LEFT))
 		{
 			ResumeGame();
 			ResetScores();
