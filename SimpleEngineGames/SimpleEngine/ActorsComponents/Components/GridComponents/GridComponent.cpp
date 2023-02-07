@@ -130,7 +130,7 @@ bool GridComponent::intersectWithScreenPoint(Vector2 point, int* gridPosReturnX,
 	if (gridPosReturnY) *gridPosReturnY = tile_pos_intersection_y;
 
 
-	if (tile_pos_intersection_x == -1 || tile_pos_intersection_y == -1)
+	if (tile_pos_intersection_x == -1 || tile_pos_intersection_y == -1 || tile_pos_intersection_x == gridWidth || tile_pos_intersection_y == gridHeight)
 	{
 		return false;
 	}
