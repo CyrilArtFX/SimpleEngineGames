@@ -1,6 +1,7 @@
 #pragma once
 #include <SimpleEngine/ActorsComponents/Components/DrawComponent.h>
 #include "GridTileDraw.h"
+#include <SimpleEngine/Utils/GridMap.h>
 #include <vector>
 using std::vector;
 
@@ -19,6 +20,7 @@ class GridComponent : public DrawComponent
 {
 public:
 	GridComponent(Actor* ownerP, int drawOrderP = 10);
+	GridComponent(Actor* ownerP, GridMap* gridMap, int drawOrderP = 10);
 	virtual ~GridComponent();
 	GridComponent() = delete;
 	GridComponent(const GridComponent&) = delete;

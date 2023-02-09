@@ -2,21 +2,22 @@
 #include "Log.h"
 #include <fstream>
 
-GridMap::GridMap(string pathP, vector<int> gridMapP) : path(pathP), gridMap(gridMapP)
+GridMap::GridMap(string pathP, int mapWidthP, int mapHeightP, vector<int> gridMapP) : 
+	path(pathP), mapWidth(mapWidthP), mapHeight(mapHeightP), gridMap(gridMapP)
 {
 }
 
 GridMap* GridMap::load(const string& pathP)
 {
 	vector<int> grid_map;
+	int grid_map_width = 0;
+	int grid_map_height = 0;
 
 	std::ifstream file;
 	file.open(pathP);
 	string line;
 	if (file.is_open())
 	{
-		int grid_map_width = 0;
-		int grid_map_height = 0;
 		bool data_reading = false;
 		int data_lines_read = 0;
 		while (file)
@@ -87,5 +88,5 @@ GridMap* GridMap::load(const string& pathP)
 	}
 
 	Log::info("Loaded grid map " + pathP);
-	return new GridMap(pathP, grid_map);
+	return new GridMap(pathP, grid_map_width, grid_map_height, grid_map);
 }

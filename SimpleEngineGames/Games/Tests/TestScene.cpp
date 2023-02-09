@@ -16,8 +16,6 @@
 #include <SimpleEngine/Utils/Vector2.h>
 #include <SimpleEngine/Utils/Rectangle.h>
 #include <SimpleEngine/Utils/Color.h>
-#include <iostream>
-#include <vector>
 
 void TestScene::load(Game* game)
 {
@@ -27,12 +25,6 @@ void TestScene::load(Game* game)
 	Assets::loadFont("Pixeled.ttf", "pixeled20", 20);
 	Assets::loadTexture(game->getRenderer(), "Bekipan.png", "bekipan");
 	Assets::loadGridMap("RacingTrackV1.lua", "testgrid");
-
-	std::vector<int> aa = Assets::getGridMap("testgrid")->getMap();
-	for (int i = 0; i < aa.size(); i++)
-	{
-		std::cout << aa[i] << " ";
-	}
 
 	/*auto test_rect = new Actor();
 	test_rect->setPosition(Vector2{ 100.0f, 100.0f });
@@ -102,5 +94,15 @@ void TestScene::load(Game* game)
 	gc->setGridElement(4, 3, 5);
 
 	test_grid->setPosition(Vector2{ 156.0f, 243.0f });
+
+
+	auto test_grid_2 = new Actor();
+	auto gc2 = new GridComponent(test_grid_2, Assets::getGridMap("testgrid"), 20);
+
+	gc2->setTileSize(Vector2{ 15.0f, 15.0f });
+	gc2->setTileTraduction(1, new TileTraduction{ new GridTileDrawRectangle(Color::blue, Rectangle::unitRect), true });
+
+	test_grid_2->setPosition(Vector2{ 30.0f, 30.0f });
+
 	//game->getCamera().setCamPos(Vector2{ 140.0f, -100.0f });
 }

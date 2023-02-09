@@ -8,6 +8,17 @@ GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(owne
 	tileTraduction.push_back(new TileTraduction);
 }
 
+GridComponent::GridComponent(Actor* ownerP, GridMap* gridMap, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
+{
+	tileTraduction.push_back(new TileTraduction);
+	setGridSize(gridMap->getWidth(), gridMap->getHeight());
+	vector<int> map_datas = gridMap->getMap();
+	for (int i = 0; i < map_datas.size(); i++)
+	{
+		setGridElement(i % gridWidth, Maths::floor(i / gridWidth), map_datas[i]);
+	}
+}
+
 GridComponent::~GridComponent()
 {
 }
