@@ -16,6 +16,8 @@
 #include <SimpleEngine/Utils/Vector2.h>
 #include <SimpleEngine/Utils/Rectangle.h>
 #include <SimpleEngine/Utils/Color.h>
+#include <iostream>
+#include <vector>
 
 void TestScene::load(Game* game)
 {
@@ -24,6 +26,13 @@ void TestScene::load(Game* game)
 
 	Assets::loadFont("Pixeled.ttf", "pixeled20", 20);
 	Assets::loadTexture(game->getRenderer(), "Bekipan.png", "bekipan");
+	Assets::loadGridMap("RacingTrackV1.lua", "testgrid");
+
+	std::vector<int> aa = Assets::getGridMap("testgrid")->getMap();
+	for (int i = 0; i < aa.size(); i++)
+	{
+		std::cout << aa[i] << " ";
+	}
 
 	/*auto test_rect = new Actor();
 	test_rect->setPosition(Vector2{ 100.0f, 100.0f });

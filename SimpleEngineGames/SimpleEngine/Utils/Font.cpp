@@ -14,5 +14,6 @@ Font* Font::load(const string& pathP, int sizeP)
 		return nullptr;
 	}
 
+	Log::info("Loaded font " + pathP);
 	return new Font(pathP, sdlFont, sizeP);
 }

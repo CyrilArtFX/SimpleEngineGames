@@ -60,6 +60,7 @@
     <ClCompile Include="SimpleEngine\Timer.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Color.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Font.cpp" />
+    <ClCompile Include="SimpleEngine\Utils\GridMap.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Log.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Random.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Rectangle.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="SimpleEngine\Timer.h" />
     <ClInclude Include="SimpleEngine\Utils\Color.h" />
     <ClInclude Include="SimpleEngine\Utils\Font.h" />
+    <ClInclude Include="SimpleEngine\Utils\GridMap.h" />
     <ClInclude Include="SimpleEngine\Utils\Log.h" />
     <ClInclude Include="SimpleEngine\Utils\Maths.h" />
     <ClInclude Include="SimpleEngine\Utils\Random.h" />
