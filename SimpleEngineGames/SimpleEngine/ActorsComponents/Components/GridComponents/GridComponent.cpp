@@ -146,7 +146,12 @@ bool GridComponent::intersectWithScreenPoint(Vector2 point, int* gridPosReturnX,
 		return false;
 	}
 
-	return tileTraduction[grid[tile_pos_intersection_x * gridHeight + tile_pos_intersection_y]]->colTraduction;
+	int index = grid[tile_pos_intersection_x * gridHeight + tile_pos_intersection_y];
+	if (index >= 0 && index < tileTraduction.size())
+	{
+		return tileTraduction[index]->colTraduction;
+	}
+	return false;
 }
 
 void GridComponent::draw(Renderer& renderer)
@@ -163,7 +168,11 @@ void GridComponent::draw(Renderer& renderer)
 					{
 						Vector2 grid_origin = owner.getPosition() - owner.getGame().getCamera().getCamPos();
 						Rectangle tile = Rectangle{ grid_origin.x + (i * tileSize.x), grid_origin.y + (j * tileSize.y), tileSize.x, tileSize.y };
-						tileTraduction[grid[i * gridHeight + j]]->drawTraduction->draw(renderer, tile, grid[i * gridHeight + j]);
+						int index = grid[i * gridHeight + j];
+						if (index >= 0 && index < tileTraduction.size())
+						{
+							tileTraduction[index]->drawTraduction->draw(renderer, tile, index);
+						}
 					}
 				}
 			}
