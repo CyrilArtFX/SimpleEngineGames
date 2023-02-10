@@ -30,8 +30,11 @@
     <ClCompile Include="Games\Pong\ActorsComponents\PongManager.cpp" />
     <ClCompile Include="Games\Pong\PongScene.cpp" />
     <ClCompile Include="Games\Pong\ActorsComponents\PlayerPaddle.cpp" />
+    <ClCompile Include="Games\Racing\ActorsComponents\PlayerCar.cpp" />
+    <ClCompile Include="Games\Racing\ActorsComponents\RacingManager.cpp" />
     <ClCompile Include="Games\Racing\ActorsComponents\RacingTrack.cpp" />
     <ClCompile Include="Games\Racing\RacingScene.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\RotationInputMoveComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawCircleComponent.cpp" />
     <ClCompile Include="Games\Tests\TestScene.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -82,12 +85,15 @@
     <ClInclude Include="Games\Pong\ActorsComponents\PongManager.h" />
     <ClInclude Include="Games\Pong\Main.h" />
     <ClInclude Include="Games\Pong\PongScene.h" />
+    <ClInclude Include="Games\Racing\ActorsComponents\PlayerCar.h" />
+    <ClInclude Include="Games\Racing\ActorsComponents\RacingManager.h" />
     <ClInclude Include="Games\Racing\ActorsComponents\RacingTrack.h" />
     <ClInclude Include="Games\Racing\Main.h" />
     <ClInclude Include="Games\Racing\RacingScene.h" />
     <ClInclude Include="Games\Tests\Main.h" />
     <ClInclude Include="Games\Tests\TestScene.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\PlayerPaddle.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\RotationInputMoveComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawCircleComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDraw.h" />

@@ -64,7 +64,7 @@ void TestScene::load(Game* game)
 	game->getCamera().setCamPos(Vector2{ -100.0f, 0.0f });*/
 
 	auto test_sprite = new Actor();
-	auto dsc = new DrawSpriteComponent(test_sprite, Assets::getTexture("bekipan"), Vector2{ 0.0f, 0.0f });
+	auto dsc = new DrawSpriteComponent(test_sprite, Assets::getTexture("bekipan"), Vector2{ 0.0f, 0.0f }, Renderer::Flip::None);
 	auto rcc = new RectangleCollisionComponent(test_sprite);
 	rcc->setRectangle(Rectangle{ 0.0f, 0.0f, 200.0f, 200.0f });
 	auto imc = new InputMoveComponent(test_sprite);

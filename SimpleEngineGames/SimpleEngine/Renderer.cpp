@@ -251,7 +251,18 @@ void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcR
 			Maths::round(srcRect.width), Maths::round(srcRect.height) };
 	}
 
-	SDL_RenderCopyEx(SDLRenderer, tex.toSDLTexture(), src_SDL, &dst_rect, -Maths::toDegrees(rotation), nullptr, SDL_FLIP_NONE);
+	SDL_RendererFlip sdl_flip = SDL_FLIP_NONE;
+	switch (flip)
+	{
+		case Flip::Horizontal: 
+			sdl_flip = SDL_FLIP_HORIZONTAL;
+			break;
+		case Flip::Vertical: 
+			sdl_flip = SDL_FLIP_VERTICAL;
+			break;
+	}
+
+	SDL_RenderCopyEx(SDLRenderer, tex.toSDLTexture(), src_SDL, &dst_rect, -Maths::toDegrees(rotation), nullptr, sdl_flip);
 	delete src_SDL;
 }
 
