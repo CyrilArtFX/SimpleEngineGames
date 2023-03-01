@@ -1,5 +1,5 @@
 #include "MouseMoveComponent.h"
-#include "../Actor.h"
+#include <SimpleEngine/ActorsComponents/Actor.h>
 #include <SimpleEngine/Game.h>
 
 void MouseMoveComponent::update(float dt)

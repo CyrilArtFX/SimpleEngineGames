@@ -1,5 +1,5 @@
 #include "GridMap.h"
-#include "Log.h"
+#include "../Utils/Log.h"
 #include <fstream>
 
 GridMap::GridMap(string pathP, int mapWidthP, int mapHeightP, vector<int> gridMapP) : 

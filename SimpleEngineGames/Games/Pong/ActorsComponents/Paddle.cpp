@@ -1,5 +1,5 @@
 #include "Paddle.h"
-#include <SimpleEngine/Utils/Rectangle.h>
+#include <SimpleEngine/Maths/Rectangle.h>
 
 Paddle::Paddle() : Actor()
 {

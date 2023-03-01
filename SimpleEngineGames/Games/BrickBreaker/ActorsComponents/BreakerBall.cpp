@@ -1,5 +1,5 @@
 #include "BreakerBall.h"
-#include <SimpleEngine/ActorsComponents/Components/RectangleCollisionComponent.h>
+#include <Components/CollisionComponents/RectangleCollisionComponent.h>
 
 BreakerBall::BreakerBall() : Actor()
 {

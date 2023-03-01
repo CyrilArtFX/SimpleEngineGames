@@ -1,6 +1,6 @@
 #pragma once
 #include <SimpleEngine/Renderer.h>
-#include <SimpleEngine/Utils/Rectangle.h>
+#include <SimpleEngine/Maths/Rectangle.h>
 
 class GridTileDraw
 {

@@ -1,7 +1,7 @@
 #pragma once
 #include "Paddle.h"
-#include <SimpleEngine/ActorsComponents/Components/VelocityMoveComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/ScreenBorderInteractionComponent.h>
+#include <Components/MoveComponents/VelocityMoveComponent.h>
+#include <Components/ScreenBorderInteractionComponent.h>
 
 class CPUPaddle : public Paddle
 {

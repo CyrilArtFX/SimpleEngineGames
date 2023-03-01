@@ -1,7 +1,7 @@
 #pragma once
 #include <SimpleEngine/ActorsComponents/Actor.h>
-#include <SimpleEngine/ActorsComponents/Components/DrawTextComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/DrawRectComponent.h>
+#include <Components/DrawComponents/DrawTextComponent.h>
+#include <Components/DrawComponents/DrawRectComponent.h>
 #include "PongBall.h"
 #include "PlayerPaddle.h"
 #include "CPUPaddle.h"

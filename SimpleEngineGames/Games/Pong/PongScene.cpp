@@ -1,5 +1,5 @@
 #include "PongScene.h"
-#include <SimpleEngine/Assets.h>
+#include <SimpleEngine/Assets/Assets.h>
 #include <SimpleEngine/Game.h>
 #include "ActorsComponents/PongBall.h"
 #include "ActorsComponents/PlayerPaddle.h"

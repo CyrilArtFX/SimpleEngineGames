@@ -1,9 +1,9 @@
 #include "RectangleCollisionComponent.h"
-#include "../Actor.h"
+#include <SimpleEngine/ActorsComponents/Actor.h>
 #include "CircleCollisionComponent.h"
 #include <SimpleEngine/Game.h>
 #include <SimpleEngine/Utils/Log.h>
-#include <SimpleEngine/Utils/Maths.h>
+#include <SimpleEngine/Maths/Maths.h>
 
 Rectangle RectangleCollisionComponent::getTransformedRectangle() const
 {

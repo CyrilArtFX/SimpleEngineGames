@@ -1,5 +1,5 @@
 #include "BreakerScene.h"
-#include <SimpleEngine/Assets.h>
+#include <SimpleEngine/Assets/Assets.h>
 #include <SimpleEngine/Game.h>
 #include "ActorsComponents/BreakerBall.h"
 #include "ActorsComponents/BreakerPaddle.h"

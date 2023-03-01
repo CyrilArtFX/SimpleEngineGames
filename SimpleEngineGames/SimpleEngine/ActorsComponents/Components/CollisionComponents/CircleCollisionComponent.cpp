@@ -1,5 +1,5 @@
 #include "CircleCollisionComponent.h"
-#include "../Actor.h"
+#include <SimpleEngine/ActorsComponents/Actor.h>
 #include "RectangleCollisionComponent.h"
 #include <SimpleEngine/Game.h>
 #include <SimpleEngine/Utils/Log.h>

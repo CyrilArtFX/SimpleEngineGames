@@ -1,6 +1,6 @@
 #include "Actor.h"
 #include <algorithm>
-#include <SimpleEngine/Utils/Maths.h>
+#include <SimpleEngine/Maths/Maths.h>
 #include <SimpleEngine/Game.h>
 #include "Component.h"
 

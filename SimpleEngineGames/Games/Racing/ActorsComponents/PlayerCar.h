@@ -1,9 +1,9 @@
 #pragma once
 #include <SimpleEngine/ActorsComponents/Actor.h>
-#include <SimpleEngine/ActorsComponents/Components/DrawSpriteComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/CircleCollisionComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/RotationInputMoveComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/ScreenBorderInteractionComponent.h>
+#include <Components/DrawComponents/DrawSpriteComponent.h>
+#include <Components/CollisionComponents/CircleCollisionComponent.h>
+#include <Components/MoveComponents/RotationInputMoveComponent.h>
+#include <Components/ScreenBorderInteractionComponent.h>
 
 class PlayerCar : public Actor
 {

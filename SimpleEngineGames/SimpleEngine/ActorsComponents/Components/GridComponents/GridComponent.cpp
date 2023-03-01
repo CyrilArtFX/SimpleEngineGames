@@ -1,7 +1,7 @@
 #include "GridComponent.h"
 #include <SimpleEngine/ActorsComponents/Actor.h>
 #include <SimpleEngine/Game.h>
-#include <SimpleEngine/Utils/Maths.h>
+#include <SimpleEngine/Maths/Maths.h>
 
 GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {

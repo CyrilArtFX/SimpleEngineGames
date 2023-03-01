@@ -1,5 +1,5 @@
 #include "PlayerCar.h"
-#include <SimpleEngine/Utils/Maths.h>
+#include <SimpleEngine/Maths/Maths.h>
 
 PlayerCar::PlayerCar(Texture& carTextureP) : Actor()
 {

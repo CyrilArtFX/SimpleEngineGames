@@ -1,6 +1,6 @@
 #pragma once
 #include "DrawComponent.h"
-#include <SimpleEngine/Utils/Font.h>
+#include <SimpleEngine/Assets/Font.h>
 #include <SimpleEngine/Utils/Color.h>
 #include <string>
 using std::string;

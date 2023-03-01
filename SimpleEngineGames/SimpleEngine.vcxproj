@@ -34,42 +34,42 @@
     <ClCompile Include="Games\Racing\ActorsComponents\RacingManager.cpp" />
     <ClCompile Include="Games\Racing\ActorsComponents\RacingTrack.cpp" />
     <ClCompile Include="Games\Racing\RacingScene.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\RotationInputMoveComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawCircleComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponents\RotationInputMoveComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawCircleComponent.cpp" />
     <ClCompile Include="Games\Tests\TestScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDraw.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawRectangle.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawSprite.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MouseMoveComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponents\MouseMoveComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\ScreenBorderInteractionComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Actor.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Component.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\CircleCollisionComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\CollisionComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawRectComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawTextComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\InputMoveComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\RectangleCollisionComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawSpriteComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\VelocityMoveComponent.cpp" />
-    <ClCompile Include="SimpleEngine\Assets.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\CircleCollisionComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\CollisionComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawRectComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawTextComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponents\InputMoveComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponents\MoveComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\RectangleCollisionComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawSpriteComponent.cpp" />
+    <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponents\VelocityMoveComponent.cpp" />
+    <ClCompile Include="SimpleEngine\Assets\Assets.cpp" />
     <ClCompile Include="SimpleEngine\Camera.cpp" />
     <ClCompile Include="SimpleEngine\Game.cpp" />
     <ClCompile Include="SimpleEngine\Renderer.cpp" />
     <ClCompile Include="SimpleEngine\Scene.cpp" />
-    <ClCompile Include="SimpleEngine\Texture.cpp" />
+    <ClCompile Include="SimpleEngine\Assets\Texture.cpp" />
     <ClCompile Include="SimpleEngine\Timer.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Color.cpp" />
-    <ClCompile Include="SimpleEngine\Utils\Font.cpp" />
-    <ClCompile Include="SimpleEngine\Utils\GridMap.cpp" />
+    <ClCompile Include="SimpleEngine\Assets\Font.cpp" />
+    <ClCompile Include="SimpleEngine\Assets\GridMap.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Log.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Random.cpp" />
-    <ClCompile Include="SimpleEngine\Utils\Rectangle.cpp" />
-    <ClCompile Include="SimpleEngine\Utils\Vector2.cpp" />
+    <ClCompile Include="SimpleEngine\Maths\Rectangle.cpp" />
+    <ClCompile Include="SimpleEngine\Maths\Vector2.cpp" />
     <ClCompile Include="SimpleEngine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -93,41 +93,41 @@
     <ClInclude Include="Games\Tests\Main.h" />
     <ClInclude Include="Games\Tests\TestScene.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\PlayerPaddle.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\RotationInputMoveComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawCircleComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponents\RotationInputMoveComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawCircleComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDraw.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawRectangle.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridTileDrawSprite.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MouseMoveComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponents\MouseMoveComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\ScreenBorderInteractionComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Actor.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Component.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\CircleCollisionComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\CollisionComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawRectComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawTextComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\InputMoveComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\RectangleCollisionComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawSpriteComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\VelocityMoveComponent.h" />
-    <ClInclude Include="SimpleEngine\Assets.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\CircleCollisionComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\CollisionComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawRectComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawTextComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponents\InputMoveComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponents\MoveComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\RectangleCollisionComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawSpriteComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponents\VelocityMoveComponent.h" />
+    <ClInclude Include="SimpleEngine\Assets\Assets.h" />
     <ClInclude Include="SimpleEngine\Camera.h" />
     <ClInclude Include="SimpleEngine\Game.h" />
     <ClInclude Include="SimpleEngine\Renderer.h" />
     <ClInclude Include="SimpleEngine\Scene.h" />
-    <ClInclude Include="SimpleEngine\Texture.h" />
+    <ClInclude Include="SimpleEngine\Assets\Texture.h" />
     <ClInclude Include="SimpleEngine\Timer.h" />
     <ClInclude Include="SimpleEngine\Utils\Color.h" />
-    <ClInclude Include="SimpleEngine\Utils\Font.h" />
-    <ClInclude Include="SimpleEngine\Utils\GridMap.h" />
+    <ClInclude Include="SimpleEngine\Assets\Font.h" />
+    <ClInclude Include="SimpleEngine\Assets\GridMap.h" />
     <ClInclude Include="SimpleEngine\Utils\Log.h" />
-    <ClInclude Include="SimpleEngine\Utils\Maths.h" />
+    <ClInclude Include="SimpleEngine\Maths\Maths.h" />
     <ClInclude Include="SimpleEngine\Utils\Random.h" />
-    <ClInclude Include="SimpleEngine\Utils\Rectangle.h" />
-    <ClInclude Include="SimpleEngine\Utils\Vector2.h" />
+    <ClInclude Include="SimpleEngine\Maths\Rectangle.h" />
+    <ClInclude Include="SimpleEngine\Maths\Vector2.h" />
     <ClInclude Include="SimpleEngine\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -220,7 +220,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./SimpleEngine/ActorsComponents/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

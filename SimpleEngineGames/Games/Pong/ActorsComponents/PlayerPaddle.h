@@ -1,7 +1,7 @@
 #pragma once
 #include "Paddle.h"
-#include <SimpleEngine/ActorsComponents/Components/MouseMoveComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/ScreenBorderInteractionComponent.h>
+#include <Components/MoveComponents/MouseMoveComponent.h>
+#include <Components/ScreenBorderInteractionComponent.h>
 
 class PlayerPaddle : public Paddle
 {

@@ -2,8 +2,8 @@
 #include <map>
 #include <string>
 #include "Texture.h"
-#include "Utils/Font.h"
-#include "Utils/GridMap.h"
+#include "Font.h"
+#include "GridMap.h"
 using std::map;
 using std::string;
 

@@ -1,20 +1,20 @@
 #include "TestScene.h"
-#include <SimpleEngine/Assets.h>
+#include <SimpleEngine/Assets/Assets.h>
 #include <SimpleEngine/Game.h>
 #include <SimpleEngine/ActorsComponents/Actor.h>
-#include <SimpleEngine/ActorsComponents/Components/DrawRectComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/DrawCircleComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/DrawTextComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/DrawSpriteComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/CircleCollisionComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/RectangleCollisionComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/InputMoveComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/ScreenBorderInteractionComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/GridComponents/GridComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/GridComponents/GridTileDrawRectangle.h>
-#include <SimpleEngine/ActorsComponents/Components/GridComponents/GridTileDrawSprite.h>
-#include <SimpleEngine/Utils/Vector2.h>
-#include <SimpleEngine/Utils/Rectangle.h>
+#include <Components/DrawComponents/DrawRectComponent.h>
+#include <Components/DrawComponents/DrawCircleComponent.h>
+#include <Components/DrawComponents/DrawTextComponent.h>
+#include <Components/DrawComponents/DrawSpriteComponent.h>
+#include <Components/CollisionComponents/CircleCollisionComponent.h>
+#include <Components/CollisionComponents/RectangleCollisionComponent.h>
+#include <Components/MoveComponents/InputMoveComponent.h>
+#include <Components/ScreenBorderInteractionComponent.h>
+#include <Components/GridComponents/GridComponent.h>
+#include <Components/GridComponents/GridTileDrawRectangle.h>
+#include <Components/GridComponents/GridTileDrawSprite.h>
+#include <SimpleEngine/Maths/Vector2.h>
+#include <SimpleEngine/Maths/Rectangle.h>
 #include <SimpleEngine/Utils/Color.h>
 
 void TestScene::load(Game* game)

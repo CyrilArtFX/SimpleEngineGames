@@ -1,5 +1,5 @@
 #include "BreakerGrid.h"
-#include <SimpleEngine/ActorsComponents/Components/GridComponents/GridTileDrawRectangle.h>
+#include <Components/GridComponents/GridTileDrawRectangle.h>
 
 BreakerGrid::BreakerGrid(int gridSizeX, int gridSizeY, Vector2 tileSize, Color tileColor)
 {

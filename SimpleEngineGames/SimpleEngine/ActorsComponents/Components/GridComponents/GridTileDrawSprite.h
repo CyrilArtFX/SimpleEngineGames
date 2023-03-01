@@ -1,6 +1,6 @@
 #pragma once
 #include "GridTileDraw.h"
-#include <SimpleEngine/Texture.h>
+#include <SimpleEngine/Assets/Texture.h>
 
 class GridTileDrawSprite : public GridTileDraw
 {

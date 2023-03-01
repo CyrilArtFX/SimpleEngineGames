@@ -1,7 +1,7 @@
 #pragma once
 #include "../Component.h"
-#include "MoveComponent.h"
-#include "CollisionComponent.h"
+#include "MoveComponents/MoveComponent.h"
+#include "CollisionComponents/CollisionComponent.h"
 
 //  this component must be added to actors who already has a move component and a collision component
 //  this component will do interactions when the collision of the actor intersect with a border of the screen

@@ -1,6 +1,6 @@
 #include "RotationInputMoveComponent.h"
 #include <SimpleEngine/Game.h>
-#include <SimpleEngine/Utils/Maths.h>
+#include <SimpleEngine/Maths/Maths.h>
 
 RotationInputMoveComponent::RotationInputMoveComponent(Actor* ownerP, float startAngleP, int updateOrderP) : InputMoveComponent(ownerP, updateOrderP)
 {

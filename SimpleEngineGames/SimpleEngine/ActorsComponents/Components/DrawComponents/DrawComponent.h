@@ -1,5 +1,5 @@
 #pragma once
-#include "../Component.h"
+#include <SimpleEngine/ActorsComponents/Component.h>
 #include <SimpleEngine/Renderer.h>
 
 class DrawComponent : public Component

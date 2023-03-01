@@ -1,7 +1,7 @@
 #pragma once
 #include <SimpleEngine/ActorsComponents/Actor.h>
-#include <SimpleEngine/ActorsComponents/Components/DrawRectComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/RectangleCollisionComponent.h>
+#include <Components/DrawComponents/DrawRectComponent.h>
+#include <Components/CollisionComponents/RectangleCollisionComponent.h>
 
 class Paddle : public Actor
 {

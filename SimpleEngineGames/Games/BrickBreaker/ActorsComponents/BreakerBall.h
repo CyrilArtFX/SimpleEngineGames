@@ -1,9 +1,9 @@
 #pragma once
 #include <SimpleEngine/ActorsComponents/Actor.h>
-#include <SimpleEngine/ActorsComponents/Components/DrawCircleComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/CircleCollisionComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/VelocityMoveComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/ScreenBorderInteractionComponent.h>
+#include <Components/DrawComponents/DrawCircleComponent.h>
+#include <Components/CollisionComponents/CircleCollisionComponent.h>
+#include <Components/MoveComponents/VelocityMoveComponent.h>
+#include <Components/ScreenBorderInteractionComponent.h>
 
 class BreakerManager;
 

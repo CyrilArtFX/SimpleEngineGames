@@ -1,6 +1,6 @@
 #include "MoveComponent.h"
-#include <SimpleEngine/Utils/Maths.h>
-#include "../Actor.h"
+#include <SimpleEngine/Maths/Maths.h>
+#include <SimpleEngine/ActorsComponents/Actor.h>
 
 void MoveComponent::revertLastMovement(bool revertX, bool revertY)
 {

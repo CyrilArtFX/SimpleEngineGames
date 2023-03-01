@@ -1,5 +1,5 @@
 #include "DrawSpriteComponent.h"
-#include <SimpleEngine/Utils/Rectangle.h>
+#include <SimpleEngine/Maths/Rectangle.h>
 
 DrawSpriteComponent::DrawSpriteComponent(Actor* ownerP, Texture& textureP, Vector2 offsetP, Renderer::Flip spriteFlipP, int drawOrderP) :
 	DrawComponent(ownerP, drawOrderP), texture(textureP), texWidth(textureP.getWidth()), texHeight(textureP.getHeight()), offset(offsetP), spriteFlip(spriteFlipP)

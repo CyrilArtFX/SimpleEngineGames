@@ -1,6 +1,6 @@
 #include "VelocityMoveComponent.h"
-#include <SimpleEngine/Utils/Maths.h>
-#include "../Actor.h"
+#include <SimpleEngine/Maths/Maths.h>
+#include <SimpleEngine/ActorsComponents/Actor.h>
 
 void VelocityMoveComponent::setVelocity(Vector2 velocityP)
 {

@@ -1,5 +1,5 @@
 #include "Texture.h"
-#include "Utils/Log.h"
+#include "../Utils/Log.h"
 #include <SDL_image.h>
 
 Texture::Texture()

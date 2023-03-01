@@ -2,8 +2,8 @@
 #include <vector>
 #include "Window.h"
 #include "Renderer.h"
-#include "Utils/Vector2.h"
-#include "Assets.h"
+#include "Maths/Vector2.h"
+#include "Assets/Assets.h"
 #include "Camera.h"
 #include "Scene.h"
 #include "ActorsComponents/Actor.h"

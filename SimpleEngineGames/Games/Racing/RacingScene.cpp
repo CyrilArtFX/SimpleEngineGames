@@ -1,5 +1,5 @@
 #include "RacingScene.h"
-#include <SimpleEngine/Assets.h>
+#include <SimpleEngine/Assets/Assets.h>
 #include <SimpleEngine/Game.h>
 #include "ActorsComponents/RacingTrack.h"
 #include "ActorsComponents/PlayerCar.h"

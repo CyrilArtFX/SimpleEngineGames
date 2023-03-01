@@ -1,17 +1,17 @@
 #include "Renderer.h"
 #include <SDL_image.h>
-#include "Utils/Log.h"
-#include "Window.h"
-#include "Utils/Rectangle.h"
-#include "Utils/Vector2.h"
-#include "Texture.h"
-#include "Utils/Maths.h"
-#include "Utils/Font.h"
-#include "ActorsComponents/Components/DrawComponent.h"
-#include "ActorsComponents/Components/DrawTextComponent.h"
-#include "ActorsComponents/Components/CollisionComponent.h"
-#include "Game.h"
 #include <SDL_ttf.h>
+#include "Game.h"
+#include "Window.h"
+#include "Utils/Log.h"
+#include "Maths/Maths.h"
+#include "Maths/Rectangle.h"
+#include "Maths/Vector2.h"
+#include "Assets/Texture.h"
+#include "Assets/Font.h"
+#include "ActorsComponents/Components/DrawComponents/DrawComponent.h"
+#include "ActorsComponents/Components/DrawComponents/DrawTextComponent.h"
+#include "ActorsComponents/Components/CollisionComponents/CollisionComponent.h"
 
 Renderer::Renderer() : SDLRenderer(nullptr)
 {

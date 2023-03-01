@@ -1,5 +1,5 @@
 #pragma once
-#include "Utils/Vector2.h"
+#include "Maths/Vector2.h"
 
 class Camera
 {

@@ -1,5 +1,5 @@
 #include "font.h"
-#include "Log.h"
+#include "../Utils/Log.h"
 
 Font::Font(string pathP, TTF_Font* sdlFontP, int sizeP) : path(pathP), sdlFont(sdlFontP), size(sizeP)
 {

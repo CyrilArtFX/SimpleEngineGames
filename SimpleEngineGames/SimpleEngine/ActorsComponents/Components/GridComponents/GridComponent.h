@@ -1,7 +1,7 @@
 #pragma once
-#include <SimpleEngine/ActorsComponents/Components/DrawComponent.h>
+#include <SimpleEngine/ActorsComponents/Components/DrawComponents/DrawComponent.h>
 #include "GridTileDraw.h"
-#include <SimpleEngine/Utils/GridMap.h>
+#include <SimpleEngine/Assets/GridMap.h>
 #include <vector>
 using std::vector;
 

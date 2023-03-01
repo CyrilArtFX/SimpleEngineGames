@@ -1,9 +1,9 @@
 #pragma once
 #include <SimpleEngine/ActorsComponents/Actor.h>
-#include <SimpleEngine/ActorsComponents/Components/DrawRectComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/RectangleCollisionComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/MouseMoveComponent.h>
-#include <SimpleEngine/ActorsComponents/Components/ScreenBorderInteractionComponent.h>
+#include <Components/DrawComponents/DrawRectComponent.h>
+#include <Components/CollisionComponents/RectangleCollisionComponent.h>
+#include <Components/MoveComponents/MouseMoveComponent.h>
+#include <Components/ScreenBorderInteractionComponent.h>
 
 class BreakerPaddle : public Actor
 {

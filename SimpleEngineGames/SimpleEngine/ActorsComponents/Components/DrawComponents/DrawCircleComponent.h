@@ -1,6 +1,6 @@
 #pragma once
 #include "DrawComponent.h"
-#include <SimpleEngine/Utils/Vector2.h>
+#include <SimpleEngine/Maths/Vector2.h>
 #include <SimpleEngine/Utils/Color.h>
 
 class DrawCircleComponent : public DrawComponent

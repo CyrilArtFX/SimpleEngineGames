@@ -2,7 +2,7 @@
 #include <SimpleEngine/Utils/Log.h>
 #include <SimpleEngine/Utils/Random.h>
 #include <SimpleEngine/Game.h>
-#include <SimpleEngine/ActorsComponents/Components/RectangleCollisionComponent.h>
+#include <Components/CollisionComponents/RectangleCollisionComponent.h>
 #include "PongManager.h"
 #include <iostream>
 

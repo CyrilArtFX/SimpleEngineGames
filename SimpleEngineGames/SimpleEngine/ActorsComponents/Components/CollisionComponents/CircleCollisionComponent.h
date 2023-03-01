@@ -1,6 +1,6 @@
 #pragma once
 #include "CollisionComponent.h"
-#include <SimpleEngine/Utils/Vector2.h>
+#include <SimpleEngine/Maths/Vector2.h>
 
 class CircleCollisionComponent : public CollisionComponent
 {

@@ -1,6 +1,6 @@
 #include "InputMoveComponent.h"
 #include <SimpleEngine/Game.h>
-#include <SimpleEngine/Utils/Maths.h>
+#include <SimpleEngine/Maths/Maths.h>
 
 void InputMoveComponent::update(float dt)
 {
