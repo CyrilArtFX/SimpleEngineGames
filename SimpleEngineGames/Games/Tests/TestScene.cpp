@@ -14,6 +14,7 @@
 #include <Components/GridComponents/GridTileDrawRectangle.h>
 #include <Components/GridComponents/GridTileDrawSprite.h>
 #include <SimpleEngine/Maths/Vector2.h>
+#include <SimpleEngine/Maths/Vector3.h>
 #include <SimpleEngine/Maths/Rectangle.h>
 #include <SimpleEngine/Utils/Color.h>
 

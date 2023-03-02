@@ -59,6 +59,9 @@
     <ClCompile Include="SimpleEngine\Assets\Assets.cpp" />
     <ClCompile Include="SimpleEngine\Camera.cpp" />
     <ClCompile Include="SimpleEngine\Game.cpp" />
+    <ClCompile Include="SimpleEngine\Maths\Matrix4.cpp" />
+    <ClCompile Include="SimpleEngine\Maths\Quaternion.cpp" />
+    <ClCompile Include="SimpleEngine\Maths\Vector3.cpp" />
     <ClCompile Include="SimpleEngine\Renderer.cpp" />
     <ClCompile Include="SimpleEngine\Scene.cpp" />
     <ClCompile Include="SimpleEngine\Assets\Texture.cpp" />
@@ -116,6 +119,9 @@
     <ClInclude Include="SimpleEngine\Assets\Assets.h" />
     <ClInclude Include="SimpleEngine\Camera.h" />
     <ClInclude Include="SimpleEngine\Game.h" />
+    <ClInclude Include="SimpleEngine\Maths\Matrix4.h" />
+    <ClInclude Include="SimpleEngine\Maths\Quaternion.h" />
+    <ClInclude Include="SimpleEngine\Maths\Vector3.h" />
     <ClInclude Include="SimpleEngine\Renderer.h" />
     <ClInclude Include="SimpleEngine\Scene.h" />
     <ClInclude Include="SimpleEngine\Assets\Texture.h" />

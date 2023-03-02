@@ -11,6 +11,7 @@ struct Vector2
 
 	Vector2() = default;
 	Vector2(float xP, float yP) : x{ xP }, y{ yP } {}
+	Vector2(const class Vector3 vec3);
 
 	void set(float xP, float yP);
 	float lengthSq() const;
