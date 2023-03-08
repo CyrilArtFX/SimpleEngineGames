@@ -163,11 +163,11 @@ public:
 	std::string toString() const
 	{
 		std::string str = "";
-		str += x;
+		str += std::to_string(x);
 		str += "  ";
-		str += y;
+		str += std::to_string(y);
 		str += "  ";
-		str += z;
+		str += std::to_string(z);
 		str += "\n";
 		return str;
 	}
