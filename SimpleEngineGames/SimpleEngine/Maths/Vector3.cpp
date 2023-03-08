@@ -45,6 +45,20 @@ void Vector3::normalize()
 	z /= len;
 }
 
+Vector3& Vector3::operator+=(const Vector2& right)
+{
+	x += right.x;
+	y += right.y;
+	return *this;
+}
+
+Vector3& Vector3::operator-=(const Vector2& right)
+{
+	x -= right.x;
+	y -= right.y;
+	return *this;
+}
+
 Vector3 Vector3::transform(const Vector3& vec, const Matrix4& mat, float w)
 {
 	Vector3 retVal;
@@ -84,4 +98,34 @@ Vector3 Vector3::transform(const Vector3& v, const Quaternion& q)
 	Vector3 retVal = v;
 	retVal += 2.0f * Vector3::cross(qv, Vector3::cross(qv, v) + q.w * v);
 	return retVal;
+}
+
+Vector3 operator+(const Vector3& a, const Vector2& b)
+{
+	return Vector3(a.x + b.x, a.y + b.y, a.z);
+}
+
+Vector3 operator+(const Vector2& a, const Vector3& b)
+{
+	return b + a;
+}
+
+Vector3 operator-(const Vector3& a, const Vector2& b)
+{
+	return Vector3(a.x - b.x, a.y - b.y, a.z);
+}
+
+Vector3 operator-(const Vector2& a, const Vector3& b)
+{
+	return b - a;
+}
+
+Vector3 operator*(const Vector3& left, const Vector2& right)
+{
+	return Vector3(left.x * right.x, left.y * right.y, left.z);
+}
+
+Vector3 operator*(const Vector2& left, const Vector3& right)
+{
+	return right * left;
 }

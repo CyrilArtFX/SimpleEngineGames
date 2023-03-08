@@ -13,7 +13,7 @@ public:
 	explicit Vector3(float xP, float yP, float zP)
 		:x(xP), y(yP), z(zP) {}
 
-	Vector3(const class Vector2 vec2);
+	Vector3(const struct Vector2 vec2);
 
 	void set(float xP, float yP, float zP);
 	float lengthSq() const;
@@ -31,17 +31,29 @@ public:
 		return Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
 	}
 
+	friend Vector3 operator+(const Vector3& a, const struct Vector2& b);
+	friend Vector3 operator+(const struct Vector2& a, const Vector3& b);
+
+
 	// Vector subtraction (a - b)
 	friend Vector3 operator-(const Vector3& a, const Vector3& b)
 	{
 		return Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
 	}
 
+	friend Vector3 operator-(const Vector3& a, const struct Vector2& b);
+	friend Vector3 operator-(const struct Vector2& a, const Vector3& b);
+
+
 	// Component-wise multiplication
 	friend Vector3 operator*(const Vector3& left, const Vector3& right)
 	{
 		return Vector3(left.x * right.x, left.y * right.y, left.z * right.z);
 	}
+
+	friend Vector3 operator*(const Vector3& left, const struct Vector2& right);
+	friend Vector3 operator*(const struct Vector2& left, const Vector3& right);
+
 
 	// Scalar multiplication
 	friend Vector3 operator*(const Vector3& vec, float scalar)
@@ -72,6 +84,9 @@ public:
 		z += right.z;
 		return *this;
 	}
+	
+	Vector3& operator+=(const struct Vector2& right);
+
 
 	// Vector -=
 	Vector3& operator-=(const Vector3& right)
@@ -81,6 +96,8 @@ public:
 		z -= right.z;
 		return *this;
 	}
+
+	Vector3& operator-=(const struct Vector2& right);
 
 	Vector3 operator-() const
 	{

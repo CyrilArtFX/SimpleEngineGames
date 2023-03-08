@@ -77,4 +77,9 @@ struct Vector2
 		y *= scalar;
 		return *this;
 	}
+
+	Vector2 operator-() const
+	{
+		return Vector2(-x, -y);
+	}
 };
