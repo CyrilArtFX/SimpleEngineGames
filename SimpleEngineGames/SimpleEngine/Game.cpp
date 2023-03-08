@@ -14,6 +14,7 @@ void Game::loadScene(Scene* sceneP)
 	unloadScene();
 	scene = sceneP;
 	scene->load(this);
+	updateAllTransformMatrix();
 }
 
 void Game::loop()
@@ -323,6 +324,7 @@ int Game::getScreenHeight()
 
 void Game::render()
 {
+	updateAllTransformMatrix();
 	renderer.beginDraw();
 	renderer.draw();
 	if (debug)
@@ -333,4 +335,12 @@ void Game::render()
 		}
 	}
 	renderer.endDraw();
+}
+
+void Game::updateAllTransformMatrix()
+{
+	for (auto actor : actors)
+	{
+		actor->updateTransformMatrix();
+	}
 }

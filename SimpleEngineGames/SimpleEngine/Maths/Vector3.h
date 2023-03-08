@@ -1,5 +1,7 @@
 #pragma once
 #include "Maths.h"
+#include <string>
+
 class Vector3
 {
 
@@ -157,6 +159,18 @@ public:
 
 	// Transform a Vector3 by a quaternion
 	static Vector3 transform(const Vector3& v, const class Quaternion& q);
+
+	std::string toString() const
+	{
+		std::string str = "";
+		str += x;
+		str += "  ";
+		str += y;
+		str += "  ";
+		str += z;
+		str += "\n";
+		return str;
+	}
 
 	static const Vector3 zero;
 	static const Vector3 unitX;

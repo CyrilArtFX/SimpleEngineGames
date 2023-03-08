@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 struct Vector2
 {
@@ -81,5 +82,15 @@ struct Vector2
 	Vector2 operator-() const
 	{
 		return Vector2(-x, -y);
+	}
+
+	std::string toString() const
+	{
+		std::string str = "";
+		str += x;
+		str += "  ";
+		str += y;
+		str += "\n";
+		return str;
 	}
 };

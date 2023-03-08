@@ -62,6 +62,7 @@ private:
 	void processInput();
 	void update(float dt);
 	void render();
+	void updateAllTransformMatrix();
 
 	Window window;
 	Renderer renderer;

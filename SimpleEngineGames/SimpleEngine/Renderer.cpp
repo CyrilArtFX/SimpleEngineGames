@@ -7,11 +7,13 @@
 #include "Maths/Maths.h"
 #include "Maths/Rectangle.h"
 #include "Maths/Vector2.h"
+#include "Maths/Quaternion.h"
 #include "Assets/Texture.h"
 #include "Assets/Font.h"
 #include "ActorsComponents/Components/DrawComponents/DrawComponent.h"
 #include "ActorsComponents/Components/DrawComponents/DrawTextComponent.h"
 #include "ActorsComponents/Components/CollisionComponents/CollisionComponent.h"
+#include <iostream>
 
 Renderer::Renderer() : SDLRenderer(nullptr)
 {
@@ -235,7 +237,9 @@ void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcR
 	Vector2 cam_pos = Game::instance().getCamera().getCamPos();
 	SDL_Rect dst_rect;
 	Vector2 position = actor.getPosition() - cam_pos + offset;
-	float rotation = actor.getRotation();
+	Quaternion full_rotation = actor.getRotation();
+	float rotation = full_rotation.getEulerAngles().z;
+	std::cout << full_rotation.getEulerAngles().toString();
 	float scale = actor.getScale();
 
 	dst_rect.w = static_cast<int>(tex.getWidth() * scale);
@@ -271,7 +275,8 @@ void Renderer::drawText(const Actor& actor, const class DrawTextComponent* text,
 	Vector2 cam_pos = Game::instance().getCamera().getCamPos();
 	SDL_Rect dst_rect;
 	Vector2 position = actor.getPosition() - cam_pos + offset;
-	float rotation = actor.getRotation();
+	//float rotation = actor.getRotation();
+	float rotation = 0.0f;
 	float scale = actor.getScale();
 
 	dst_rect.w = static_cast<int>(scale * width);

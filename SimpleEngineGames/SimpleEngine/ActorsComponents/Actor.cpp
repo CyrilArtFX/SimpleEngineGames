@@ -19,19 +19,22 @@ Actor::~Actor()
 	}
 }
 
-void Actor::setPosition(Vector2 positionP)
+void Actor::setPosition(Vector3 positionP)
 {
 	position = positionP;
+	mustRecomputeWorldTransform = true;
 }
 
 void Actor::setScale(float scaleP)
 {
 	scale = scaleP;
+	mustRecomputeWorldTransform = true;
 }
 
-void Actor::setRotation(float rotationP)
+void Actor::setRotation(Quaternion rotationP)
 {
 	rotation = rotationP;
+	mustRecomputeWorldTransform = true;
 }
 
 void Actor::update(float dt)
@@ -40,6 +43,7 @@ void Actor::update(float dt)
 	{
 		updateComponents(dt);
 		updateActor(dt);
+		updateTransformMatrix();
 	}
 }
 
@@ -61,6 +65,16 @@ void Actor::debugComponents(Renderer& renderer)
 
 void Actor::updateActor(float dt)
 {
+}
+
+void Actor::updateTransformMatrix()
+{
+	if (!mustRecomputeWorldTransform) return;
+
+	mustRecomputeWorldTransform = false;
+	worldTransform = Matrix4::createScale(scale);
+	worldTransform *= Matrix4::createFromQuaternion(rotation);
+	worldTransform *= Matrix4::createTranslation(position);
 }
 
 void Actor::addComponent(Component* component)
@@ -88,7 +102,7 @@ void Actor::removeComponent(Component* component)
 	}
 }
 
-Vector2 Actor::getForward() const
+Vector3 Actor::getForward() const
 {
-	return Vector2(Maths::cos(rotation), -Maths::sin(rotation));
+	return Vector3::transform(Vector3::unitX, rotation);
 }
