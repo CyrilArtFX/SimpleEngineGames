@@ -37,6 +37,14 @@ void Actor::setRotation(Quaternion rotationP)
 	mustRecomputeWorldTransform = true;
 }
 
+void Actor::set2DRotation(float rotation2DP)
+{
+	rotation2D = rotation2DP;
+	Quaternion newRotation(Vector3::unitZ, rotation2D);
+	rotation = newRotation;
+	mustRecomputeWorldTransform = true;
+}
+
 void Actor::update(float dt)
 {
 	if (state == Actor::ActorState::Active)

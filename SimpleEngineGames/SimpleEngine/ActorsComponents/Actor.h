@@ -31,11 +31,13 @@ public:
 	const Vector3 getPosition() const { return position; }
 	const float getScale() const { return scale; }
 	const Quaternion getRotation() const { return rotation; }
+	const float get2DRotation() const { return rotation2D; }
 	Vector3 getForward() const;
 
 	void setPosition(Vector3 positionP);
 	void setScale(float scaleP);
 	void setRotation(Quaternion rotationP);
+	void set2DRotation(float rotation2DP);
 
 	void update(float dt);
 	void updateComponents(float dt);
@@ -51,6 +53,7 @@ private:
 	Vector3 position{ Vector3::zero };
 	float scale{ 1.0f };
 	Quaternion rotation{ Quaternion::identity };
+	float rotation2D{ 0.0f };
 	Matrix4 worldTransform;
 	bool mustRecomputeWorldTransform{ true };
 

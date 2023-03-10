@@ -76,8 +76,7 @@ void RotationInputMoveComponent::setMotionValues(float persistantSpeedLooseP, fl
 void RotationInputMoveComponent::applyRotationChange()
 {
 	velocity = Vector2{ Maths::cos(-angle), Maths::sin(-angle) };
-	Quaternion newRotation(Vector3::unitZ, angle);
-	owner.setRotation(newRotation);
+	owner.set2DRotation(angle);
 }
 
 bool RotationInputMoveComponent::isUserInputItsDirection()

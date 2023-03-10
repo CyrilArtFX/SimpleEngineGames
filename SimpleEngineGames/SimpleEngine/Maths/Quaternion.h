@@ -36,6 +36,10 @@ public:
 		return Maths::sqrt(lengthSq());
 	}
 
+
+	/*
+	* Don't work actually, better not use it
+	*/
 	Vector3 getEulerAngles()
 	{
 		Vector3 retVal;
@@ -44,16 +48,16 @@ public:
 		if (test > 0.499) //  north pole singularity
 		{
 			retVal.y = 2.0f * Maths::atan2(x, w);
-			retVal.x = Maths::pi / 2.0f;
-			retVal.z = 0.0f;
+			retVal.z = Maths::pi / 2.0f;
+			retVal.x = 0.0f;
 			return retVal;
 		}
 
 		if (test < -0.499) //  south pole singularity
 		{
 			retVal.y = -(2.0f * Maths::atan2(x, w));
-			retVal.x = -(Maths::pi / 2.0f);
-			retVal.z = 0.0f;
+			retVal.z = -(Maths::pi / 2.0f);
+			retVal.x = 0.0f;
 			return retVal;
 		}
 
@@ -61,8 +65,8 @@ public:
 		double sqy = y * y;
 		double sqz = z * z;
 		retVal.y = Maths::atan2(2.0f * y * w - 2.0f * x * z, 1.0f - 2.0f * sqy - 2.0f * sqz);
-		retVal.x = Maths::asin(2.0f * test);
-		retVal.z = Maths::atan2(2.0f * x * w - 2.0f * y * z, 1.0f - 2.0f * sqx - 2.0f * sqz);
+		retVal.z = Maths::asin(2.0f * test);
+		retVal.x = Maths::atan2(2.0f * x * w - 2.0f * y * z, 1.0f - 2.0f * sqx - 2.0f * sqz);
 		return retVal;
 	}
 
