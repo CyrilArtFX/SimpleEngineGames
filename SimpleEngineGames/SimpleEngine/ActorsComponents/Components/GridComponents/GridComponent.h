@@ -39,8 +39,16 @@ public:
 	void setTileSize(Vector2 tileSizeP);
 	Vector2 getTileSize() const { return tileSize; }
 
-	//  will return true depending of the tile traduction of the intersected tile
+	/* Will return true depending of the tile traduction of the intersected tile */
 	bool intersectWithScreenPoint(Vector2 point, int* gridPosReturnX = NULL, int* gridPosReturnY = NULL);
+
+	/* Will return true if at least one of the intersected tiles has a true collision traduction 
+	   GridPosReturn will be set as the nearest true collision tile of the center of circle */
+	bool intersectWithCircleCol(const class CircleCollisionComponent& circle, int* gridPosReturnX = NULL, int* gridPosReturnY = NULL);
+
+	/* Will return true if at least one of the intersected tiles has a true collision traduction
+	   GridPosReturn will be set as the nearest true collision tile of the center of rectangle */
+	bool intersectWithRectangleCol(const class RectangleCollisionComponent& rectangle, int* gridPosReturnX = NULL, int* gridPosReturnY = NULL);
 
 	void draw(Renderer& renderer) override;
 	void debug(Renderer& renderer) override;
@@ -53,5 +61,10 @@ private:
 
 	vector<int> grid;
 	vector<TileTraduction*> tileTraduction;
+
+	class RectangleCollisionComponent* gridRectCol;
+
+
+	void resetGridRectCol();
 };
 

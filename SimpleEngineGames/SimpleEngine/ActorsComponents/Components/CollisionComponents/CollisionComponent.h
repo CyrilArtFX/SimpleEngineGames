@@ -7,7 +7,7 @@
 class CollisionComponent : public Component
 {
 public:
-	CollisionComponent(Actor* ownerP) : Component(ownerP) {}
+	CollisionComponent(Actor* ownerP, bool debugEnabledP = true) : Component(ownerP), debugEnabled(debugEnabledP) {}
 	CollisionComponent() = delete;
 	CollisionComponent(const CollisionComponent&) = delete;
 	CollisionComponent& operator=(const CollisionComponent&) = delete;
@@ -23,5 +23,8 @@ public:
 	virtual float nearestXPosOfX(const float x) const;
 
 	virtual void drawDebug(Renderer& renderer, Color debugColor);
+
+protected:
+	bool debugEnabled;
 };
 

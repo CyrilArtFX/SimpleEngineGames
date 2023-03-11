@@ -103,6 +103,8 @@ float RectangleCollisionComponent::nearestXPosOfX(const float x) const
 
 void RectangleCollisionComponent::debug(Renderer& renderer)
 {
+	if (!debugEnabled) return;
+
 	Vector2 screen_mouse_pos = owner.getGame().getMousePosition();
 
 	Vector2 mouse_pos = Vector2{

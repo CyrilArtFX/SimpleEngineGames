@@ -5,7 +5,7 @@
 class CircleCollisionComponent : public CollisionComponent
 {
 public:
-	CircleCollisionComponent(Actor* ownerP) : CollisionComponent(ownerP) {}
+	CircleCollisionComponent(Actor* ownerP, bool debugEnabledP = true) : CollisionComponent(ownerP, debugEnabledP) {}
 	CircleCollisionComponent() = delete;
 	CircleCollisionComponent(const CircleCollisionComponent&) = delete;
 	CircleCollisionComponent& operator=(const CircleCollisionComponent&) = delete;

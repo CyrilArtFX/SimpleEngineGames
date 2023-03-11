@@ -8,7 +8,7 @@
 class RectangleCollisionComponent : public CollisionComponent
 {
 public:
-	RectangleCollisionComponent(Actor* ownerP) : CollisionComponent(ownerP) {}
+	RectangleCollisionComponent(Actor* ownerP, bool debugEnabledP = true) : CollisionComponent(ownerP, debugEnabledP) {}
 	RectangleCollisionComponent() = delete;
 	RectangleCollisionComponent(const RectangleCollisionComponent&) = delete;
 	RectangleCollisionComponent& operator=(const RectangleCollisionComponent&) = delete;

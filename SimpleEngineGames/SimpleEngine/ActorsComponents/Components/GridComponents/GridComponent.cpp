@@ -2,15 +2,20 @@
 #include <SimpleEngine/ActorsComponents/Actor.h>
 #include <SimpleEngine/Game.h>
 #include <SimpleEngine/Maths/Maths.h>
+#include <Components/CollisionComponents/CircleCollisionComponent.h>
+#include <Components/CollisionComponents/RectangleCollisionComponent.h>
 
 GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
 	tileTraduction.push_back(new TileTraduction);
+	gridRectCol = new RectangleCollisionComponent(ownerP, false);
 }
 
 GridComponent::GridComponent(Actor* ownerP, GridMap* gridMap, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
 	tileTraduction.push_back(new TileTraduction);
+	gridRectCol = new RectangleCollisionComponent(ownerP, false);
+
 	setGridSize(gridMap->getWidth(), gridMap->getHeight());
 	vector<int> map_datas = gridMap->getMap();
 	for (int i = 0; i < map_datas.size(); i++)
@@ -50,6 +55,8 @@ void GridComponent::setGridSize(int gridWidthP, int gridHeightP)
 
 		gridWidth = gridWidthP;
 		gridHeight = gridHeightP;
+
+		resetGridRectCol();
 	}
 }
 
@@ -111,40 +118,24 @@ TileTraduction* GridComponent::getTileTraduction(int traductionIndex) const
 void GridComponent::setTileSize(Vector2 tileSizeP)
 {
 	tileSize = tileSizeP;
+
+	resetGridRectCol();
 }
 
 bool GridComponent::intersectWithScreenPoint(Vector2 point, int* gridPosReturnX, int* gridPosReturnY)
 {
 	Vector2 grid_origin_screen_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
 
-	int tile_pos_intersection_x = 0, tile_pos_intersection_y = 0;
+	int tile_pos_intersection_x = Maths::floor((point.x - grid_origin_screen_pos.x) / tileSize.x);
+	int tile_pos_intersection_y = Maths::floor((point.y - grid_origin_screen_pos.y) / tileSize.y);
 
-	if (point.x < grid_origin_screen_pos.x || point.x > grid_origin_screen_pos.x + (gridWidth * tileSize.x))
+	if (tile_pos_intersection_x < 0 || tile_pos_intersection_y < 0 || tile_pos_intersection_x >= gridWidth || tile_pos_intersection_y >= gridHeight)
 	{
-		tile_pos_intersection_x = -1;
-	}
-	if (point.y < grid_origin_screen_pos.y || point.y > grid_origin_screen_pos.y + (gridHeight * tileSize.y))
-	{
-		tile_pos_intersection_y = -1;
-	}
-
-	if (tile_pos_intersection_x == 0)
-	{
-		tile_pos_intersection_x = Maths::floor((point.x - grid_origin_screen_pos.x) / tileSize.x);
-	}
-	if (tile_pos_intersection_y == 0)
-	{
-		tile_pos_intersection_y = Maths::floor((point.y - grid_origin_screen_pos.y) / tileSize.y);
+		return false;
 	}
 
 	if (gridPosReturnX) *gridPosReturnX = tile_pos_intersection_x;
 	if (gridPosReturnY) *gridPosReturnY = tile_pos_intersection_y;
-
-
-	if (tile_pos_intersection_x == -1 || tile_pos_intersection_y == -1 || tile_pos_intersection_x == gridWidth || tile_pos_intersection_y == gridHeight)
-	{
-		return false;
-	}
 
 	int index = grid[tile_pos_intersection_x * gridHeight + tile_pos_intersection_y];
 	if (index >= 0 && index < tileTraduction.size())
@@ -152,6 +143,127 @@ bool GridComponent::intersectWithScreenPoint(Vector2 point, int* gridPosReturnX,
 		return tileTraduction[index]->colTraduction;
 	}
 	return false;
+}
+
+bool GridComponent::intersectWithCircleCol(const CircleCollisionComponent& circle, int* gridPosReturnX, int* gridPosReturnY)
+{
+	if (!gridRectCol->intersectWithCircleCollision(circle)) return false;
+
+	Vector2 grid_origin_screen_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
+	Vector2 circle_center = circle.getCenter();
+	float circle_radius = circle.getRadius();
+	Vector2 up_left_corner = Vector2{ circle_center.x - circle_radius, circle_center.y - circle_radius };
+	Vector2 down_right_corner = Vector2{ circle_center.x + circle_radius, circle_center.y + circle_radius };
+
+	int tile_pos_up_left_x = Maths::floor((up_left_corner.x - grid_origin_screen_pos.x) / tileSize.x);
+	int tile_pos_up_left_y = Maths::floor((up_left_corner.y - grid_origin_screen_pos.y) / tileSize.y);
+	int tile_pos_down_right_x = Maths::floor((down_right_corner.x - grid_origin_screen_pos.x) / tileSize.x);
+	int tile_pos_down_right_y = Maths::floor((down_right_corner.y - grid_origin_screen_pos.y) / tileSize.y);
+
+	tile_pos_up_left_x = Maths::max(tile_pos_up_left_x, 0);
+	tile_pos_up_left_y = Maths::max(tile_pos_up_left_y, 0);
+	tile_pos_down_right_x = Maths::min(tile_pos_down_right_x, gridWidth - 1);
+	tile_pos_down_right_y = Maths::min(tile_pos_down_right_y, gridHeight - 1);
+
+	bool true_col_found = false;
+	bool need_grid_pos_return = gridPosReturnX || gridPosReturnY;
+	int nearest_true_col_sqlength = INT_MAX;
+
+	for (int x = tile_pos_up_left_x; x <= tile_pos_down_right_x; x++)
+	{
+		for (int y = tile_pos_up_left_y; y <= tile_pos_down_right_y; y++)
+		{
+			float xf = static_cast<float>(x) * tileSize.x;
+			float yf = static_cast<float>(y) * tileSize.y;
+			gridRectCol->setRectangle(Rectangle{ xf, yf, xf + tileSize.x, yf + tileSize.y });
+			if (!gridRectCol->intersectWithCircleCollision(circle)) continue;
+
+			int index = grid[x * gridHeight + y];
+			if (index >= 0 && index < tileTraduction.size())
+			{
+				if (tileTraduction[index]->colTraduction)
+				{
+					true_col_found = true;
+					if (need_grid_pos_return)
+					{
+						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + (x * tileSize.x), grid_origin_screen_pos.y + (y * tileSize.y) } - circle_center;
+						float sqlength = center_to_tile.lengthSq();
+						if (sqlength < nearest_true_col_sqlength)
+						{
+							if (gridPosReturnX) *gridPosReturnX = x;
+							if (gridPosReturnY) *gridPosReturnY = y;
+							nearest_true_col_sqlength = sqlength;
+						}
+					}
+					else
+					{
+						resetGridRectCol();
+						return true;
+					}
+				}
+			}
+		}
+	}
+
+	resetGridRectCol();
+	return true_col_found;
+}
+
+bool GridComponent::intersectWithRectangleCol(const RectangleCollisionComponent& rectangle, int* gridPosReturnX, int* gridPosReturnY)
+{
+	if (!gridRectCol->intersectWithRectCollision(rectangle)) return false;
+
+	Vector2 grid_origin_screen_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
+	Rectangle scaled_rect = rectangle.getTransformedRectangle();
+	Vector2 rect_center = Vector2{ scaled_rect.x + (scaled_rect.width / 2.0f), scaled_rect.y + (scaled_rect.height / 2.0f) };
+	Vector2 up_left_corner = Vector2{ scaled_rect.x, scaled_rect.y };
+	Vector2 down_right_corner = Vector2{ scaled_rect.x + scaled_rect.width, scaled_rect.y + scaled_rect.height };
+
+	int tile_pos_up_left_x = Maths::floor((up_left_corner.x - grid_origin_screen_pos.x) / tileSize.x);
+	int tile_pos_up_left_y = Maths::floor((up_left_corner.y - grid_origin_screen_pos.y) / tileSize.y);
+	int tile_pos_down_right_x = Maths::floor((down_right_corner.x - grid_origin_screen_pos.x) / tileSize.x);
+	int tile_pos_down_right_y = Maths::floor((down_right_corner.y - grid_origin_screen_pos.y) / tileSize.y);
+
+	tile_pos_up_left_x = Maths::max(tile_pos_up_left_x, 0);
+	tile_pos_up_left_y = Maths::max(tile_pos_up_left_y, 0);
+	tile_pos_down_right_x = Maths::min(tile_pos_down_right_x, gridWidth - 1);
+	tile_pos_down_right_y = Maths::min(tile_pos_down_right_y, gridHeight - 1);
+
+	bool true_col_found = false;
+	bool need_grid_pos_return = gridPosReturnX || gridPosReturnY;
+	int nearest_true_col_sqlength = INT_MAX;
+
+	for (int x = tile_pos_up_left_x; x <= tile_pos_down_right_x; x++)
+	{
+		for (int y = tile_pos_up_left_y; y <= tile_pos_down_right_y; y++)
+		{
+			int index = grid[x * gridHeight + y];
+			if (index >= 0 && index < tileTraduction.size())
+			{
+				if (tileTraduction[index]->colTraduction)
+				{
+					true_col_found = true;
+					if (need_grid_pos_return)
+					{
+						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + (x * tileSize.x), grid_origin_screen_pos.y + (y * tileSize.y) } - rect_center;
+						float sqlength = center_to_tile.lengthSq();
+						if (sqlength < nearest_true_col_sqlength)
+						{
+							if (gridPosReturnX) *gridPosReturnX = x;
+							if (gridPosReturnY) *gridPosReturnY = y;
+							nearest_true_col_sqlength = sqlength;
+						}
+					}
+					else
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+
+	return true_col_found;
 }
 
 void GridComponent::draw(Renderer& renderer)
@@ -191,4 +303,9 @@ void GridComponent::debug(Renderer& renderer)
 		Rectangle tile = Rectangle{ tile_pos.x + (intersection_x * tileSize.x), tile_pos.y + (intersection_y * tileSize.y), tileSize.x, tileSize.y };
 		renderer.drawDebugTile(tile, Color::white);
 	}
+}
+
+void GridComponent::resetGridRectCol()
+{
+	gridRectCol->setRectangle(Rectangle{ 0.0f, 0.0f, gridWidth * tileSize.x, gridHeight * tileSize.y });
 }
