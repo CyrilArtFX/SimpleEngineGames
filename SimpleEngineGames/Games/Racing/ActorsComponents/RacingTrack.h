@@ -11,6 +11,7 @@ public:
 	RacingTrack& operator=(const RacingTrack&) = delete;
 
 	Vector2 GetPlayerStartPos(int startPosGridIndex);
+	GridComponent& GetGridComp() { return *gridComp; }
 
 private:
 	GridComponent* gridComp;

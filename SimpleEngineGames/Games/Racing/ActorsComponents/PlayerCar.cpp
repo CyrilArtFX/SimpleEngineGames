@@ -1,5 +1,6 @@
 #include "PlayerCar.h"
 #include <SimpleEngine/Maths/Maths.h>
+#include <Components/GridComponents/GridComponent.h>
 
 PlayerCar::PlayerCar(Texture& carTextureP) : Actor()
 {
@@ -15,6 +16,11 @@ PlayerCar::PlayerCar(Texture& carTextureP) : Actor()
 	screenBorderInterComp->autoUpdate = true;
 }
 
-void PlayerCar::updateActor(float dt)
+void PlayerCar::TestGridCol(GridComponent& grid)
 {
+	if (grid.intersectWithCircleCol(*circleColComp))
+	{
+		moveComp->revertLastMovement(true, true);
+		moveComp->setSpeed(0.0f);
+	}
 }

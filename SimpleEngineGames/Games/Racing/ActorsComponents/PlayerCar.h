@@ -13,7 +13,7 @@ public:
 	PlayerCar(const PlayerCar&) = delete;
 	PlayerCar& operator=(const PlayerCar&) = delete;
 
-	void updateActor(float dt) override;
+	void TestGridCol(class GridComponent& grid);
 
 private:
 	DrawSpriteComponent* drawSpriteComp;

@@ -11,6 +11,8 @@ public:
 	RacingManager(const RacingManager&) = delete;
 	RacingManager& operator=(const RacingManager&) = delete;
 
+	void updateActor(float dt) override;
+
 private:
 	RacingTrack* track;
 	PlayerCar* playerOneCar;

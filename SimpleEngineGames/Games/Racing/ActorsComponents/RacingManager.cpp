@@ -5,3 +5,8 @@ RacingManager::RacingManager(RacingTrack* trackP, PlayerCar* playerOneCarP) : Ac
 {
 	playerOneCar->setPosition(track->GetPlayerStartPos(2));
 }
+
+void RacingManager::updateActor(float dt)
+{
+	playerOneCar->TestGridCol(track->GetGridComp());
+}
