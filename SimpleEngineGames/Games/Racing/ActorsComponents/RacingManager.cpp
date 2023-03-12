@@ -3,7 +3,7 @@
 
 RacingManager::RacingManager(RacingTrack* trackP, PlayerCar* playerOneCarP) : Actor(), track(trackP), playerOneCar(playerOneCarP)
 {
-	playerOneCar->setPosition(track->GetPlayerStartPos(2));
+	playerOneCar->setPosition(track->GetPlayerStartPos(6));
 }
 
 void RacingManager::updateActor(float dt)

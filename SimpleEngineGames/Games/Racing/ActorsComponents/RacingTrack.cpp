@@ -1,6 +1,6 @@
 #include "RacingTrack.h"
 #include <SimpleEngine/Game.h>
-#include <SimpleEngine/ActorsComponents/Components/GridComponents/GridTileDrawRectangle.h>
+#include <Components/GridComponents/GridTileDrawSprite.h>
 
 RacingTrack::RacingTrack(GridMap* gridMapP)
 {
@@ -8,7 +8,13 @@ RacingTrack::RacingTrack(GridMap* gridMapP)
 	int screen_width = getGame().getScreenWidth();
 	int screen_height = getGame().getScreenHeight();
 	gridComp->setTileSize(Vector2{ static_cast<float>(screen_width) / gridMapP->getWidth(), static_cast<float>(screen_height) / gridMapP->getHeight() });
-	gridComp->setTileTraduction(1, new TileTraduction{ new GridTileDrawRectangle(Color::blue, Rectangle{0.025f, 0.025f, 0.95f, 0.95f}), true });
+
+	gridComp->setTileTraduction(1, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_road")), false });
+	gridComp->setTileTraduction(6, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_road")), false });
+	gridComp->setTileTraduction(2, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_wall")), true });
+	gridComp->setTileTraduction(3, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_goal")), false });
+	gridComp->setTileTraduction(4, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_grass")), true });
+	gridComp->setTileTraduction(5, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_flag")), true });
 }
 
 Vector2 RacingTrack::GetPlayerStartPos(int startPosGridIndex)
