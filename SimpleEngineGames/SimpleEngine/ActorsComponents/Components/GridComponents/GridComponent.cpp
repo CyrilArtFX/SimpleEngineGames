@@ -173,16 +173,16 @@ bool GridComponent::intersectWithCircleCol(const CircleCollisionComponent& circl
 	{
 		for (int y = tile_pos_up_left_y; y <= tile_pos_down_right_y; y++)
 		{
-			float xf = static_cast<float>(x) * tileSize.x;
-			float yf = static_cast<float>(y) * tileSize.y;
-			gridRectCol->setRectangle(Rectangle{ xf, yf, xf + tileSize.x, yf + tileSize.y });
-			if (!gridRectCol->intersectWithCircleCollision(circle)) continue;
-
 			int index = grid[x * gridHeight + y];
 			if (index >= 0 && index < tileTraduction.size())
 			{
 				if (tileTraduction[index]->colTraduction)
 				{
+					float xf = static_cast<float>(x) * tileSize.x;
+					float yf = static_cast<float>(y) * tileSize.y;
+					gridRectCol->setRectangle(Rectangle{ xf, yf, xf + tileSize.x, yf + tileSize.y });
+					if (!gridRectCol->intersectWithCircleCollision(circle)) continue;
+
 					true_col_found = true;
 					if (need_grid_pos_return)
 					{
@@ -268,27 +268,29 @@ bool GridComponent::intersectWithRectangleCol(const RectangleCollisionComponent&
 
 void GridComponent::draw(Renderer& renderer)
 {
-	if (willDraw)
+	if (!willDraw) return;
+	if (gridWidth <= 0 || gridHeight <= 0) return;
+	if (tileSize.x <= 0 || tileSize.y <= 0) return;
+
+	Vector2 grid_origin = owner.getPosition() - owner.getGame().getCamera().getCamPos();
+
+	float tile_rect_orig_y = grid_origin.y;
+	for (int y = 0; y < gridHeight; y++)
 	{
-		if (gridWidth > 0 && gridHeight > 0)
+		float tile_rect_orig_x = grid_origin.x;
+		for (int x = 0; x < gridWidth; x++)
 		{
-			if (tileSize.x > 0 && tileSize.y > 0)
+			Rectangle tile = Rectangle{ tile_rect_orig_x, tile_rect_orig_y, tileSize.x, tileSize.y };
+			int index = grid[x * gridHeight + y];
+			if (index >= 0 && index < tileTraduction.size())
 			{
-				for (int i = 0; i < gridWidth; i++)
-				{
-					for (int j = 0; j < gridHeight; j++)
-					{
-						Vector2 grid_origin = owner.getPosition() - owner.getGame().getCamera().getCamPos();
-						Rectangle tile = Rectangle{ grid_origin.x + (i * tileSize.x), grid_origin.y + (j * tileSize.y), tileSize.x, tileSize.y };
-						int index = grid[i * gridHeight + j];
-						if (index >= 0 && index < tileTraduction.size())
-						{
-							tileTraduction[index]->drawTraduction->draw(renderer, tile, index);
-						}
-					}
-				}
+				tileTraduction[index]->drawTraduction->draw(renderer, tile, index);
 			}
+
+			tile_rect_orig_x += tileSize.x;
 		}
+
+		tile_rect_orig_y += tileSize.y;
 	}
 }
 
