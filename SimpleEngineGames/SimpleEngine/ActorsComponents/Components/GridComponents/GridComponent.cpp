@@ -180,7 +180,7 @@ bool GridComponent::intersectWithCircleCol(const CircleCollisionComponent& circl
 				{
 					float xf = static_cast<float>(x) * tileSize.x;
 					float yf = static_cast<float>(y) * tileSize.y;
-					gridRectCol->setRectangle(Rectangle{ xf, yf, xf + tileSize.x, yf + tileSize.y });
+					gridRectCol->setRectangle(Rectangle{ grid_origin_screen_pos.x + xf, grid_origin_screen_pos.y + yf, xf + tileSize.x, yf + tileSize.y });
 					if (!gridRectCol->intersectWithCircleCollision(circle)) continue;
 
 					true_col_found = true;
