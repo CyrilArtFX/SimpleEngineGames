@@ -10,7 +10,6 @@ RacingTrack::RacingTrack(GridMap* gridMapP)
 	gridComp->setTileSize(Vector2{ static_cast<float>(screen_width) / gridMapP->getWidth(), static_cast<float>(screen_height) / gridMapP->getHeight() });
 
 	gridComp->setTileTraduction(1, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_road")), false });
-	gridComp->setTileTraduction(6, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_road")), false });
 	gridComp->setTileTraduction(2, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_wall")), true });
 	gridComp->setTileTraduction(3, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_goal")), false });
 	gridComp->setTileTraduction(4, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_grass")), true });
@@ -25,6 +24,7 @@ Vector2 RacingTrack::GetPlayerStartPos(int startPosGridIndex)
 		{
 			if (gridComp->getGridElement(x, y) == startPosGridIndex)
 			{
+				gridComp->setGridElement(x, y, 1);
 				Vector2 tile_size = gridComp->getTileSize();
 				return Vector2{ (x + 0.5f) * tile_size.x, (y + 0.5f) * tile_size.y };
 			}

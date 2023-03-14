@@ -6,7 +6,7 @@
 class RacingManager : public Actor
 {
 public:
-	RacingManager(RacingTrack* trackP, PlayerCar* playerOneCarP);
+	RacingManager(RacingTrack* trackP, PlayerCar* playerOneCarP, PlayerCar* playerTwoCarP);
 	RacingManager() = delete;
 	RacingManager(const RacingManager&) = delete;
 	RacingManager& operator=(const RacingManager&) = delete;
@@ -16,5 +16,6 @@ public:
 private:
 	RacingTrack* track;
 	PlayerCar* playerOneCar;
+	PlayerCar* playerTwoCar;
 };
 

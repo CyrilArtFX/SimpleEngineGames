@@ -8,7 +8,7 @@
 class PlayerCar : public Actor
 {
 public:
-	PlayerCar(Texture& carTextureP);
+	PlayerCar(Texture& carTextureP, bool moveWithArrows);
 	PlayerCar() = delete;
 	PlayerCar(const PlayerCar&) = delete;
 	PlayerCar& operator=(const PlayerCar&) = delete;

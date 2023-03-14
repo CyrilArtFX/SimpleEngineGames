@@ -11,6 +11,7 @@ void RacingScene::load(Game* game)
 
 	Assets::loadGridMap("RacingTrackV2.lua", "trackV2");
 	Assets::loadTexture(game->getRenderer(), "redcar.png", "player1Car");
+	Assets::loadTexture(game->getRenderer(), "greencar.png", "player2Car");
 	Assets::loadTexture(game->getRenderer(), "track_road.png", "track_road");
 	Assets::loadTexture(game->getRenderer(), "track_wall.png", "track_wall");
 	Assets::loadTexture(game->getRenderer(), "track_goal.png", "track_goal");
@@ -19,9 +20,10 @@ void RacingScene::load(Game* game)
 
 	auto track = new RacingTrack(Assets::getGridMap("trackV2"));
 
-	auto player_one = new PlayerCar(Assets::getTexture("player1Car"));
+	auto player_one = new PlayerCar(Assets::getTexture("player1Car"), false);
+	auto player_two = new PlayerCar(Assets::getTexture("player2Car"), true);
 
-	auto manager = new RacingManager(track, player_one);
+	auto manager = new RacingManager(track, player_one, player_two);
 
 	game->getCamera().setCamPos(Vector2::zero);
 }
