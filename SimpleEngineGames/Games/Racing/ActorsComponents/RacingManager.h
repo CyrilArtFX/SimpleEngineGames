@@ -2,6 +2,8 @@
 #include <SimpleEngine/ActorsComponents/Actor.h>
 #include "RacingTrack.h"
 #include "PlayerCar.h"
+#include <Components/CollisionComponents/RectangleCollisionComponent.h>
+#include <Components/DrawComponents/DrawTextComponent.h>
 
 class RacingManager : public Actor
 {
@@ -14,8 +16,17 @@ public:
 	void updateActor(float dt) override;
 
 private:
+	void PauseGame(bool playerTwoWin);
+	void ResumeGame();
+
 	RacingTrack* track;
 	PlayerCar* playerOneCar;
 	PlayerCar* playerTwoCar;
+
+	RectangleCollisionComponent* finishLineTrigger;
+	DrawTextComponent* victoryTextComp;
+	DrawTextComponent* resetTextComp;
+
+	bool isPaused{ false };
 };
 

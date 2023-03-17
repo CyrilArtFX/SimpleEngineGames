@@ -9,6 +9,7 @@ void RacingScene::load(Game* game)
 {
 	Assets::setAssetsPath("Games/Racing/Assets/");
 
+	Assets::loadFont("Pixeled.ttf", "pixeled30", 30);
 	Assets::loadGridMap("RacingTrackV2.lua", "trackV2");
 	Assets::loadTexture(game->getRenderer(), "redcar.png", "player1Car");
 	Assets::loadTexture(game->getRenderer(), "greencar.png", "player2Car");

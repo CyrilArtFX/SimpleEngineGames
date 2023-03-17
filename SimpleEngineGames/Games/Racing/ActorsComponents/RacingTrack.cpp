@@ -2,7 +2,7 @@
 #include <SimpleEngine/Game.h>
 #include <Components/GridComponents/GridTileDrawSprite.h>
 
-RacingTrack::RacingTrack(GridMap* gridMapP)
+RacingTrack::RacingTrack(GridMap* gridMapP) : gridMap(gridMapP)
 {
 	gridComp = new GridComponent(this, gridMapP);
 	int screen_width = getGame().getScreenWidth();
@@ -14,6 +14,11 @@ RacingTrack::RacingTrack(GridMap* gridMapP)
 	gridComp->setTileTraduction(3, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_goal")), false });
 	gridComp->setTileTraduction(4, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_grass")), true });
 	gridComp->setTileTraduction(5, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("track_flag")), true });
+}
+
+void RacingTrack::ResetTrack()
+{
+	gridComp->resetToGridMap(gridMap);
 }
 
 Vector2 RacingTrack::GetPlayerStartPos(int startPosGridIndex)

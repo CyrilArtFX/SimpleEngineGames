@@ -14,6 +14,10 @@ public:
 	PlayerCar& operator=(const PlayerCar&) = delete;
 
 	void TestGridCol(class GridComponent& grid);
+	bool TestFinishLineTrigger(class RectangleCollisionComponent& finishLine);
+
+	void Reset(Vector2 position, float rotation);
+	void SetDrawValue(bool draw);
 
 private:
 	DrawSpriteComponent* drawSpriteComp;

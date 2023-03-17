@@ -26,6 +26,7 @@ public:
 	GridComponent(const GridComponent&) = delete;
 	GridComponent& operator=(const GridComponent&) = delete;
 
+	void resetToGridMap(GridMap* gridMap);
 	void setGridSize(int gridWidthP, int gridHeightP);
 	int getGridWidth() const { return gridWidth; }
 	int getGridHeight() const { return gridHeight; }

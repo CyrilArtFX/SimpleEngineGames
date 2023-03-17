@@ -4,8 +4,7 @@
 
 RotationInputMoveComponent::RotationInputMoveComponent(Actor* ownerP, float startAngleP, int updateOrderP) : InputMoveComponent(ownerP, updateOrderP)
 {
-	angle = startAngleP;
-	applyRotationChange();
+	setArbitraryAngle(startAngleP);
 }
 
 void RotationInputMoveComponent::update(float dt)
@@ -71,6 +70,12 @@ void RotationInputMoveComponent::setMotionValues(float persistantSpeedLooseP, fl
 {
 	persistantSpeedLoose = persistantSpeedLooseP;
 	minSpeedForFullControl = minSpeedForFullControlP;
+}
+
+void RotationInputMoveComponent::setArbitraryAngle(float arbitraryAngle)
+{
+	angle = arbitraryAngle;
+	applyRotationChange();
 }
 
 void RotationInputMoveComponent::applyRotationChange()

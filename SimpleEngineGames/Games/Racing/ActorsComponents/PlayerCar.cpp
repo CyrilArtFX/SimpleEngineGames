@@ -1,6 +1,7 @@
 #include "PlayerCar.h"
 #include <SimpleEngine/Maths/Maths.h>
 #include <Components/GridComponents/GridComponent.h>
+#include <Components/CollisionComponents/RectangleCollisionComponent.h>
 
 PlayerCar::PlayerCar(Texture& carTextureP, bool moveWithArrows) : Actor()
 {
@@ -38,4 +39,21 @@ void PlayerCar::TestGridCol(GridComponent& grid)
 		moveComp->revertLastMovement(true, true);
 		moveComp->setSpeed(0.0f);
 	}
+}
+
+bool PlayerCar::TestFinishLineTrigger(RectangleCollisionComponent& finishLine)
+{
+	return finishLine.intersectWithCircleCollision(*circleColComp);
+}
+
+void PlayerCar::Reset(Vector2 position, float rotation)
+{
+	moveComp->setSpeed(0.0f);
+	moveComp->setArbitraryAngle(rotation);
+	setPosition(position);
+}
+
+void PlayerCar::SetDrawValue(bool draw)
+{
+	drawSpriteComp->setWillDraw(draw);
 }

@@ -17,6 +17,8 @@ public:
 	void setInputValues(float forwardSpeedInputValueP, float backSpeedInputValue, float angleInputValueP);
 	void setMotionValues(float persistantSpeedLooseP, float minSpeedForFullControlP);
 
+	void setArbitraryAngle(float arbitraryAngle);
+
 private:
 	void applyRotationChange();
 	bool isUserInputItsDirection();

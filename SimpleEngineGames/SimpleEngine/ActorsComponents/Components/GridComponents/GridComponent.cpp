@@ -16,16 +16,21 @@ GridComponent::GridComponent(Actor* ownerP, GridMap* gridMap, int drawOrderP) : 
 	tileTraduction.push_back(new TileTraduction);
 	gridRectCol = new RectangleCollisionComponent(ownerP, false);
 
+	resetToGridMap(gridMap);
+}
+
+GridComponent::~GridComponent()
+{
+}
+
+void GridComponent::resetToGridMap(GridMap* gridMap)
+{
 	setGridSize(gridMap->getWidth(), gridMap->getHeight());
 	vector<int> map_datas = gridMap->getMap();
 	for (int i = 0; i < map_datas.size(); i++)
 	{
 		setGridElement(i % gridWidth, Maths::floor(i / gridWidth), map_datas[i]);
 	}
-}
-
-GridComponent::~GridComponent()
-{
 }
 
 void GridComponent::setGridSize(int gridWidthP, int gridHeightP)
