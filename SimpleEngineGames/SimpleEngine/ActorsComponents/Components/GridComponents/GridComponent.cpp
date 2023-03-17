@@ -191,7 +191,7 @@ bool GridComponent::intersectWithCircleCol(const CircleCollisionComponent& circl
 					true_col_found = true;
 					if (need_grid_pos_return)
 					{
-						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + (x * tileSize.x), grid_origin_screen_pos.y + (y * tileSize.y) } - circle_center;
+						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + ((x + 0.5f) * tileSize.x), grid_origin_screen_pos.y + ((y + 0.5f) * tileSize.y)} - circle_center;
 						float sqlength = center_to_tile.lengthSq();
 						if (sqlength < nearest_true_col_sqlength)
 						{
@@ -250,7 +250,7 @@ bool GridComponent::intersectWithRectangleCol(const RectangleCollisionComponent&
 					true_col_found = true;
 					if (need_grid_pos_return)
 					{
-						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + (x * tileSize.x), grid_origin_screen_pos.y + (y * tileSize.y) } - rect_center;
+						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + ((x + 0.5f) * tileSize.x), grid_origin_screen_pos.y + ((y + 0.5f) * tileSize.y) } - rect_center;
 						float sqlength = center_to_tile.lengthSq();
 						if (sqlength < nearest_true_col_sqlength)
 						{
