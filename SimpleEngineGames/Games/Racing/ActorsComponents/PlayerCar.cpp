@@ -37,7 +37,7 @@ void PlayerCar::TestGridCol(GridComponent& grid)
 	if (grid.intersectWithCircleCol(*circleColComp))
 	{
 		moveComp->revertLastMovement(true, true);
-		moveComp->setSpeed(0.0f);
+		moveComp->setSpeed(moveComp->getSpeed() * -0.3f);
 	}
 }
 
