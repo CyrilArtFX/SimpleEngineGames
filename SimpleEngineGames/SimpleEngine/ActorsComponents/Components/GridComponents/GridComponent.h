@@ -65,6 +65,8 @@ private:
 
 	class RectangleCollisionComponent* gridRectCol;
 
+	Vector2 screenSize;
+
 
 	void resetGridRectCol();
 };

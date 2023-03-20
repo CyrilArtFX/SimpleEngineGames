@@ -9,12 +9,14 @@ GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(owne
 {
 	tileTraduction.push_back(new TileTraduction);
 	gridRectCol = new RectangleCollisionComponent(ownerP, false);
+	screenSize = Vector2{ static_cast<float>(owner.getGame().getScreenWidth()), static_cast<float>(owner.getGame().getScreenHeight()) };
 }
 
 GridComponent::GridComponent(Actor* ownerP, GridMap* gridMap, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
 	tileTraduction.push_back(new TileTraduction);
 	gridRectCol = new RectangleCollisionComponent(ownerP, false);
+	screenSize = Vector2{ static_cast<float>(owner.getGame().getScreenWidth()), static_cast<float>(owner.getGame().getScreenHeight()) };
 
 	resetToGridMap(gridMap);
 }
@@ -278,12 +280,18 @@ void GridComponent::draw(Renderer& renderer)
 	if (tileSize.x <= 0 || tileSize.y <= 0) return;
 
 	Vector2 grid_origin = owner.getPosition() - owner.getGame().getCamera().getCamPos();
+	int min_x_index = Maths::max(0, 0 - Maths::ceil(grid_origin.x / tileSize.x));
+	int min_y_index = Maths::max(0, 0 - Maths::ceil(grid_origin.y / tileSize.y));
+	int max_x_index = gridWidth - Maths::floor(Maths::max(0.0f, grid_origin.x + (tileSize.x * gridWidth) - screenSize.x) / tileSize.x);
+	int max_y_index = gridHeight - Maths::floor(Maths::max(0.0f, grid_origin.y + (tileSize.y * gridHeight) - screenSize.y) / tileSize.y);
 
-	float tile_rect_orig_y = grid_origin.y;
-	for (int y = 0; y < gridHeight; y++)
+	if (max_x_index <= 0 || max_y_index <= 0) return;
+
+	float tile_rect_orig_y = grid_origin.y + min_y_index * tileSize.y;
+	for (int y = min_y_index; y < max_y_index; y++)
 	{
-		float tile_rect_orig_x = grid_origin.x;
-		for (int x = 0; x < gridWidth; x++)
+		float tile_rect_orig_x = grid_origin.x + min_x_index * tileSize.x;
+		for (int x = min_x_index; x < max_x_index; x++)
 		{
 			Rectangle tile = Rectangle{ tile_rect_orig_x, tile_rect_orig_y, tileSize.x, tileSize.y };
 			int index = grid[x * gridHeight + y];

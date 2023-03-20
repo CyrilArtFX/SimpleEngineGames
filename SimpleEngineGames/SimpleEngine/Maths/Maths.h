@@ -115,6 +115,11 @@ namespace Maths
 		return static_cast<int>(std::floor(num));
 	}
 
+	inline int ceil(float num)
+	{
+		return static_cast<int>(std::ceil(num));
+	}
+
 	inline float smoothDamp(float from, float to, float& velocity, float smoothTime, float dt)
 	{
 		float omega = 2.0f / smoothTime;
