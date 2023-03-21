@@ -4,6 +4,11 @@
 #include <SimpleEngine/Game.h>
 #include <SimpleEngine/Utils/Log.h>
 
+CircleCollisionComponent::CircleCollisionComponent(Actor* ownerP, bool debugEnabledP) : Component(ownerP)
+{
+	debugEnabled = debugEnabledP;
+}
+
 float CircleCollisionComponent::getRadius() const
 {
 	return owner.getScale() * radius;

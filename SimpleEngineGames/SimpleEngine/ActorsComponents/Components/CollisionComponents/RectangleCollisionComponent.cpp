@@ -5,6 +5,11 @@
 #include <SimpleEngine/Utils/Log.h>
 #include <SimpleEngine/Maths/Maths.h>
 
+RectangleCollisionComponent::RectangleCollisionComponent(Actor* ownerP, bool debugEnabledP) : Component(ownerP)
+{
+	debugEnabled = debugEnabledP;
+}
+
 Rectangle RectangleCollisionComponent::getTransformedRectangle() const
 {
 	return Rectangle{

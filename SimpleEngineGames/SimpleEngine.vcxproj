@@ -47,7 +47,6 @@
     <ClCompile Include="SimpleEngine\ActorsComponents\Actor.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Component.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\CircleCollisionComponent.cpp" />
-    <ClCompile Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\CollisionComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawRectComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawTextComponent.cpp" />
@@ -107,7 +106,7 @@
     <ClInclude Include="SimpleEngine\ActorsComponents\Actor.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Component.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\CircleCollisionComponent.h" />
-    <ClInclude Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\CollisionComponent.h" />
+    <ClInclude Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\ICollision.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawRectComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawTextComponent.h" />

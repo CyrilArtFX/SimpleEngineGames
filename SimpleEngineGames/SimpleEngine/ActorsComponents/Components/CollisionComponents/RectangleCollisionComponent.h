@@ -1,14 +1,15 @@
 #pragma once
-#include "CollisionComponent.h"
+#include <Component.h>
+#include "ICollision.h"
 #include <SimpleEngine/Maths/Rectangle.h>
 #include <SimpleEngine/Maths/Vector2.h>
 
 //  note : rectangle collision doesn't support actor rotation                                                                                                                                          (aled)
 
-class RectangleCollisionComponent : public CollisionComponent
+class RectangleCollisionComponent : public Component, public ICollision
 {
 public:
-	RectangleCollisionComponent(Actor* ownerP, bool debugEnabledP = true) : CollisionComponent(ownerP, debugEnabledP) {}
+	RectangleCollisionComponent(Actor* ownerP, bool debugEnabledP = true);
 	RectangleCollisionComponent() = delete;
 	RectangleCollisionComponent(const RectangleCollisionComponent&) = delete;
 	RectangleCollisionComponent& operator=(const RectangleCollisionComponent&) = delete;

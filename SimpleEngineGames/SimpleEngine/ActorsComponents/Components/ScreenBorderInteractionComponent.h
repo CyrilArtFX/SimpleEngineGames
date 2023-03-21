@@ -1,7 +1,7 @@
 #pragma once
 #include "../Component.h"
 #include "MoveComponents/MoveComponent.h"
-#include "CollisionComponents/CollisionComponent.h"
+#include <Components/CollisionComponents/ICollision.h>
 
 //  this component must be added to actors who already has a move component and a collision component
 //  this component will do interactions when the collision of the actor intersect with a border of the screen
@@ -24,7 +24,7 @@ enum class ScreenBorderInteractions
 class ScreenBorderInteractionComponent : public Component
 {
 public:
-	ScreenBorderInteractionComponent(Actor* ownerP, MoveComponent* moveComponentP, CollisionComponent* colComponentP) : Component(ownerP, 200), moveComponent(moveComponentP), colComponent(colComponentP) {}
+	ScreenBorderInteractionComponent(Actor* ownerP, MoveComponent* moveComponentP, ICollision* colComponentP) : Component(ownerP, 200), moveComponent(moveComponentP), colComponent(colComponentP) {}
 	ScreenBorderInteractionComponent() = delete;
 	ScreenBorderInteractionComponent(const ScreenBorderInteractionComponent&) = delete;
 	ScreenBorderInteractionComponent& operator=(const ScreenBorderInteractionComponent&) = delete;
@@ -37,7 +37,7 @@ public:
 
 private:
 	MoveComponent* moveComponent;
-	CollisionComponent* colComponent;
+	ICollision* colComponent;
 
 	ScreenBorderInteractions upInteraction = ScreenBorderInteractions::Return;
 	ScreenBorderInteractions downInteraction = ScreenBorderInteractions::Return;

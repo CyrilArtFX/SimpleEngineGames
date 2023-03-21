@@ -10,9 +10,9 @@
 #include "Maths/Quaternion.h"
 #include "Assets/Texture.h"
 #include "Assets/Font.h"
-#include "ActorsComponents/Components/DrawComponents/DrawComponent.h"
-#include "ActorsComponents/Components/DrawComponents/DrawTextComponent.h"
-#include "ActorsComponents/Components/CollisionComponents/CollisionComponent.h"
+#include <Components/DrawComponents/DrawComponent.h>
+#include <Components/DrawComponents/DrawTextComponent.h>
+#include <Components/CollisionComponents/ICollision.h>
 #include <iostream>
 
 Renderer::Renderer() : SDLRenderer(nullptr)

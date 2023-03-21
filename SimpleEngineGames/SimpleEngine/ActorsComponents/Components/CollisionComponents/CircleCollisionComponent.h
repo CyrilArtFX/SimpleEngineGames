@@ -1,11 +1,12 @@
 #pragma once
-#include "CollisionComponent.h"
+#include <Component.h>
+#include "ICollision.h"
 #include <SimpleEngine/Maths/Vector2.h>
 
-class CircleCollisionComponent : public CollisionComponent
+class CircleCollisionComponent : public Component, public ICollision
 {
 public:
-	CircleCollisionComponent(Actor* ownerP, bool debugEnabledP = true) : CollisionComponent(ownerP, debugEnabledP) {}
+	CircleCollisionComponent(Actor* ownerP, bool debugEnabledP = true);
 	CircleCollisionComponent() = delete;
 	CircleCollisionComponent(const CircleCollisionComponent&) = delete;
 	CircleCollisionComponent& operator=(const CircleCollisionComponent&) = delete;
