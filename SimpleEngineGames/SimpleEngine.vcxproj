@@ -34,6 +34,7 @@
     <ClCompile Include="Games\Racing\ActorsComponents\RacingManager.cpp" />
     <ClCompile Include="Games\Racing\ActorsComponents\RacingTrack.cpp" />
     <ClCompile Include="Games\Racing\RacingScene.cpp" />
+    <ClCompile Include="Games\Warrior\WarriorScene.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponents\RotationInputMoveComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawCircleComponent.cpp" />
     <ClCompile Include="Games\Tests\TestScene.cpp" />
@@ -95,6 +96,8 @@
     <ClInclude Include="Games\Tests\Main.h" />
     <ClInclude Include="Games\Tests\TestScene.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\PlayerPaddle.h" />
+    <ClInclude Include="Games\Warrior\Main.h" />
+    <ClInclude Include="Games\Warrior\WarriorScene.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponents\RotationInputMoveComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawCircleComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\GridComponents\GridComponent.h" />
