@@ -273,6 +273,24 @@ bool GridComponent::intersectWithRectangleCol(const RectangleCollisionComponent&
 	return true_col_found;
 }
 
+bool GridComponent::screenPointAsGridCoordinates(Vector2 point, int* gridPosReturnX, int* gridPosReturnY)
+{
+	Vector2 grid_origin_screen_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
+
+	int tile_pos_intersection_x = Maths::floor((point.x - grid_origin_screen_pos.x) / tileSize.x);
+	int tile_pos_intersection_y = Maths::floor((point.y - grid_origin_screen_pos.y) / tileSize.y);
+
+	*gridPosReturnX = tile_pos_intersection_x;
+	*gridPosReturnY = tile_pos_intersection_y;
+
+	if (tile_pos_intersection_x < 0 || tile_pos_intersection_y < 0 || tile_pos_intersection_x >= gridWidth || tile_pos_intersection_y >= gridHeight)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 void GridComponent::draw(Renderer& renderer)
 {
 	if (!willDraw) return;

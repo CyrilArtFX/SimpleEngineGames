@@ -51,6 +51,10 @@ public:
 	   GridPosReturn will be set as the nearest true collision tile of the center of rectangle */
 	bool intersectWithRectangleCol(const class RectangleCollisionComponent& rectangle, int* gridPosReturnX = NULL, int* gridPosReturnY = NULL);
 
+	/* Will set the gridPosReturns as the grid pos of the point
+	   Will return true if those grid pos are out of the grid */
+	bool screenPointAsGridCoordinates(Vector2 point, int* gridPosReturnX, int* gridPosReturnY);
+
 	void draw(Renderer& renderer) override;
 	void debug(Renderer& renderer) override;
 

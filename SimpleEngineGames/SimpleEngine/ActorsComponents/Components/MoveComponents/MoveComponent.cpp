@@ -4,12 +4,17 @@
 
 void MoveComponent::revertLastMovement(bool revertX, bool revertY)
 {
-	Vector2 reverted_pos = Vector2{
-		revertX ? actorPosBeforeMovement.x : owner.getPosition().x,
-		revertY ? actorPosBeforeMovement.y : owner.getPosition().y
-	};
+	Vector2 reverted_pos = getCustomRevertedPosition(revertX, revertY);
 
 	owner.setPosition(reverted_pos);
+}
+
+Vector2 MoveComponent::getCustomRevertedPosition(bool xReverted, bool yReverted)
+{
+	return Vector2{
+		   xReverted ? actorPosBeforeMovement.x : owner.getPosition().x,
+		   yReverted ? actorPosBeforeMovement.y : owner.getPosition().y
+	};
 }
 
 void MoveComponent::setEnableXMovement(bool enable)

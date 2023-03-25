@@ -34,6 +34,8 @@
     <ClCompile Include="Games\Racing\ActorsComponents\RacingManager.cpp" />
     <ClCompile Include="Games\Racing\ActorsComponents\RacingTrack.cpp" />
     <ClCompile Include="Games\Racing\RacingScene.cpp" />
+    <ClCompile Include="Games\Warrior\ActorsComponents\WarriorGrids.cpp" />
+    <ClCompile Include="Games\Warrior\ActorsComponents\WarriorPlayer.cpp" />
     <ClCompile Include="Games\Warrior\WarriorScene.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponents\RotationInputMoveComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawCircleComponent.cpp" />
@@ -74,6 +76,7 @@
     <ClCompile Include="SimpleEngine\Maths\Rectangle.cpp" />
     <ClCompile Include="SimpleEngine\Maths\Vector2.cpp" />
     <ClCompile Include="SimpleEngine\Window.cpp" />
+    <ClCompile Include="Games\Warrior\ActorsComponents\WarriorManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerBall.h" />
@@ -96,6 +99,8 @@
     <ClInclude Include="Games\Tests\Main.h" />
     <ClInclude Include="Games\Tests\TestScene.h" />
     <ClInclude Include="Games\Pong\ActorsComponents\PlayerPaddle.h" />
+    <ClInclude Include="Games\Warrior\ActorsComponents\WarriorGrids.h" />
+    <ClInclude Include="Games\Warrior\ActorsComponents\WarriorPlayer.h" />
     <ClInclude Include="Games\Warrior\Main.h" />
     <ClInclude Include="Games\Warrior\WarriorScene.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponents\RotationInputMoveComponent.h" />
@@ -137,6 +142,7 @@
     <ClInclude Include="SimpleEngine\Maths\Rectangle.h" />
     <ClInclude Include="SimpleEngine\Maths\Vector2.h" />
     <ClInclude Include="SimpleEngine\Window.h" />
+    <ClInclude Include="Games\Warrior\ActorsComponents\WarriorManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
