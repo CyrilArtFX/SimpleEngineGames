@@ -14,8 +14,8 @@ public:
 	Vector2 GetPlayerStartPos(int startPosGridIndex);
 
 	GridComponent& GetWallsGridComp() { return *wallsGridComp; }
-	//GridComponent& GetDoorsGridComp() { return *doorsGridComp; }
-	//GridComponent& GetKeysGridComp() { return *keysGridComp; }
+	GridComponent& GetDoorsGridComp() { return *doorsGridComp; }
+	GridComponent& GetKeysGridComp() { return *keysGridComp; }
 
 	void RemoveDoor(int doorGridPosX, int doorGridPosY);
 	void RemoveKey(int keyGridPosX, int keyGridPosY);
@@ -24,8 +24,8 @@ private:
 	void SetDoorsAsWalls();
 
 	GridComponent* wallsGridComp;
-	//GridComponent* doorsGridComp;
-	//GridComponent* keysGridComp;
+	GridComponent* doorsGridComp;
+	GridComponent* keysGridComp;
 
 	GridMap* wallsGridMap;
 	GridMap* doorsGridMap;

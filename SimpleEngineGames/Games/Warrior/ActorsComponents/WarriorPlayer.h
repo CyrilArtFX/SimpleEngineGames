@@ -14,7 +14,7 @@ public:
 	WarriorPlayer operator=(const WarriorPlayer&) = delete;
 
 	void TestWallGridCol(class GridComponent& wallGrid);
-	bool TestGridInteraction(class GridComponent& interactableGrid);
+	bool TestGridInteraction(class GridComponent& interactableGrid, int* gridPosReturnX, int* gridPosReturnY);
 	bool TestTrophyTrigger(class RectangleCollisionComponent& trophy);
 
 private:

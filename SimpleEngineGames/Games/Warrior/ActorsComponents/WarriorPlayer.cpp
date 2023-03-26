@@ -31,9 +31,9 @@ void WarriorPlayer::TestWallGridCol(GridComponent& wallGrid)
 	moveComp->revertLastMovement(revert_movement_x, revert_movement_y);
 }
 
-bool WarriorPlayer::TestGridInteraction(GridComponent& interactableGrid)
+bool WarriorPlayer::TestGridInteraction(GridComponent& interactableGrid, int* gridPosReturnX, int* gridPosReturnY)
 {
-	return interactableGrid.intersectWithRectangleCol(*rectColComp);
+	return interactableGrid.intersectWithRectangleCol(*rectColComp, gridPosReturnX, gridPosReturnY);
 }
 
 bool WarriorPlayer::TestTrophyTrigger(RectangleCollisionComponent& trophy)

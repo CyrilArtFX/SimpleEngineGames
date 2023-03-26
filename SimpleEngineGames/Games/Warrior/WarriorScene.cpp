@@ -9,6 +9,7 @@ void WarriorScene::load(Game* game)
 {
 	Assets::setAssetsPath("Games/Warrior/Assets/");
 
+	Assets::loadFont("Pixeled.ttf", "pixeled20", 20);
 	Assets::loadGridMap("WarriorGroundWalls.lua", "grid_walls");
 	Assets::loadGridMap("WarriorDoors.lua", "grid_doors");
 	Assets::loadGridMap("WarriorKeys.lua", "grid_keys");
