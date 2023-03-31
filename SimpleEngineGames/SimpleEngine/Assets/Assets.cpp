@@ -51,7 +51,7 @@ Font* Assets::getFont(const string& name)
 
 GridMap* Assets::getGridMap(const string& name)
 {
-	if (gridMaps.find(name) == end(gridMaps))
+	if (gridMaps.find(name) == end(gridMaps) || gridMaps[name] == nullptr)
 	{
 		Log::error(LogCategory::Application, "Grid Map " + name + " does not exist in assets manager.");
 	}

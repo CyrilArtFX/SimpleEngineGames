@@ -1,6 +1,7 @@
 #include "GridMap.h"
 #include "../Utils/Log.h"
 #include <fstream>
+#include <iostream>
 
 GridMap::GridMap(string pathP, int mapWidthP, int mapHeightP, vector<int> gridMapP) : 
 	path(pathP), mapWidth(mapWidthP), mapHeight(mapHeightP), gridMap(gridMapP)
@@ -83,7 +84,7 @@ GridMap* GridMap::load(const string& pathP)
 	}
 	else
 	{
-		Log::error(LogCategory::System, "Couldn't open file " + pathP);
+		Log::error(LogCategory::Application, "Couldn't open file " + pathP);
 		return nullptr;
 	}
 

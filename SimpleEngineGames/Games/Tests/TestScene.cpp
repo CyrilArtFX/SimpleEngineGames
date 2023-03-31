@@ -26,6 +26,7 @@ void TestScene::load(Game* game)
 	Assets::loadFont("Pixeled.ttf", "pixeled20", 20);
 	Assets::loadTexture(game->getRenderer(), "Bekipan.png", "bekipan");
 	Assets::loadGridMap("RacingTrackV1.lua", "testgrid");
+	Assets::loadGridMap("zfq", "nullgrid");
 
 	/*auto test_rect = new Actor();
 	test_rect->setPosition(Vector2{ 100.0f, 100.0f });
@@ -58,11 +59,12 @@ void TestScene::load(Game* game)
 	sbic2->setInteractions(ScreenBorderInteractions::Block, ScreenBorderInteractions::Block, ScreenBorderInteractions::Block, ScreenBorderInteractions::Block);
 	sbic2->autoUpdate = true;
 
+	game->getCamera().setCamPos(Vector2{ -100.0f, 0.0f });*/
+
 	auto test_text = new Actor();
 	test_text->setPosition(Vector2{ 0.0f, 200.0f });
 	auto dtc = new DrawTextComponent(test_text, Assets::getFont("pixeled20"), "LET'S GO CA MARCHE", Color::green, Vector2::zero, 200);
 
-	game->getCamera().setCamPos(Vector2{ -100.0f, 0.0f });*/
 
 	auto test_sprite = new Actor();
 	auto dsc = new DrawSpriteComponent(test_sprite, Assets::getTexture("bekipan"), Vector2{ 0.0f, 0.0f }, Renderer::Flip::None);
@@ -104,6 +106,9 @@ void TestScene::load(Game* game)
 	gc2->setTileTraduction(1, new TileTraduction{ new GridTileDrawRectangle(Color::blue, Rectangle::unitRect), true });
 
 	test_grid_2->setPosition(Vector2{ 30.0f, 30.0f });
+
+	auto test_grid_3 = new Actor();
+	auto gc3 = new GridComponent(test_grid_3, Assets::getGridMap("nullgrid"));
 
 	//game->getCamera().setCamPos(Vector2{ 140.0f, -100.0f });
 }

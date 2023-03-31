@@ -27,6 +27,8 @@ GridComponent::~GridComponent()
 
 void GridComponent::resetToGridMap(GridMap* gridMap)
 {
+	if (!gridMap) return;
+
 	setGridSize(gridMap->getWidth(), gridMap->getHeight());
 	vector<int> map_datas = gridMap->getMap();
 	for (int i = 0; i < map_datas.size(); i++)
