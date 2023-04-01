@@ -9,7 +9,7 @@ bool Game::initialize(const char* windowName, int windowWidth, int windowHeight,
 	return is_window_init && is_renderer_init;
 }
 
-void Game::loadScene(Scene* sceneP)
+void Game::loadScene(IScene* sceneP)
 {
 	unloadScene();
 	scene = sceneP;

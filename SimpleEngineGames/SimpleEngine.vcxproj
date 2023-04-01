@@ -65,7 +65,6 @@
     <ClCompile Include="SimpleEngine\Maths\Quaternion.cpp" />
     <ClCompile Include="SimpleEngine\Maths\Vector3.cpp" />
     <ClCompile Include="SimpleEngine\Renderer.cpp" />
-    <ClCompile Include="SimpleEngine\Scene.cpp" />
     <ClCompile Include="SimpleEngine\Assets\Texture.cpp" />
     <ClCompile Include="SimpleEngine\Timer.cpp" />
     <ClCompile Include="SimpleEngine\Utils\Color.cpp" />
@@ -130,7 +129,7 @@
     <ClInclude Include="SimpleEngine\Maths\Quaternion.h" />
     <ClInclude Include="SimpleEngine\Maths\Vector3.h" />
     <ClInclude Include="SimpleEngine\Renderer.h" />
-    <ClInclude Include="SimpleEngine\Scene.h" />
+    <ClInclude Include="SimpleEngine\IScene.h" />
     <ClInclude Include="SimpleEngine\Assets\Texture.h" />
     <ClInclude Include="SimpleEngine\Timer.h" />
     <ClInclude Include="SimpleEngine\Utils\Color.h" />

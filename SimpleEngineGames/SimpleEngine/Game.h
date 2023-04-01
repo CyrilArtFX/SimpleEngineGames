@@ -5,7 +5,7 @@
 #include "Maths/Vector2.h"
 #include "Assets/Assets.h"
 #include "Camera.h"
-#include "Scene.h"
+#include "IScene.h"
 #include "ActorsComponents/Actor.h"
 using std::vector;
 using std::map;
@@ -39,7 +39,7 @@ private:
 
 public:
 	bool initialize(const char* windowName, int windowWidth, int windowHeight, Color backgroundColor);
-	void loadScene(Scene* sceneP);
+	void loadScene(IScene* sceneP);
 	void loop();
 	void unloadScene();
 	void close();
@@ -67,7 +67,7 @@ private:
 	Window window;
 	Renderer renderer;
 	Camera camera;
-	Scene* scene{ nullptr };
+	IScene* scene{ nullptr };
 	bool isRunning{ true };
 
 	bool debug{ false };

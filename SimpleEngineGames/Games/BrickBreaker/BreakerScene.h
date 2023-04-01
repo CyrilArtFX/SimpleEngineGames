@@ -1,10 +1,10 @@
 #pragma once
-#include <SimpleEngine/Scene.h>
+#include <SimpleEngine/IScene.h>
 
-class BreakerScene : public Scene
+class BreakerScene : public IScene
 {
 public:
-	BreakerScene() : Scene() {}
+	BreakerScene() : IScene() {}
 	~BreakerScene() {}
 	BreakerScene(const BreakerScene&) = delete;
 	BreakerScene& operator=(const BreakerScene&) = delete;

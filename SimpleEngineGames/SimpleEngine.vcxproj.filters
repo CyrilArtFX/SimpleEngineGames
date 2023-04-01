@@ -72,9 +72,6 @@
     <ClCompile Include="SimpleEngine\Camera.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleEngine\Scene.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Games\Tests\TestScene.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -251,7 +248,7 @@
     <ClInclude Include="SimpleEngine\Camera.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleEngine\Scene.h">
+    <ClInclude Include="SimpleEngine\IScene.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Games\Tests\TestScene.h">
