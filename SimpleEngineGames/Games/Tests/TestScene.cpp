@@ -104,6 +104,7 @@ void TestScene::load(Game* game)
 
 	gc2->setTileSize(Vector2{ 15.0f, 15.0f });
 	gc2->setTileTraduction(1, new TileTraduction{ new GridTileDrawRectangle(Color::blue, Rectangle::unitRect), true });
+	test_grid_2->setScale(1.2f);
 
 	test_grid_2->setPosition(Vector2{ 30.0f, 30.0f });
 

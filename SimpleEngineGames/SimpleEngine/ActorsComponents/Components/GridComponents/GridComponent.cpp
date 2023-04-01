@@ -135,8 +135,8 @@ bool GridComponent::intersectWithScreenPoint(Vector2 point, int* gridPosReturnX,
 {
 	Vector2 grid_origin_screen_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
 
-	int tile_pos_intersection_x = Maths::floor((point.x - grid_origin_screen_pos.x) / tileSize.x);
-	int tile_pos_intersection_y = Maths::floor((point.y - grid_origin_screen_pos.y) / tileSize.y);
+	int tile_pos_intersection_x = Maths::floor((point.x - grid_origin_screen_pos.x) / (tileSize.x * owner.getScale()));
+	int tile_pos_intersection_y = Maths::floor((point.y - grid_origin_screen_pos.y) / (tileSize.y * owner.getScale()));
 
 	if (tile_pos_intersection_x < 0 || tile_pos_intersection_y < 0 || tile_pos_intersection_x >= gridWidth || tile_pos_intersection_y >= gridHeight)
 	{
@@ -156,6 +156,7 @@ bool GridComponent::intersectWithScreenPoint(Vector2 point, int* gridPosReturnX,
 
 bool GridComponent::intersectWithCircleCol(const CircleCollisionComponent& circle, int* gridPosReturnX, int* gridPosReturnY)
 {
+	resetGridRectCol();
 	if (!gridRectCol->intersectWithCircleCollision(circle)) return false;
 
 	Vector2 grid_origin_screen_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
@@ -164,10 +165,10 @@ bool GridComponent::intersectWithCircleCol(const CircleCollisionComponent& circl
 	Vector2 up_left_corner = Vector2{ circle_center.x - circle_radius, circle_center.y - circle_radius };
 	Vector2 down_right_corner = Vector2{ circle_center.x + circle_radius, circle_center.y + circle_radius };
 
-	int tile_pos_up_left_x = Maths::floor((up_left_corner.x - grid_origin_screen_pos.x) / tileSize.x);
-	int tile_pos_up_left_y = Maths::floor((up_left_corner.y - grid_origin_screen_pos.y) / tileSize.y);
-	int tile_pos_down_right_x = Maths::floor((down_right_corner.x - grid_origin_screen_pos.x) / tileSize.x);
-	int tile_pos_down_right_y = Maths::floor((down_right_corner.y - grid_origin_screen_pos.y) / tileSize.y);
+	int tile_pos_up_left_x = Maths::floor((up_left_corner.x - grid_origin_screen_pos.x) / (tileSize.x * owner.getScale()));
+	int tile_pos_up_left_y = Maths::floor((up_left_corner.y - grid_origin_screen_pos.y) / (tileSize.y * owner.getScale()));
+	int tile_pos_down_right_x = Maths::floor((down_right_corner.x - grid_origin_screen_pos.x) / (tileSize.x * owner.getScale()));
+	int tile_pos_down_right_y = Maths::floor((down_right_corner.y - grid_origin_screen_pos.y) / (tileSize.y * owner.getScale()));
 
 	tile_pos_up_left_x = Maths::max(tile_pos_up_left_x, 0);
 	tile_pos_up_left_y = Maths::max(tile_pos_up_left_y, 0);
@@ -187,15 +188,15 @@ bool GridComponent::intersectWithCircleCol(const CircleCollisionComponent& circl
 			{
 				if (tileTraduction[index]->colTraduction)
 				{
-					float xf = static_cast<float>(x) * tileSize.x;
-					float yf = static_cast<float>(y) * tileSize.y;
-					gridRectCol->setRectangle(Rectangle{ grid_origin_screen_pos.x + xf, grid_origin_screen_pos.y + yf, xf + tileSize.x, yf + tileSize.y });
+					float xf = static_cast<float>(x) * (tileSize.x * owner.getScale());
+					float yf = static_cast<float>(y) * (tileSize.y * owner.getScale());
+					gridRectCol->setRectangle(Rectangle{ grid_origin_screen_pos.x + xf, grid_origin_screen_pos.y + yf, xf + (tileSize.x * owner.getScale()), yf + (tileSize.y * owner.getScale()) });
 					if (!gridRectCol->intersectWithCircleCollision(circle)) continue;
 
 					true_col_found = true;
 					if (need_grid_pos_return)
 					{
-						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + ((x + 0.5f) * tileSize.x), grid_origin_screen_pos.y + ((y + 0.5f) * tileSize.y)} - circle_center;
+						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + ((x + 0.5f) * (tileSize.x * owner.getScale())), grid_origin_screen_pos.y + ((y + 0.5f) * (tileSize.y * owner.getScale()))} - circle_center;
 						float sqlength = center_to_tile.lengthSq();
 						if (sqlength < nearest_true_col_sqlength)
 						{
@@ -220,6 +221,7 @@ bool GridComponent::intersectWithCircleCol(const CircleCollisionComponent& circl
 
 bool GridComponent::intersectWithRectangleCol(const RectangleCollisionComponent& rectangle, int* gridPosReturnX, int* gridPosReturnY)
 {
+	resetGridRectCol();
 	if (!gridRectCol->intersectWithRectCollision(rectangle)) return false;
 
 	Vector2 grid_origin_screen_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
@@ -228,10 +230,10 @@ bool GridComponent::intersectWithRectangleCol(const RectangleCollisionComponent&
 	Vector2 up_left_corner = Vector2{ scaled_rect.x, scaled_rect.y };
 	Vector2 down_right_corner = Vector2{ scaled_rect.x + scaled_rect.width, scaled_rect.y + scaled_rect.height };
 
-	int tile_pos_up_left_x = Maths::floor((up_left_corner.x - grid_origin_screen_pos.x) / tileSize.x);
-	int tile_pos_up_left_y = Maths::floor((up_left_corner.y - grid_origin_screen_pos.y) / tileSize.y);
-	int tile_pos_down_right_x = Maths::floor((down_right_corner.x - grid_origin_screen_pos.x) / tileSize.x);
-	int tile_pos_down_right_y = Maths::floor((down_right_corner.y - grid_origin_screen_pos.y) / tileSize.y);
+	int tile_pos_up_left_x = Maths::floor((up_left_corner.x - grid_origin_screen_pos.x) / (tileSize.x * owner.getScale()));
+	int tile_pos_up_left_y = Maths::floor((up_left_corner.y - grid_origin_screen_pos.y) / (tileSize.y * owner.getScale()));
+	int tile_pos_down_right_x = Maths::floor((down_right_corner.x - grid_origin_screen_pos.x) / (tileSize.x * owner.getScale()));
+	int tile_pos_down_right_y = Maths::floor((down_right_corner.y - grid_origin_screen_pos.y) / (tileSize.y * owner.getScale()));
 
 	tile_pos_up_left_x = Maths::max(tile_pos_up_left_x, 0);
 	tile_pos_up_left_y = Maths::max(tile_pos_up_left_y, 0);
@@ -254,7 +256,7 @@ bool GridComponent::intersectWithRectangleCol(const RectangleCollisionComponent&
 					true_col_found = true;
 					if (need_grid_pos_return)
 					{
-						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + ((x + 0.5f) * tileSize.x), grid_origin_screen_pos.y + ((y + 0.5f) * tileSize.y) } - rect_center;
+						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + ((x + 0.5f) * (tileSize.x * owner.getScale())), grid_origin_screen_pos.y + ((y + 0.5f) * (tileSize.y * owner.getScale())) } - rect_center;
 						float sqlength = center_to_tile.lengthSq();
 						if (sqlength < nearest_true_col_sqlength)
 						{
@@ -279,8 +281,8 @@ bool GridComponent::screenPointAsGridCoordinates(Vector2 point, int* gridPosRetu
 {
 	Vector2 grid_origin_screen_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
 
-	int tile_pos_intersection_x = Maths::floor((point.x - grid_origin_screen_pos.x) / tileSize.x);
-	int tile_pos_intersection_y = Maths::floor((point.y - grid_origin_screen_pos.y) / tileSize.y);
+	int tile_pos_intersection_x = Maths::floor((point.x - grid_origin_screen_pos.x) / (tileSize.x * owner.getScale()));
+	int tile_pos_intersection_y = Maths::floor((point.y - grid_origin_screen_pos.y) / (tileSize.y * owner.getScale()));
 
 	*gridPosReturnX = tile_pos_intersection_x;
 	*gridPosReturnY = tile_pos_intersection_y;
@@ -300,30 +302,30 @@ void GridComponent::draw(Renderer& renderer)
 	if (tileSize.x <= 0 || tileSize.y <= 0) return;
 
 	Vector2 grid_origin = owner.getPosition() - owner.getGame().getCamera().getCamPos();
-	int min_x_index = Maths::max(0, 0 - Maths::ceil(grid_origin.x / tileSize.x));
-	int min_y_index = Maths::max(0, 0 - Maths::ceil(grid_origin.y / tileSize.y));
-	int max_x_index = gridWidth - Maths::floor(Maths::max(0.0f, grid_origin.x + (tileSize.x * gridWidth) - screenSize.x) / tileSize.x);
-	int max_y_index = gridHeight - Maths::floor(Maths::max(0.0f, grid_origin.y + (tileSize.y * gridHeight) - screenSize.y) / tileSize.y);
+	int min_x_index = Maths::max(0, 0 - Maths::ceil(grid_origin.x / (tileSize.x * owner.getScale())));
+	int min_y_index = Maths::max(0, 0 - Maths::ceil(grid_origin.y / (tileSize.y * owner.getScale())));
+	int max_x_index = gridWidth - Maths::floor(Maths::max(0.0f, grid_origin.x + ((tileSize.x * owner.getScale()) * gridWidth) - screenSize.x) / (tileSize.x * owner.getScale()));
+	int max_y_index = gridHeight - Maths::floor(Maths::max(0.0f, grid_origin.y + ((tileSize.y * owner.getScale()) * gridHeight) - screenSize.y) / (tileSize.y * owner.getScale()));
 
 	if (max_x_index <= 0 || max_y_index <= 0) return;
 
-	float tile_rect_orig_y = grid_origin.y + min_y_index * tileSize.y;
+	float tile_rect_orig_y = grid_origin.y + min_y_index * (tileSize.y * owner.getScale());
 	for (int y = min_y_index; y < max_y_index; y++)
 	{
-		float tile_rect_orig_x = grid_origin.x + min_x_index * tileSize.x;
+		float tile_rect_orig_x = grid_origin.x + min_x_index * (tileSize.x * owner.getScale());
 		for (int x = min_x_index; x < max_x_index; x++)
 		{
-			Rectangle tile = Rectangle{ tile_rect_orig_x, tile_rect_orig_y, tileSize.x, tileSize.y };
+			Rectangle tile = Rectangle{ tile_rect_orig_x, tile_rect_orig_y, (tileSize.x * owner.getScale()), (tileSize.y * owner.getScale()) };
 			int index = grid[x * gridHeight + y];
 			if (index >= 0 && index < tileTraduction.size())
 			{
 				tileTraduction[index]->drawTraduction->draw(renderer, tile, index);
 			}
 
-			tile_rect_orig_x += tileSize.x;
+			tile_rect_orig_x += (tileSize.x * owner.getScale());
 		}
 
-		tile_rect_orig_y += tileSize.y;
+		tile_rect_orig_y += (tileSize.y * owner.getScale());
 	}
 }
 
@@ -335,12 +337,12 @@ void GridComponent::debug(Renderer& renderer)
 	if (intersectWithScreenPoint(mouse_pos, &intersection_x, &intersection_y))
 	{
 		Vector2 tile_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
-		Rectangle tile = Rectangle{ tile_pos.x + (intersection_x * tileSize.x), tile_pos.y + (intersection_y * tileSize.y), tileSize.x, tileSize.y };
+		Rectangle tile = Rectangle{ tile_pos.x + (intersection_x * (tileSize.x * owner.getScale())), tile_pos.y + (intersection_y * (tileSize.y * owner.getScale())), (tileSize.x * owner.getScale()), (tileSize.y * owner.getScale()) };
 		renderer.drawDebugTile(tile, Color::white);
 	}
 }
 
 void GridComponent::resetGridRectCol()
 {
-	gridRectCol->setRectangle(Rectangle{ 0.0f, 0.0f, gridWidth * tileSize.x, gridHeight * tileSize.y });
+	gridRectCol->setRectangle(Rectangle{ 0.0f, 0.0f, gridWidth * (tileSize.x * owner.getScale()), gridHeight * (tileSize.y * owner.getScale()) });
 }
