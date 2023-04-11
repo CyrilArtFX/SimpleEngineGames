@@ -34,3 +34,13 @@ void Vector2::normalize()
 	x /= len;
 	y /= len;
 }
+
+void Vector2::clampMagnitude(float magnitude)
+{
+	float len = length();
+	if (len <= magnitude) return;
+	x /= len;
+	y /= len;
+	x *= magnitude;
+	y *= magnitude;
+}

@@ -18,7 +18,7 @@ enum class ScreenBorderInteractions
 
 		//  in case of a multiple borders interactions and if all these borders has the interaction type 'Return', it will return the following :
 		//  5 for up-left, 6 for up-right, 7 for down-left, 8 for down-right
-		//  (if you made an actor that interact with three or four borders, why do you use this component on it ?)
+		//  (if you made an actor that interact with three or four borders at a time, why do you use this component on it ?)
 };
 
 class ScreenBorderInteractionComponent : public Component

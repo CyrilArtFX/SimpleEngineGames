@@ -18,6 +18,7 @@ struct Vector2
 	float lengthSq() const;
 	float length() const;
 	void normalize();
+	void clampMagnitude(float magnitude);
 
 
 	static Vector2 normalize(const Vector2& vec)
