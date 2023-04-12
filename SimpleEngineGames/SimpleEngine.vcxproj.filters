@@ -198,6 +198,12 @@
     <ClCompile Include="Games\SpaceBattle\ActorsComponents\SpaceShipMoveComponent.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Games\SpaceBattle\ActorsComponents\SpaceShot.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Games\SpaceBattle\ActorsComponents\SpaceActor.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleEngine\Window.h">
@@ -405,6 +411,12 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Games\SpaceBattle\ActorsComponents\SpaceShipMoveComponent.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\SpaceBattle\ActorsComponents\SpaceShot.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\SpaceBattle\ActorsComponents\SpaceActor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

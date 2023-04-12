@@ -1,10 +1,8 @@
 #pragma once
-#include <SimpleEngine/ActorsComponents/Actor.h>
-#include <Components/DrawComponents/DrawSpriteComponent.h>
-#include <Components/CollisionComponents/CircleCollisionComponent.h>
+#include "SpaceActor.h"
 #include "SpaceShipMoveComponent.h"
 
-class SpaceShip : public Actor
+class SpaceShip : public SpaceActor
 {
 public:
 	SpaceShip(Texture& shipTextureP);
@@ -12,12 +10,9 @@ public:
 	SpaceShip(const SpaceShip&) = delete;
 	SpaceShip operator=(const SpaceShip&) = delete;
 
-	void updateActor(float dt) override;
-
+	Vector2 GetVelocity();
 
 private:
-	DrawSpriteComponent* drawSpriteComp;
-	CircleCollisionComponent* circleColComp;
 	SpaceShipMoveComponent* moveComp;
 };
 
