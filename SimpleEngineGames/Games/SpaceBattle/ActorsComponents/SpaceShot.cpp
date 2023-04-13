@@ -1,12 +1,14 @@
 #include "SpaceShot.h"
 #include <SimpleEngine/Maths/Maths.h>
 
-SpaceShot::SpaceShot(Texture& shotTextureP, float speedP, float lifetimeP) : SpaceActor(), speed(speedP), lifetime(lifetimeP)
+SpaceShot::SpaceShot(Texture& shotTextureP, float speedP, float lifetimeP, float ScaleFactorP) : SpaceActor(), speed(speedP), lifetime(lifetimeP)
 {
-	drawSpriteComp = new DrawSpriteComponent(this, shotTextureP, Vector2{ -8.0f, -8.0f }, Renderer::Flip::None);
+	setScale(ScaleFactorP);
+
+	drawSpriteComp = new DrawSpriteComponent(this, shotTextureP, Vector2{ -8.0f * ScaleFactorP, -8.0f * ScaleFactorP }, Renderer::Flip::None);
 
 	circleColComp = new CircleCollisionComponent(this);
-	circleColComp->setRadius(4.0f);
+	circleColComp->setRadius(6.0f);
 
 	moveComp = new VelocityMoveComponent(this);
 	moveComp->setSpeed(speedP);

@@ -5,7 +5,7 @@
 class SpaceShot : public SpaceActor
 {
 public:
-	SpaceShot(Texture& shotTextureP, float speedP, float lifetimeP);
+	SpaceShot(Texture& shotTextureP, float speedP, float lifetimeP, float ScaleFactorP);
 	SpaceShot() = delete;
 	SpaceShot(const SpaceShot&) = delete;
 	SpaceShot& operator=(const SpaceShot&) = delete;

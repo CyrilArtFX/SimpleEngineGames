@@ -39,6 +39,7 @@
     <ClCompile Include="Games\SpaceBattle\ActorsComponents\SpaceShip.cpp" />
     <ClCompile Include="Games\SpaceBattle\ActorsComponents\SpaceShipMoveComponent.cpp" />
     <ClCompile Include="Games\SpaceBattle\ActorsComponents\SpaceShot.cpp" />
+    <ClCompile Include="Games\SpaceBattle\ActorsComponents\SpaceUFO.cpp" />
     <ClCompile Include="Games\SpaceBattle\SpaceScene.cpp" />
     <ClCompile Include="Games\Warrior\ActorsComponents\WarriorGrids.cpp" />
     <ClCompile Include="Games\Warrior\ActorsComponents\WarriorPlayer.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="Games\SpaceBattle\ActorsComponents\SpaceShip.h" />
     <ClInclude Include="Games\SpaceBattle\ActorsComponents\SpaceShipMoveComponent.h" />
     <ClInclude Include="Games\SpaceBattle\ActorsComponents\SpaceShot.h" />
+    <ClInclude Include="Games\SpaceBattle\ActorsComponents\SpaceUFO.h" />
     <ClInclude Include="Games\SpaceBattle\Main.h" />
     <ClInclude Include="Games\SpaceBattle\SpaceScene.h" />
     <ClInclude Include="Games\Tests\Main.h" />
