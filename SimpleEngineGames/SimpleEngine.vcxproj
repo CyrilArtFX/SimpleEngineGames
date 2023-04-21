@@ -65,11 +65,13 @@
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\RectangleCollisionComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawSpriteComponent.cpp" />
     <ClCompile Include="SimpleEngine\ActorsComponents\Components\MoveComponents\VelocityMoveComponent.cpp" />
+    <ClCompile Include="SimpleEngine\Algorithms\AStar.cpp" />
     <ClCompile Include="SimpleEngine\Assets\Assets.cpp" />
     <ClCompile Include="SimpleEngine\Camera.cpp" />
     <ClCompile Include="SimpleEngine\Game.cpp" />
     <ClCompile Include="SimpleEngine\Maths\Matrix4.cpp" />
     <ClCompile Include="SimpleEngine\Maths\Quaternion.cpp" />
+    <ClCompile Include="SimpleEngine\Maths\Vector2Int.cpp" />
     <ClCompile Include="SimpleEngine\Maths\Vector3.cpp" />
     <ClCompile Include="SimpleEngine\Renderer.cpp" />
     <ClCompile Include="SimpleEngine\Assets\Texture.cpp" />
@@ -137,11 +139,13 @@
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\CollisionComponents\RectangleCollisionComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\DrawComponents\DrawSpriteComponent.h" />
     <ClInclude Include="SimpleEngine\ActorsComponents\Components\MoveComponents\VelocityMoveComponent.h" />
+    <ClInclude Include="SimpleEngine\Algorithms\AStar.h" />
     <ClInclude Include="SimpleEngine\Assets\Assets.h" />
     <ClInclude Include="SimpleEngine\Camera.h" />
     <ClInclude Include="SimpleEngine\Game.h" />
     <ClInclude Include="SimpleEngine\Maths\Matrix4.h" />
     <ClInclude Include="SimpleEngine\Maths\Quaternion.h" />
+    <ClInclude Include="SimpleEngine\Maths\Vector2Int.h" />
     <ClInclude Include="SimpleEngine\Maths\Vector3.h" />
     <ClInclude Include="SimpleEngine\Renderer.h" />
     <ClInclude Include="SimpleEngine\IScene.h" />

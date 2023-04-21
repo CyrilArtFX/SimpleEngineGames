@@ -3,8 +3,10 @@
 #include "GridTileDraw.h"
 #include <SimpleEngine/Assets/GridMap.h>
 #include <vector>
+#include <unordered_map>
 #include <SimpleEngine/Maths/Vector2Int.h>
 using std::vector;
+using std::unordered_map;
 
 
 struct TileTraduction
@@ -71,6 +73,7 @@ private:
 
 	vector<int> grid;
 	vector<TileTraduction*> tileTraduction;
+	unordered_map<int, int> astarTraduction;
 
 	class RectangleCollisionComponent* gridRectCol;
 

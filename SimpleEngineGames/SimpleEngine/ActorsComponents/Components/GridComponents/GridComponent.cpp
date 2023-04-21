@@ -8,6 +8,8 @@
 GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
 	tileTraduction.push_back(new TileTraduction);
+	astarTraduction[0] = 10;
+	astarTraduction[1] = -1;
 	gridRectCol = new RectangleCollisionComponent(ownerP, false);
 	screenSize = Vector2{ static_cast<float>(owner.getGame().getScreenWidth()), static_cast<float>(owner.getGame().getScreenHeight()) };
 }
@@ -15,6 +17,8 @@ GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(owne
 GridComponent::GridComponent(Actor* ownerP, GridMap* gridMap, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
 	tileTraduction.push_back(new TileTraduction);
+	astarTraduction[0] = 10;
+	astarTraduction[1] = -1;
 	gridRectCol = new RectangleCollisionComponent(ownerP, false);
 	screenSize = Vector2{ static_cast<float>(owner.getGame().getScreenWidth()), static_cast<float>(owner.getGame().getScreenHeight()) };
 

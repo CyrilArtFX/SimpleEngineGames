@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <functional>
 
 enum FloatToIntType;
 
@@ -67,9 +68,37 @@ struct Vector2Int
 		return Vector2Int(-x, -y);
 	}
 
+	bool operator==(Vector2Int& right) const
+	{
+		return (x == right.x && y == right.y);
+	}
+
+	bool operator !=(Vector2Int& right) const
+	{
+		return (x != right.x || y != right.y);
+	}
+
 	std::string toString() const
 	{
 		return std::to_string(x) + "  " + std::to_string(y) + " \n";
+	}
+};
+
+struct Vector2IntHash
+{
+	std::size_t operator()(const Vector2Int& vec) const
+	{
+		std::size_t h1 = std::hash<int>{}(vec.x);
+		std::size_t h2 = std::hash<int>{}(vec.y);
+		return h1 ^ (h2 << 1);
+	}
+};
+
+struct Vector2IntEqual
+{
+	bool operator()(const Vector2Int& vec1, const Vector2Int& vec2) const
+	{
+		return vec1.x == vec2.x && vec1.y == vec2.y;
 	}
 };
 
