@@ -69,6 +69,11 @@ void GridComponent::setGridSize(int gridWidthP, int gridHeightP)
 	}
 }
 
+void GridComponent::setGridSize(Vector2Int gridSizeP)
+{
+	setGridSize(gridSizeP.x, gridSizeP.y);
+}
+
 bool GridComponent::setGridElement(int indexX, int indexY, int element)
 {
 	if (gridWidth > 0 && gridHeight > 0)
@@ -92,6 +97,16 @@ int GridComponent::getGridElement(int indexX, int indexY) const
 		}
 	}
 	return -1;
+}
+
+bool GridComponent::setGridElement(Vector2Int index, int element)
+{
+	return setGridElement(index.x, index.y, element);
+}
+
+int GridComponent::getGridElement(Vector2Int index) const
+{
+	return getGridElement(index.x, index.y);
 }
 
 void GridComponent::setTileTraduction(int traductionIndex, TileTraduction* traduction)

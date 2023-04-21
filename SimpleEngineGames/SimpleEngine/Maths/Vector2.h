@@ -13,6 +13,7 @@ struct Vector2
 	Vector2() = default;
 	Vector2(float xP, float yP) : x{ xP }, y{ yP } {}
 	Vector2(const class Vector3 vec3);
+	Vector2(const class Vector2Int vec2Int);
 
 	void set(float xP, float yP);
 	float lengthSq() const;
@@ -87,11 +88,6 @@ struct Vector2
 
 	std::string toString() const
 	{
-		std::string str = "";
-		str += std::to_string(x);
-		str += "  ";
-		str += std::to_string(y);
-		str += "\n";
-		return str;
+		return std::to_string(x) + "  " + std::to_string(y) + " \n";
 	}
 };

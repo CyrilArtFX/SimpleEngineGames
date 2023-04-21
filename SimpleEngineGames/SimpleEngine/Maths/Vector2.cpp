@@ -1,6 +1,7 @@
 #include "Vector2.h"
 #include "Maths.h"
 #include "Vector3.h"
+#include "Vector2Int.h"
 
 const Vector2 Vector2::zero{ 0.0f, 0.0f };
 const Vector2 Vector2::unitX{ 1.0f, 0.0f };
@@ -10,6 +11,12 @@ Vector2::Vector2(const Vector3 vec3)
 {
 	x = vec3.x;
 	y = vec3.y;
+}
+
+Vector2::Vector2(const Vector2Int vec2Int)
+{
+	x = static_cast<float>(vec2Int.x);
+	y = static_cast<float>(vec2Int.y);
 }
 
 void Vector2::set(float xP, float yP)

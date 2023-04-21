@@ -162,14 +162,7 @@ public:
 
 	std::string toString() const
 	{
-		std::string str = "";
-		str += std::to_string(x);
-		str += "  ";
-		str += std::to_string(y);
-		str += "  ";
-		str += std::to_string(z);
-		str += "\n";
-		return str;
+		return std::to_string(x) + "  " + std::to_string(y) + "  " + std::to_string(z) + " \n";
 	}
 
 	static const Vector3 zero;

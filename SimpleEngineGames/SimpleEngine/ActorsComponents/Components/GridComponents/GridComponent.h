@@ -3,6 +3,7 @@
 #include "GridTileDraw.h"
 #include <SimpleEngine/Assets/GridMap.h>
 #include <vector>
+#include <SimpleEngine/Maths/Vector2Int.h>
 using std::vector;
 
 
@@ -28,11 +29,15 @@ public:
 
 	void resetToGridMap(GridMap* gridMap);
 	void setGridSize(int gridWidthP, int gridHeightP);
+	void setGridSize(Vector2Int gridSizeP);
 	int getGridWidth() const { return gridWidth; }
 	int getGridHeight() const { return gridHeight; }
+	Vector2Int getGridSize() const { return Vector2Int{ gridWidth, gridHeight }; }
 
 	bool setGridElement(int indexX, int indexY, int element);
 	int getGridElement(int indexX, int indexY) const;
+	bool setGridElement(Vector2Int index, int element);
+	int getGridElement(Vector2Int index) const;
 
 	void setTileTraduction(int traductionIndex, TileTraduction* traduction);
 	TileTraduction* getTileTraduction(int traductionIndex) const;
@@ -43,7 +48,7 @@ public:
 	/* Will return true depending of the tile traduction of the intersected tile */
 	bool intersectWithScreenPoint(Vector2 point, int* gridPosReturnX = NULL, int* gridPosReturnY = NULL);
 
-	/* Will return true if at least one of the intersected tiles has a true collision traduction 
+	/* Will return true if at least one of the intersected tiles has a true collision traduction
 	   GridPosReturn will be set as the nearest true collision tile of the center of circle */
 	bool intersectWithCircleCol(const class CircleCollisionComponent& circle, int* gridPosReturnX = NULL, int* gridPosReturnY = NULL);
 
