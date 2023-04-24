@@ -32,12 +32,12 @@ struct Vector2Int
 		return { left.x - right.x, left.y - right.y };
 	}
 
-	friend Vector2Int operator*(const Vector2Int& vec, float scalar)
+	friend Vector2Int operator*(const Vector2Int& vec, int scalar)
 	{
 		return { vec.x * scalar, vec.y * scalar };
 	}
 
-	friend Vector2Int operator*(float scalar, const Vector2Int& vec)
+	friend Vector2Int operator*(int scalar, const Vector2Int& vec)
 	{
 		return { vec.x * scalar, vec.y * scalar };
 	}
@@ -56,7 +56,7 @@ struct Vector2Int
 		return *this;
 	}
 
-	Vector2Int& operator*=(const float scalar)
+	Vector2Int& operator*=(const int scalar)
 	{
 		x *= scalar;
 		y *= scalar;

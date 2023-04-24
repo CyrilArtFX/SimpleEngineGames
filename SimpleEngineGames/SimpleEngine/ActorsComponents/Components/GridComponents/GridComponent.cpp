@@ -8,8 +8,8 @@
 GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
 	tileTraduction.push_back(new TileTraduction);
-	astarTraduction[0] = 10;
-	astarTraduction[1] = -1;
+	astarTraduction[0] = AstarTraduction{ true, 10, 14 };
+	astarTraduction[1] = AstarTraduction{ false, 0, 0 };
 	gridRectCol = new RectangleCollisionComponent(ownerP, false);
 	screenSize = Vector2{ static_cast<float>(owner.getGame().getScreenWidth()), static_cast<float>(owner.getGame().getScreenHeight()) };
 }
@@ -17,8 +17,8 @@ GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(owne
 GridComponent::GridComponent(Actor* ownerP, GridMap* gridMap, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
 	tileTraduction.push_back(new TileTraduction);
-	astarTraduction[0] = 10;
-	astarTraduction[1] = -1;
+	astarTraduction[0] = AstarTraduction{ true, 10, 14 };
+	astarTraduction[1] = AstarTraduction{ false, 0, 0 };
 	gridRectCol = new RectangleCollisionComponent(ownerP, false);
 	screenSize = Vector2{ static_cast<float>(owner.getGame().getScreenWidth()), static_cast<float>(owner.getGame().getScreenHeight()) };
 
@@ -143,6 +143,31 @@ TileTraduction* GridComponent::getTileTraduction(int traductionIndex) const
 	}
 }
 
+void GridComponent::setAstarTraduction(int traductionIndex, AstarTraduction traduction)
+{
+	astarTraduction[traductionIndex] = traduction;
+}
+
+AstarTraduction GridComponent::getAstarTraduction(int traductionIndex) const
+{
+	if (astarTraduction.find(traductionIndex) == astarTraduction.end())
+	{
+		return astarTraduction.at(traductionIndex);
+	}
+	return AstarTraduction{ false, 0, 0 };
+}
+
+AstarTraduction GridComponent::getAstarTraduction(int indexX, int indexY) const
+{
+	int tile = getGridElement(indexX, indexY);
+	return getAstarTraduction(tile);
+}
+
+AstarTraduction GridComponent::getAstarTraduction(Vector2Int index) const
+{
+	return getAstarTraduction(index.x, index.y);
+}
+
 void GridComponent::setTileSize(Vector2 tileSizeP)
 {
 	tileSize = tileSizeP;
@@ -215,7 +240,7 @@ bool GridComponent::intersectWithCircleCol(const CircleCollisionComponent& circl
 					true_col_found = true;
 					if (need_grid_pos_return)
 					{
-						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + ((x + 0.5f) * (tileSize.x * owner.getScale())), grid_origin_screen_pos.y + ((y + 0.5f) * (tileSize.y * owner.getScale()))} - circle_center;
+						Vector2 center_to_tile = Vector2{ grid_origin_screen_pos.x + ((x + 0.5f) * (tileSize.x * owner.getScale())), grid_origin_screen_pos.y + ((y + 0.5f) * (tileSize.y * owner.getScale())) } - circle_center;
 						float sqlength = center_to_tile.lengthSq();
 						if (sqlength < nearest_true_col_sqlength)
 						{

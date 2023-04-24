@@ -7,7 +7,7 @@ bool compareTiles(const Tile& a, const Tile& b)
 	return b.score < a.score;
 }
 
-std::vector<Vector2Int> AStar::AStarGridComp(const GridComponent& grid, Vector2Int start, Vector2Int end, std::unordered_map<int, int> astarTraduction)
+std::vector<Vector2Int> AStar::AStarGridComp(const GridComponent& grid, Vector2Int start, Vector2Int end, std::unordered_map<int, int> astarTraduction, bool reverseReturn, int heuristicValue)
 {
 	Vector2Int grid_size = grid.getGridSize();
 	std::vector<Vector2Int> way;
@@ -34,12 +34,48 @@ std::vector<Vector2Int> AStar::AStarGridComp(const GridComponent& grid, Vector2I
 
 		if (current_check.pos == end) //  check if the lowest score node is the end node
 		{
-			//  TODO : fill way with the way from start (excluded) to end (included)
+			way.clear();
+			Tile way_backward = current_check;
+			while (way_backward.pos != start)
+			{
+				way.push_back(way_backward.pos);
+				way_backward = checked_tiles[way_backward.previousTilePos];
+			}
+			
+			if (reverseReturn)
+			{
+				std::reverse(way.begin(), way.end());
+			}
 
 			return way;
 		}
 
-		//  TODO : for loops to check all tiles adjacents to the current checked tile
+		for (int x = Maths::max(current_check.pos.x - 1, 0); x <= Maths::min(current_check.pos.x + 1, grid_size.x - 1); x++)
+		{
+			for (int y = Maths::max(current_check.pos.y - 1, 0); y <= Maths::min(current_check.pos.y + 1, grid_size.y - 1); y++)
+			{
+				if (Vector2Int{ x, y } == current_check.pos) continue; //  check if the node to register isn't the current checked node
+				if (checked_tiles.find(Vector2Int{ x,y }) != checked_tiles.end()) continue; //  check if the node to register hasn't been already checked
+
+				AstarTraduction check_traduction = grid.getAstarTraduction(x, y);
+				if (!check_traduction.walkable) continue; //  check if the node to register is walkable
+
+				bool check_diagonal = x != current_check.pos.x && y != current_check.pos.y;
+				if (check_diagonal && !grid.getAstarTraduction(current_check.pos.x, y).walkable && !grid.getAstarTraduction(x, current_check.pos.y).walkable) continue; 
+				//  check if the node to register is accessible whithout passing by closed corners
+
+				int local_cost = check_diagonal ? check_traduction.diagonal : check_traduction.straight;
+				int heuristic = (Maths::abs(end.x - x) + abs(end.y - y)) * heuristicValue;
+
+				Tile check_tile = Tile{ Vector2Int{x, y}, current_check.cost + local_cost, heuristic, current_check.cost + local_cost + heuristic, current_check.pos };
+
+				if (already_registered_tiles.find(Vector2Int{ x, y }) != already_registered_tiles.end() && //  check if the node to register has already been registered
+					already_registered_tiles[Vector2Int{ x, y }].score <= check_tile.score) continue; //  and if so, check if the new score for this node is bigger
+
+				registered_tiles.push_back(check_tile);
+				already_registered_tiles[Vector2Int{ x, y }] = check_tile;
+			}
+		}
 
 		checked_tiles[current_check.pos] = current_check; //  add the current checked tile to the list of checked tiles before switching to a new check
 	}

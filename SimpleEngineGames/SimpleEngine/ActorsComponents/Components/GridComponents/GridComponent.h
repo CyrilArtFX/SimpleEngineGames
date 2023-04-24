@@ -15,6 +15,13 @@ struct TileTraduction
 	bool colTraduction{ false };
 };
 
+struct AstarTraduction
+{
+	bool walkable;
+	int straight;
+	int diagonal;
+};
+
 
 
 //  grid does not support scale currently
@@ -43,6 +50,12 @@ public:
 
 	void setTileTraduction(int traductionIndex, TileTraduction* traduction);
 	TileTraduction* getTileTraduction(int traductionIndex) const;
+
+	void setAstarTraduction(int traductionIndex, AstarTraduction traduction);
+	AstarTraduction getAstarTraduction(int traductionIndex) const;
+	AstarTraduction getAstarTraduction(int indexX, int indexY) const;
+	AstarTraduction getAstarTraduction(Vector2Int index) const;
+
 
 	void setTileSize(Vector2 tileSizeP);
 	Vector2 getTileSize() const { return tileSize; }
@@ -73,7 +86,7 @@ private:
 
 	vector<int> grid;
 	vector<TileTraduction*> tileTraduction;
-	unordered_map<int, int> astarTraduction;
+	unordered_map<int, AstarTraduction> astarTraduction;
 
 	class RectangleCollisionComponent* gridRectCol;
 
