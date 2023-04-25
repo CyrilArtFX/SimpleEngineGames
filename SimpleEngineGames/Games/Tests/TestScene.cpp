@@ -13,6 +13,7 @@
 #include <Components/GridComponents/GridComponent.h>
 #include <Components/GridComponents/GridTileDrawRectangle.h>
 #include <Components/GridComponents/GridTileDrawSprite.h>
+#include "ActorsComponents/AStarDemo.h"
 #include <SimpleEngine/Maths/Vector2.h>
 #include <SimpleEngine/Maths/Vector3.h>
 #include <SimpleEngine/Maths/Rectangle.h>
@@ -27,6 +28,7 @@ void TestScene::load(Game* game)
 	Assets::loadTexture(game->getRenderer(), "Bekipan.png", "bekipan");
 	Assets::loadGridMap("RacingTrackV1.lua", "testgrid");
 	Assets::loadGridMap("zfq", "nullgrid");
+	Assets::loadGridMap("AStarGrid.lua", "astar");
 
 	/*auto test_rect = new Actor();
 	test_rect->setPosition(Vector2{ 100.0f, 100.0f });
@@ -110,6 +112,10 @@ void TestScene::load(Game* game)
 
 	auto test_grid_3 = new Actor();
 	auto gc3 = new GridComponent(test_grid_3, Assets::getGridMap("nullgrid"));
+
+
+	auto astar_demo = new AStarDemo(Assets::getGridMap("astar"), Vector2{ 15.0f, 15.0f });
+	astar_demo->setPosition(Vector2{ 500.0f, 400.0f });
 
 	//game->getCamera().setCamPos(Vector2{ 140.0f, -100.0f });
 }

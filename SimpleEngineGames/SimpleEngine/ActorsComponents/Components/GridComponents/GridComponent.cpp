@@ -150,7 +150,7 @@ void GridComponent::setAstarTraduction(int traductionIndex, AstarTraduction trad
 
 AstarTraduction GridComponent::getAstarTraduction(int traductionIndex) const
 {
-	if (astarTraduction.find(traductionIndex) == astarTraduction.end())
+	if (astarTraduction.find(traductionIndex) != astarTraduction.end())
 	{
 		return astarTraduction.at(traductionIndex);
 	}

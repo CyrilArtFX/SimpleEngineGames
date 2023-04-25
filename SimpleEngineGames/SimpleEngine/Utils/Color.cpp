@@ -10,6 +10,7 @@ const Color Color::blue{ 0, 0, 255, 255 };
 const Color Color::magenta{ 255, 0, 255, 255 };
 const Color Color::yellow{ 255, 255, 0, 255 };
 const Color Color::cyan{ 0, 255, 255, 255 };
+const Color Color::transparency{ 0, 0, 0, 0 };
 
 void Color::set(int rP, int gP, int bP, int aP)
 {
