@@ -73,7 +73,7 @@ struct Vector2Int
 		return (x == right.x && y == right.y);
 	}
 
-	bool operator !=(Vector2Int& right) const
+	bool operator!=(Vector2Int& right) const
 	{
 		return (x != right.x || y != right.y);
 	}

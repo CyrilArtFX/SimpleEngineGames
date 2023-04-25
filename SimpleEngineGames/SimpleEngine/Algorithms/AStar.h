@@ -15,6 +15,6 @@ struct Tile
 static class AStar
 {
 public:
-	static std::vector<Vector2Int> AStarGridComp(const class GridComponent& grid, Vector2Int start, Vector2Int end, std::unordered_map<int, int> astarTraduction, bool reverseReturn, int heuristicValue = 10);
+	static std::vector<Vector2Int> AStarGridComp(const class GridComponent& grid, Vector2Int start, Vector2Int end, bool reverseReturn, int heuristicValue = 10);
 };
 
