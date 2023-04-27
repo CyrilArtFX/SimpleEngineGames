@@ -216,6 +216,18 @@
     <ClCompile Include="Games\Tests\ActorsComponents\AStarDemo.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Games\Stoneshard\StoneshardScene.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Games\Stoneshard\ActorsComponents\StoneshardManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Games\Stoneshard\ActorsComponents\StoneshardPlayerInputs.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Games\Stoneshard\ActorsComponents\TurnBasedPlayer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleEngine\Window.h">
@@ -441,6 +453,24 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Games\Tests\ActorsComponents\AStarDemo.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\Stoneshard\Main.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\Stoneshard\StoneshardScene.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\Stoneshard\ActorsComponents\StoneshardManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\Stoneshard\ActorsComponents\ITurnBasedActor.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\Stoneshard\ActorsComponents\StoneshardPlayerInputs.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Games\Stoneshard\ActorsComponents\TurnBasedPlayer.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

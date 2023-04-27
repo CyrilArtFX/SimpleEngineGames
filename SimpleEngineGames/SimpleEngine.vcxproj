@@ -41,6 +41,9 @@
     <ClCompile Include="Games\SpaceBattle\ActorsComponents\SpaceShot.cpp" />
     <ClCompile Include="Games\SpaceBattle\ActorsComponents\SpaceUFO.cpp" />
     <ClCompile Include="Games\SpaceBattle\SpaceScene.cpp" />
+    <ClCompile Include="Games\Stoneshard\ActorsComponents\StoneshardManager.cpp" />
+    <ClCompile Include="Games\Stoneshard\ActorsComponents\TurnBasedPlayer.cpp" />
+    <ClCompile Include="Games\Stoneshard\StoneshardScene.cpp" />
     <ClCompile Include="Games\Tests\ActorsComponents\AStarDemo.cpp" />
     <ClCompile Include="Games\Warrior\ActorsComponents\WarriorGrids.cpp" />
     <ClCompile Include="Games\Warrior\ActorsComponents\WarriorPlayer.cpp" />
@@ -86,6 +89,7 @@
     <ClCompile Include="SimpleEngine\Maths\Vector2.cpp" />
     <ClCompile Include="SimpleEngine\Window.cpp" />
     <ClCompile Include="Games\Warrior\ActorsComponents\WarriorManager.cpp" />
+    <ClCompile Include="Games\Stoneshard\ActorsComponents\StoneshardPlayerInputs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Games\BrickBreaker\ActorsComponents\BreakerBall.h" />
@@ -113,6 +117,11 @@
     <ClInclude Include="Games\SpaceBattle\ActorsComponents\SpaceUFO.h" />
     <ClInclude Include="Games\SpaceBattle\Main.h" />
     <ClInclude Include="Games\SpaceBattle\SpaceScene.h" />
+    <ClInclude Include="Games\Stoneshard\ActorsComponents\ITurnBasedActor.h" />
+    <ClInclude Include="Games\Stoneshard\ActorsComponents\StoneshardManager.h" />
+    <ClInclude Include="Games\Stoneshard\ActorsComponents\TurnBasedPlayer.h" />
+    <ClInclude Include="Games\Stoneshard\Main.h" />
+    <ClInclude Include="Games\Stoneshard\StoneshardScene.h" />
     <ClInclude Include="Games\Tests\ActorsComponents\AStarDemo.h" />
     <ClInclude Include="Games\Tests\Main.h" />
     <ClInclude Include="Games\Tests\TestScene.h" />
@@ -163,6 +172,7 @@
     <ClInclude Include="SimpleEngine\Maths\Vector2.h" />
     <ClInclude Include="SimpleEngine\Window.h" />
     <ClInclude Include="Games\Warrior\ActorsComponents\WarriorManager.h" />
+    <ClInclude Include="Games\Stoneshard\ActorsComponents\StoneshardPlayerInputs.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
