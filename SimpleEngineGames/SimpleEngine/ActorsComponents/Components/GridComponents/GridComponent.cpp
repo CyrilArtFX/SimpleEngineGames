@@ -7,26 +7,26 @@
 
 GridComponent::GridComponent(Actor* ownerP, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
-	tileTraduction.push_back(new TileTraduction);
-	astarTraduction[0] = AstarTraduction{ true, 10, 14 };
-	astarTraduction[1] = AstarTraduction{ false, 0, 0 };
-	gridRectCol = new RectangleCollisionComponent(ownerP, false);
-	screenSize = Vector2{ static_cast<float>(owner.getGame().getScreenWidth()), static_cast<float>(owner.getGame().getScreenHeight()) };
+	basicInitialization(ownerP);
 }
 
 GridComponent::GridComponent(Actor* ownerP, GridMap* gridMap, int drawOrderP) : DrawComponent(ownerP, drawOrderP)
 {
-	tileTraduction.push_back(new TileTraduction);
-	astarTraduction[0] = AstarTraduction{ true, 10, 14 };
-	astarTraduction[1] = AstarTraduction{ false, 0, 0 };
-	gridRectCol = new RectangleCollisionComponent(ownerP, false);
-	screenSize = Vector2{ static_cast<float>(owner.getGame().getScreenWidth()), static_cast<float>(owner.getGame().getScreenHeight()) };
-
+	basicInitialization(ownerP);
 	resetToGridMap(gridMap);
 }
 
 GridComponent::~GridComponent()
 {
+}
+
+void GridComponent::basicInitialization(Actor* ownerP)
+{
+	tileTraduction[0] = new TileTraduction;
+	astarTraduction[0] = AstarTraduction{ true, 10, 14 };
+	astarTraduction[1] = AstarTraduction{ false, 0, 0 };
+	gridRectCol = new RectangleCollisionComponent(ownerP, false);
+	screenSize = Vector2{ static_cast<float>(owner.getGame().getScreenWidth()), static_cast<float>(owner.getGame().getScreenHeight()) };
 }
 
 void GridComponent::resetToGridMap(GridMap* gridMap)
@@ -115,32 +115,16 @@ int GridComponent::getGridElement(Vector2Int index) const
 
 void GridComponent::setTileTraduction(int traductionIndex, TileTraduction* traduction)
 {
-	if (traductionIndex >= 0)
-	{
-		int draw_traduction_size = tileTraduction.size();
-		if (traductionIndex >= draw_traduction_size)
-		{
-			tileTraduction.resize(traductionIndex + 1);
-			for (int i = draw_traduction_size; i <= traductionIndex; i++)
-			{
-				tileTraduction[i] = new TileTraduction;
-			}
-		}
-
-		tileTraduction[traductionIndex] = traduction;
-	}
+	tileTraduction[traductionIndex] = traduction;
 }
 
 TileTraduction* GridComponent::getTileTraduction(int traductionIndex) const
 {
-	if (traductionIndex >= 0 && traductionIndex < tileTraduction.size())
+	if (tileTraduction.find(traductionIndex) != tileTraduction.end())
 	{
-		return tileTraduction[traductionIndex];
+		return tileTraduction.at(traductionIndex);
 	}
-	else
-	{
-		return nullptr;
-	}
+	return new TileTraduction;
 }
 
 void GridComponent::setAstarTraduction(int traductionIndex, AstarTraduction traduction)

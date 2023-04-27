@@ -24,8 +24,6 @@ struct AstarTraduction
 
 
 
-//  grid does not support scale currently
-
 class GridComponent : public DrawComponent
 {
 public:
@@ -85,7 +83,7 @@ private:
 	Vector2 tileSize{ Vector2::zero };
 
 	vector<int> grid;
-	vector<TileTraduction*> tileTraduction;
+	unordered_map<int, TileTraduction*> tileTraduction;
 	unordered_map<int, AstarTraduction> astarTraduction;
 
 	class RectangleCollisionComponent* gridRectCol;
@@ -93,6 +91,7 @@ private:
 	Vector2 screenSize;
 
 
+	void basicInitialization(Actor* ownerP);
 	void resetGridRectCol();
 };
 
