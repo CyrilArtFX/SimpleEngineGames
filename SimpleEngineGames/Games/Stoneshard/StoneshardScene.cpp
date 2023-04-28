@@ -3,6 +3,7 @@
 #include <SimpleEngine/Game.h>
 #include "ActorsComponents/StoneshardManager.h"
 #include "ActorsComponents/StoneshardPlayerInputs.h"
+#include "ActorsComponents/StoneshardMap.h"
 
 void StoneshardScene::load(Game* game)
 {
@@ -12,8 +13,10 @@ void StoneshardScene::load(Game* game)
 	Assets::loadTexture(game->getRenderer(), "AimDirNotOk.png", "aimDirNotOk");
 	Assets::loadTexture(game->getRenderer(), "DirPathfinding.png", "dirPathfinding");
 	Assets::loadTexture(game->getRenderer(), "Player.png", "player");
+	Assets::loadGridMap("StoneshardMapV1.lua", "mapV1");
 
 	auto manager = new StoneshardManager();
+	auto map = new StoneshardMap(Assets::getGridMap("mapV1"));
 
-	auto player_inputs = new StoneshardPlayerInputs(manager);
+	auto player_inputs = new StoneshardPlayerInputs(manager, map);
 }

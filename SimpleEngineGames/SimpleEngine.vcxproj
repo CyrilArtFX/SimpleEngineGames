@@ -42,6 +42,7 @@
     <ClCompile Include="Games\SpaceBattle\ActorsComponents\SpaceUFO.cpp" />
     <ClCompile Include="Games\SpaceBattle\SpaceScene.cpp" />
     <ClCompile Include="Games\Stoneshard\ActorsComponents\StoneshardManager.cpp" />
+    <ClCompile Include="Games\Stoneshard\ActorsComponents\StoneshardMap.cpp" />
     <ClCompile Include="Games\Stoneshard\ActorsComponents\TurnBasedPlayer.cpp" />
     <ClCompile Include="Games\Stoneshard\StoneshardScene.cpp" />
     <ClCompile Include="Games\Tests\ActorsComponents\AStarDemo.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="Games\SpaceBattle\SpaceScene.h" />
     <ClInclude Include="Games\Stoneshard\ActorsComponents\ITurnBasedActor.h" />
     <ClInclude Include="Games\Stoneshard\ActorsComponents\StoneshardManager.h" />
+    <ClInclude Include="Games\Stoneshard\ActorsComponents\StoneshardMap.h" />
     <ClInclude Include="Games\Stoneshard\ActorsComponents\TurnBasedPlayer.h" />
     <ClInclude Include="Games\Stoneshard\Main.h" />
     <ClInclude Include="Games\Stoneshard\StoneshardScene.h" />

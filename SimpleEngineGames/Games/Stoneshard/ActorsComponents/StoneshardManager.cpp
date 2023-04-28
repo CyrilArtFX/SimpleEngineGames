@@ -22,3 +22,11 @@ void StoneshardManager::RemoveTurnBasedActor(ITurnBasedActor* actor)
 		turnBasedActors.pop_back();
 	}
 }
+
+void StoneshardManager::ForceGlobalTurnAction()
+{
+	for (auto turn_based_actor : turnBasedActors)
+	{
+		turn_based_actor->TurnAction();
+	}
+}

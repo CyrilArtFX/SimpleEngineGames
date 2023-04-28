@@ -35,6 +35,7 @@ public:
 	GridComponent& operator=(const GridComponent&) = delete;
 
 	void resetToGridMap(GridMap* gridMap);
+	void resetToZero();
 	void setGridSize(int gridWidthP, int gridHeightP);
 	void setGridSize(Vector2Int gridSizeP);
 	int getGridWidth() const { return gridWidth; }

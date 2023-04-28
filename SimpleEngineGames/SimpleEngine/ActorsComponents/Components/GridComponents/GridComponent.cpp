@@ -41,6 +41,14 @@ void GridComponent::resetToGridMap(GridMap* gridMap)
 	}
 }
 
+void GridComponent::resetToZero()
+{
+	for (int i = 0; i < grid.size(); i++)
+	{
+		grid[i] = 0;
+	}
+}
+
 void GridComponent::setGridSize(int gridWidthP, int gridHeightP)
 {
 	if (gridWidthP > 0 && gridHeightP > 0)
@@ -307,10 +315,12 @@ bool GridComponent::intersectWithRectangleCol(const RectangleCollisionComponent&
 
 bool GridComponent::screenPointAsGridCoordinates(Vector2 point, int* gridPosReturnX, int* gridPosReturnY)
 {
+	Vector2 cam_scaled_point = point - owner.getGame().getCamera().getCamPos();
+
 	Vector2 grid_origin_screen_pos = owner.getPosition() - owner.getGame().getCamera().getCamPos();
 
-	int tile_pos_intersection_x = Maths::floor((point.x - grid_origin_screen_pos.x) / (tileSize.x * owner.getScale()));
-	int tile_pos_intersection_y = Maths::floor((point.y - grid_origin_screen_pos.y) / (tileSize.y * owner.getScale()));
+	int tile_pos_intersection_x = Maths::floor((cam_scaled_point.x - grid_origin_screen_pos.x) / (tileSize.x * owner.getScale()));
+	int tile_pos_intersection_y = Maths::floor((cam_scaled_point.y - grid_origin_screen_pos.y) / (tileSize.y * owner.getScale()));
 
 	*gridPosReturnX = tile_pos_intersection_x;
 	*gridPosReturnY = tile_pos_intersection_y;
