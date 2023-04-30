@@ -26,6 +26,13 @@ StoneshardPlayerInputs::StoneshardPlayerInputs(StoneshardManager* managerP, Ston
 
 void StoneshardPlayerInputs::updateActor(float dt)
 {
+	if (player->HasMovementWaiting())
+	{
+		manager->PlayGlobalTurnAction();
+	}
+
+
+
 	aimDirGrid->resetToZero();
 
 	Vector2 mouse_pos = getGame().getMousePosition();
@@ -53,6 +60,19 @@ void StoneshardPlayerInputs::updateActor(float dt)
 			}
 			else
 			{
+				if (getGame().isKeyPressed(SDL_MOUSE_LEFT))
+				{
+					std::vector<Vector2> move_list;
+					Vector2 grid_tile_size = map_grid.getTileSize();
+					for (auto iter : dir_way)
+					{
+						move_list.push_back(Vector2{ iter.x * grid_tile_size.x + grid_tile_size.x / 2.0f , iter.y * grid_tile_size.y + grid_tile_size.y / 2.0f });
+					}
+					std::reverse(move_list.begin(), move_list.end());
+
+					player->SetMovementList(move_list);
+				}
+
 				aimDirGrid->setGridElement(map_mouse_x, map_mouse_y, 1);
 				dir_way.pop_back();
 				while (!dir_way.empty())

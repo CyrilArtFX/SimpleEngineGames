@@ -17,9 +17,13 @@ public:
 	void AddTurnBasedActor(ITurnBasedActor* actor);
 	void RemoveTurnBasedActor(ITurnBasedActor* actor);
 
+	void PlayGlobalTurnAction();
 	void ForceGlobalTurnAction();
 
 private:
 	vector<ITurnBasedActor*> turnBasedActors;
+
+	float turnMinTime{ 0.2f };
+	float turnTimeCounter{ 0.0f };
 };
 

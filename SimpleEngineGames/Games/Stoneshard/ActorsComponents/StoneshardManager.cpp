@@ -6,6 +6,10 @@ StoneshardManager::StoneshardManager() : Actor()
 
 void StoneshardManager::updateActor(float dt)
 {
+	if (turnTimeCounter > 0.0f)
+	{
+		turnTimeCounter -= dt;
+	}
 }
 
 void StoneshardManager::AddTurnBasedActor(ITurnBasedActor* actor)
@@ -20,6 +24,15 @@ void StoneshardManager::RemoveTurnBasedActor(ITurnBasedActor* actor)
 	{
 		std::iter_swap(iter, end(turnBasedActors) - 1);
 		turnBasedActors.pop_back();
+	}
+}
+
+void StoneshardManager::PlayGlobalTurnAction()
+{
+	if (turnTimeCounter <= 0.0f)
+	{
+		ForceGlobalTurnAction();
+		turnTimeCounter += turnMinTime;
 	}
 }
 
