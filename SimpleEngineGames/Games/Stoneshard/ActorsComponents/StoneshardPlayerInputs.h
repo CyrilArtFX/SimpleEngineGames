@@ -20,7 +20,8 @@ private:
 
 	TurnBasedPlayer* player;
 
-	
 	GridComponent* aimDirGrid;
+
+	Vector2Int lastDestinationRegistered{ Vector2Int::zero };
 };
 
