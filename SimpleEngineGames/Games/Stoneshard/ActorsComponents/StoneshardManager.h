@@ -23,7 +23,7 @@ public:
 private:
 	vector<ITurnBasedActor*> turnBasedActors;
 
-	float turnMinTime{ 0.2f };
+	float turnMinTime{ 0.05f };
 	float turnTimeCounter{ 0.0f };
 };
 

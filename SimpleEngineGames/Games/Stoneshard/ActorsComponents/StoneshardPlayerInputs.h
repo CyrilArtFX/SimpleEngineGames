@@ -23,5 +23,7 @@ private:
 	GridComponent* aimDirGrid;
 
 	Vector2Int lastDestinationRegistered{ Vector2Int::zero };
+
+	Vector2 halfScreenSize;
 };
 

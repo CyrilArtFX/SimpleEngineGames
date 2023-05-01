@@ -8,17 +8,18 @@ TurnBasedPlayer::TurnBasedPlayer(Texture& playerTextureP) : Actor()
 
 	rectColComp = new RectangleCollisionComponent(this);
 	rectColComp->setRectangle(Rectangle{ -16.0f, -16.0f, 32.0f, 32.0f });
+
+	moveComp = new AToBMoveComponent(this);
+	moveComp->setSpeed(200.0f);
 }
 
 void TurnBasedPlayer::TurnAction()
 {
 	if (!movementList.empty())
 	{
-		setPosition(*(movementList.end() - 1));
+		moveComp->setDestination(*(movementList.end() - 1));
 		movementList.pop_back();
 	}
-
-	getGame().getCamera().setCamPos(getPosition() - Vector2{ static_cast<float>(getGame().getScreenWidth() / 2), static_cast<float>(getGame().getScreenHeight() / 2) });
 }
 
 bool TurnBasedPlayer::IsUnderMouse(Vector2 mousePos) const
@@ -26,6 +27,11 @@ bool TurnBasedPlayer::IsUnderMouse(Vector2 mousePos) const
 	Vector2 reel_mouse_pos = mousePos + getGame().getCamera().getCamPos();
 
 	return rectColComp->intersectWithPoint(reel_mouse_pos);
+}
+
+bool TurnBasedPlayer::MovingBetweenTiles() const
+{
+	return !moveComp->isOnDestination();
 }
 
 void TurnBasedPlayer::SetMovementList(std::vector<Vector2> movementListP)
@@ -41,5 +47,5 @@ void TurnBasedPlayer::ForceClearMovement()
 
 bool TurnBasedPlayer::HasMovementWaiting() const
 {
-	return !movementList.empty();
+	return !movementList.empty() || MovingBetweenTiles();
 }

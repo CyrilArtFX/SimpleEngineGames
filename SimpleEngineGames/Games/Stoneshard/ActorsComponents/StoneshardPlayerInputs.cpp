@@ -22,6 +22,8 @@ StoneshardPlayerInputs::StoneshardPlayerInputs(StoneshardManager* managerP, Ston
 	managerP->AddTurnBasedActor(player);
 
 	managerP->ForceGlobalTurnAction();
+
+	halfScreenSize = Vector2{ static_cast<float>(getGame().getScreenWidth() / 2), static_cast<float>(getGame().getScreenHeight() / 2) };
 }
 
 void StoneshardPlayerInputs::updateActor(float dt)
@@ -38,7 +40,10 @@ void StoneshardPlayerInputs::updateActor(float dt)
 			player->ForceClearMovement();
 		}
 
-		manager->PlayGlobalTurnAction();
+		if (!player->MovingBetweenTiles())
+		{
+			manager->PlayGlobalTurnAction();
+		}
 
 
 
@@ -110,4 +115,8 @@ void StoneshardPlayerInputs::updateActor(float dt)
 			}
 		}
 	}
+
+
+
+	getGame().getCamera().setCamPos(player->getPosition() - halfScreenSize);
 }
