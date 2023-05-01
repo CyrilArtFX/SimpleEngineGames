@@ -4,6 +4,7 @@
 #include "ActorsComponents/StoneshardManager.h"
 #include "ActorsComponents/StoneshardPlayerInputs.h"
 #include "ActorsComponents/StoneshardMap.h"
+#include "ActorsComponents/StoneshardCamera.h"
 
 void StoneshardScene::load(Game* game)
 {

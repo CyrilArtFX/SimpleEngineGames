@@ -3,6 +3,7 @@
 #include "TurnBasedPlayer.h"
 #include "StoneshardManager.h"
 #include "StoneshardMap.h"
+#include "StoneshardCamera.h"
 #include <Components/GridComponents/GridComponent.h>
 
 class StoneshardPlayerInputs : public Actor
@@ -19,11 +20,10 @@ private:
 	StoneshardMap* map;
 
 	TurnBasedPlayer* player;
+	StoneshardCamera* camera;
 
 	GridComponent* aimDirGrid;
 
 	Vector2Int lastDestinationRegistered{ Vector2Int::zero };
-
-	Vector2 halfScreenSize;
 };
 

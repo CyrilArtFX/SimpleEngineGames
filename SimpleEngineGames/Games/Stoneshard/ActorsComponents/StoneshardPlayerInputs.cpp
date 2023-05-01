@@ -11,6 +11,8 @@ StoneshardPlayerInputs::StoneshardPlayerInputs(StoneshardManager* managerP, Ston
 	player = new TurnBasedPlayer(Assets::getTexture("player"));
 	player->setPosition(Vector2{ 1232.0f, 720.0f });
 
+	camera = new StoneshardCamera(player);
+
 
 	aimDirGrid = new GridComponent(this, 1000);
 	aimDirGrid->setTileSize(map->GetGridComp().getTileSize());
@@ -22,8 +24,6 @@ StoneshardPlayerInputs::StoneshardPlayerInputs(StoneshardManager* managerP, Ston
 	managerP->AddTurnBasedActor(player);
 
 	managerP->ForceGlobalTurnAction();
-
-	halfScreenSize = Vector2{ static_cast<float>(getGame().getScreenWidth() / 2), static_cast<float>(getGame().getScreenHeight() / 2) };
 }
 
 void StoneshardPlayerInputs::updateActor(float dt)
@@ -115,8 +115,4 @@ void StoneshardPlayerInputs::updateActor(float dt)
 			}
 		}
 	}
-
-
-
-	getGame().getCamera().setCamPos(player->getPosition() - halfScreenSize);
 }

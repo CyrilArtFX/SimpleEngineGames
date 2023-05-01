@@ -42,6 +42,12 @@ void Vector2::normalize()
 	y /= len;
 }
 
+void Vector2::clamp(const Vector2& min, const Vector2& max)
+{
+	x = Maths::clamp(x, min.x, max.x);
+	y = Maths::clamp(y, min.y, max.y);
+}
+
 void Vector2::clampMagnitude(float magnitude)
 {
 	float len = length();
