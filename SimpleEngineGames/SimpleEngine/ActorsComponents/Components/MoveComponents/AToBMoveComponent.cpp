@@ -27,6 +27,7 @@ void AToBMoveComponent::update(float dt)
 		{
 			owner.setPosition(destination);
 			needToMove = false;
+			return;
 		}
 
 		owner.setPosition(owner.getPosition() - direction);
