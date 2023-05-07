@@ -16,6 +16,11 @@ void DrawSpriteComponent::setTexture(const Texture& textureP)
 	texture.updateInfo(texWidth, texHeight);
 }
 
+void DrawSpriteComponent::setFlip(Renderer::Flip spriteFlipP)
+{
+	spriteFlip = spriteFlipP;
+}
+
 void DrawSpriteComponent::draw(Renderer& renderer)
 {
 	if (willDraw)

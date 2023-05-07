@@ -26,7 +26,6 @@ private:
 	DrawSpriteComponent* drawSpriteComp;
 	RectangleCollisionComponent* rectColComp;
 	AToBMoveComponent* moveComp;
-	Vector2 halfTexSize;
 	std::vector<Vector2> movementList;
 };
 

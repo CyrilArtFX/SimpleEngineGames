@@ -3,8 +3,7 @@
 
 TurnBasedPlayer::TurnBasedPlayer(Texture& playerTextureP) : Actor()
 {
-	halfTexSize = Vector2{ playerTextureP.getWidth() / 2.0f, playerTextureP.getHeight() / 2.0f };
-	drawSpriteComp = new DrawSpriteComponent(this, playerTextureP, -halfTexSize, Renderer::Flip::None);
+	drawSpriteComp = new DrawSpriteComponent(this, playerTextureP, Vector2{ -16.0f, -48.0f }, Renderer::Flip::None);
 
 	rectColComp = new RectangleCollisionComponent(this);
 	rectColComp->setRectangle(Rectangle{ -16.0f, -16.0f, 32.0f, 32.0f });
@@ -17,7 +16,16 @@ void TurnBasedPlayer::TurnAction()
 {
 	if (!movementList.empty())
 	{
-		moveComp->setDestination(*(movementList.end() - 1));
+		Vector2 destination = *(movementList.end() - 1);
+		if (destination.x > getPosition().x)
+		{
+			drawSpriteComp->setFlip(Renderer::Flip::None);
+		}
+		else if (destination.x < getPosition().x)
+		{
+			drawSpriteComp->setFlip(Renderer::Flip::Horizontal);
+		}
+		moveComp->setDestination(destination);
 		movementList.pop_back();
 	}
 }

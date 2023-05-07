@@ -13,6 +13,7 @@ public:
 	DrawSpriteComponent& operator=(const DrawSpriteComponent&) = delete;
 
 	virtual void setTexture(const Texture& textureP);
+	virtual void setFlip(Renderer::Flip spriteFlipP);
 	virtual void draw(Renderer& renderer) override;
 
 	int getTexWidth() const { return texWidth; }

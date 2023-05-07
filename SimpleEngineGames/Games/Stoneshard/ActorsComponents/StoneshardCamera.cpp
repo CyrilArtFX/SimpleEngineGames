@@ -1,6 +1,5 @@
 #include "StoneshardCamera.h"
 #include <SimpleEngine/Game.h>
-#include <iostream>
 
 StoneshardCamera::StoneshardCamera(TurnBasedPlayer* playerP) : Actor(), player(playerP)
 {
@@ -16,6 +15,4 @@ void StoneshardCamera::updateActor(float dt)
 	Vector2 cam_pos = player->getPosition() - halfScreenSize;
 	cam_pos.clamp(currentClamp.clampMin, currentClamp.clampMax);
 	getGame().getCamera().setCamPos(cam_pos);
-
-	std::cout << cam_pos.toString() << "\n";
 }
