@@ -38,9 +38,15 @@ GridMap* GridMap::load(const string& pathP)
 					for (int i = 0; i < grid_map_width; i++)
 					{
 						string value = values;
-						value.erase(value.begin() + 1, value.end());
+						int chars_to_keep = 0;
+						for (auto iter : value)
+						{
+							if (iter == ',') break;
+							chars_to_keep++;
+						}
+						value.erase(value.begin() + chars_to_keep, value.end());
 						grid_map.push_back(std::stoi(value));
-						values.erase(0, 3);
+						values.erase(0, 2 + chars_to_keep);
 					}
 
 					data_lines_read++;
