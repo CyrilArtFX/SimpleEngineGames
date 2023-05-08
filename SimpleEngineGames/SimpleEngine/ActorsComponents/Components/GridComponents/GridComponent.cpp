@@ -183,7 +183,7 @@ bool GridComponent::intersectWithScreenPoint(Vector2 point, int* gridPosReturnX,
 	if (gridPosReturnY) *gridPosReturnY = tile_pos_intersection_y;
 
 	int index = grid[tile_pos_intersection_x * gridHeight + tile_pos_intersection_y];
-	if (index >= 0 && index < tileTraduction.size())
+	if(tileTraduction.find(index) != tileTraduction.end())
 	{
 		return tileTraduction[index]->colTraduction;
 	}
@@ -220,7 +220,7 @@ bool GridComponent::intersectWithCircleCol(const CircleCollisionComponent& circl
 		for (int y = tile_pos_up_left_y; y <= tile_pos_down_right_y; y++)
 		{
 			int index = grid[x * gridHeight + y];
-			if (index >= 0 && index < tileTraduction.size())
+			if (tileTraduction.find(index) != tileTraduction.end())
 			{
 				if (tileTraduction[index]->colTraduction)
 				{
@@ -285,7 +285,7 @@ bool GridComponent::intersectWithRectangleCol(const RectangleCollisionComponent&
 		for (int y = tile_pos_up_left_y; y <= tile_pos_down_right_y; y++)
 		{
 			int index = grid[x * gridHeight + y];
-			if (index >= 0 && index < tileTraduction.size())
+			if (tileTraduction.find(index) != tileTraduction.end())
 			{
 				if (tileTraduction[index]->colTraduction)
 				{
@@ -355,7 +355,7 @@ void GridComponent::draw(Renderer& renderer)
 		{
 			Rectangle tile = Rectangle{ tile_rect_orig_x, tile_rect_orig_y, (tileSize.x * owner.getScale()), (tileSize.y * owner.getScale()) };
 			int index = grid[x * gridHeight + y];
-			if (index >= 0 && index < tileTraduction.size())
+			if(tileTraduction.find(index) != tileTraduction.end())
 			{
 				tileTraduction[index]->drawTraduction->draw(renderer, tile, index);
 			}
