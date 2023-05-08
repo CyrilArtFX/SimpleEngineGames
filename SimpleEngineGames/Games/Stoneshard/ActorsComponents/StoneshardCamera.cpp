@@ -3,7 +3,7 @@
 
 StoneshardCamera::StoneshardCamera(TurnBasedPlayer* playerP) : Actor(), player(playerP)
 {
-	registeredClamps["BaseMap"] = CameraClamp{ Vector2{0.0f, 0.0f}, Vector2{640.0f, 360.0f} };
+	registeredClamps["BaseMap"] = CameraClamp{ Vector2{-32.0f, -32.0f}, Vector2{672.0f, 392.0f} };
 
 	currentClamp = registeredClamps["BaseMap"];
 
