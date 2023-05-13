@@ -25,9 +25,12 @@ StoneshardPlayerInputs::StoneshardPlayerInputs(StoneshardManager* managerP, Ston
 
 	manager->AddTurnBasedActor(player);
 
-	auto enemy_1 = new TurnBasedEnemy(*player, map_grid, Vector2{ 336.0f, 720.0f }, 50176.0f);
+	auto enemy_1 = new TurnBasedEnemy(*player, map_grid, Vector2{ 80.0f, 400.0f }, 100000.0f);
 	manager->AddTurnBasedActor(enemy_1);
 	manager->AddEnemy(enemy_1);
+	auto enemy_2 = new TurnBasedEnemy(*player, map_grid, Vector2{ 240.0f, 1040.0f }, 2000.0f);
+	manager->AddTurnBasedActor(enemy_2);
+	manager->AddEnemy(enemy_2);
 
 	manager->ForceGlobalTurnAction();
 }
@@ -39,13 +42,13 @@ void StoneshardPlayerInputs::updateActor(float dt)
 	GridComponent& map_grid = map->GetGridComp();
 	Vector2 mouse_pos = getGame().getMousePosition();
 
-	bool aiming_enemy = false;
+	TurnBasedEnemy* enemy_under_mouse = nullptr;
 	vector<TurnBasedEnemy*> enemies = manager->GetEnemiesList();
 	for (auto enemy : enemies)
 	{
 		if (!enemy->GetIsVisible()) continue;
 		if (enemy->GetPlayerDetected()) player->ForceClearMovement();
-		if (enemy->IsUnderMouse(mouse_pos)) aiming_enemy = true;
+		if (enemy->IsUnderMouse(mouse_pos)) enemy_under_mouse = enemy;
 	}
 
 
@@ -103,6 +106,12 @@ void StoneshardPlayerInputs::updateActor(float dt)
 				{
 					if (getGame().isKeyPressed(SDL_MOUSE_LEFT))
 					{
+						if (dir_way.size() == 1 && enemy_under_mouse)
+						{
+							enemy_under_mouse->Kill(*manager);
+							return;
+						}
+
 						std::vector<Vector2> move_list;
 						Vector2 grid_tile_size = map_grid.getTileSize();
 						for (auto iter : dir_way)
@@ -116,11 +125,12 @@ void StoneshardPlayerInputs::updateActor(float dt)
 						manager->PlayGlobalTurnAction();
 					}
 
-					if (!aiming_enemy)
+					if (!enemy_under_mouse)
 					{
 						aimDirGrid->setGridElement(map_mouse_x, map_mouse_y, 1);
 					}
 					dir_way.pop_back();
+					
 					while (!dir_way.empty())
 					{
 						aimDirGrid->setGridElement(*(dir_way.end() - 1), 3);

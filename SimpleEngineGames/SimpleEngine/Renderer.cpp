@@ -310,5 +310,9 @@ void Renderer::addDrawComponent(DrawComponent* drawComponent)
 void Renderer::removeDrawComponent(DrawComponent* drawComponent)
 {
 	auto iter = std::find(begin(drawComponents), end(drawComponents), drawComponent);
-	drawComponents.erase(iter);
+	if (iter != end(drawComponents))
+	{
+		std::iter_swap(iter, drawComponents.end() - 1);
+		drawComponents.pop_back();
+	}
 }

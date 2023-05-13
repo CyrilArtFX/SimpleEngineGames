@@ -305,7 +305,7 @@ void Game::removeActor(Actor* actor)
 	}
 
 	iter = std::find(begin(actors), end(actors), actor);
-	if (iter != end(pendingActors))
+	if (iter != end(actors))
 	{
 		std::iter_swap(iter, end(actors) - 1);
 		actors.pop_back();

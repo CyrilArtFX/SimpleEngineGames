@@ -3,14 +3,16 @@
 #include <SimpleEngine/Algorithms/AStar.h>
 #include <SimpleEngine/Game.h>
 #include <Components/GridComponents/GridComponent.h>
+#include "StoneshardManager.h"
 #include <vector>
-
-#include <iostream>
 
 TurnBasedEnemy::TurnBasedEnemy(const Actor& playerP, const class GridComponent& mapGridP, Vector2 spawnPositionP, float sqPlayerDetectionDistP) :
 	Actor(), player(playerP), mapGrid(mapGridP), sqPlayerDetectionDist(sqPlayerDetectionDistP)
 {
 	drawSpriteComp = new DrawSpriteComponent(this, Assets::getTexture("enemy"), Vector2{ -32.0f, -48.0f }, Renderer::Flip::None);
+
+	warningSpriteComp = new DrawSpriteComponent(this, Assets::getTexture("warning"), Vector2{ -16.0f, -64.0f }, Renderer::Flip::None);
+	warningSpriteComp->setWillDraw(false);
 
 	rectColComp = new RectangleCollisionComponent(this);
 	rectColComp->setRectangle(Rectangle{ -16.0f, -16.0f, 32.0f, 32.0f });
@@ -22,6 +24,12 @@ TurnBasedEnemy::TurnBasedEnemy(const Actor& playerP, const class GridComponent& 
 	isVisible = CheckVisibility();
 }
 
+TurnBasedEnemy::~TurnBasedEnemy()
+{
+	getGame().getRenderer().removeDrawComponent(drawSpriteComp);
+	getGame().getRenderer().removeDrawComponent(warningSpriteComp);
+}
+
 void TurnBasedEnemy::TurnAction()
 {
 	if (!playerDetected)
@@ -29,10 +37,19 @@ void TurnBasedEnemy::TurnAction()
 		if ((player.getPosition() - getPosition()).lengthSq() < sqPlayerDetectionDist)
 		{
 			playerDetected = true;
+
+			warningSpriteComp->setWillDraw(true);
+			warningActivated = true;
 		}
 	}
 	else
 	{
+		if (warningActivated)
+		{
+			warningSpriteComp->setWillDraw(false);
+			warningActivated = false;
+		}
+
 		int map_this_x, map_this_y = 0;
 		mapGrid.screenPointAsGridCoordinates(getPosition(), &map_this_x, &map_this_y);
 		Vector2Int map_this = { map_this_x, map_this_y };
@@ -42,7 +59,7 @@ void TurnBasedEnemy::TurnAction()
 
 		std::vector<Vector2Int> pathfinding = AStar::AStarGridComp(mapGrid, map_this, map_player, true);
 		Vector2Int next_movement = *pathfinding.begin();
-			std::cout << map_this.toString() << next_movement.toString() << map_player.toString() << "\n";
+
 		if (next_movement != map_player)
 		{
 			Vector2 grid_tile_size = mapGrid.getTileSize();
@@ -68,6 +85,15 @@ bool TurnBasedEnemy::IsUnderMouse(Vector2 mousePos)
 	}
 
 	return under_mouse;
+}
+
+void TurnBasedEnemy::Kill(StoneshardManager& manager)
+{
+	manager.RemoveTurnBasedActor(this);
+	manager.RemoveEnemy(this);
+	getGame().getRenderer().removeDrawComponent(drawSpriteComp);
+	getGame().getRenderer().removeDrawComponent(warningSpriteComp);
+	getGame().removeActor(this);
 }
 
 bool TurnBasedEnemy::CheckVisibility()

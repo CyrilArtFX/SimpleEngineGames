@@ -12,16 +12,20 @@ public:
 	TurnBasedEnemy() = delete;
 	TurnBasedEnemy(const TurnBasedEnemy&) = delete;
 	TurnBasedEnemy& operator=(const TurnBasedEnemy&) = delete;
+	~TurnBasedEnemy();
 
 	void TurnAction() override;
 	bool IsUnderMouse(Vector2 mousePos);
 	bool GetIsVisible() const { return isVisible; }
 	bool GetPlayerDetected() const { return playerDetected; }
 
+	void Kill(class StoneshardManager& manager);
+
 private:
 	bool CheckVisibility();
 
 	DrawSpriteComponent* drawSpriteComp;
+	DrawSpriteComponent* warningSpriteComp;
 	RectangleCollisionComponent* rectColComp;
 	AToBMoveComponent* moveComp;
 
@@ -32,5 +36,6 @@ private:
 
 	bool wasHighlightedLastFrame{ false };
 	bool isVisible;
+	bool warningActivated{ false };
 };
 
