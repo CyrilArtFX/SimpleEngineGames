@@ -72,7 +72,7 @@ public:
 
 	/* Will set the gridPosReturns as the grid pos of the point
 	   Will return true if those grid pos are out of the grid */
-	bool screenPointAsGridCoordinates(Vector2 point, int* gridPosReturnX, int* gridPosReturnY);
+	bool screenPointAsGridCoordinates(Vector2 point, int* gridPosReturnX, int* gridPosReturnY) const;
 
 	void draw(Renderer& renderer) override;
 	void debug(Renderer& renderer) override;

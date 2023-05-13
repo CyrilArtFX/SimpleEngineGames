@@ -313,7 +313,7 @@ bool GridComponent::intersectWithRectangleCol(const RectangleCollisionComponent&
 	return true_col_found;
 }
 
-bool GridComponent::screenPointAsGridCoordinates(Vector2 point, int* gridPosReturnX, int* gridPosReturnY)
+bool GridComponent::screenPointAsGridCoordinates(Vector2 point, int* gridPosReturnX, int* gridPosReturnY) const
 {
 	Vector2 cam_scaled_point = point - owner.getGame().getCamera().getCamPos();
 

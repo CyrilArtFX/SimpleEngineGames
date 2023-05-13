@@ -4,6 +4,7 @@
 #include <Components/GridComponents/GridTileDrawSprite.h>
 #include <SimpleEngine/Algorithms/AStar.h>
 #include <SimpleEngine/Maths/Vector2Int.h>
+#include "TurnBasedEnemy.h"
 #include <vector>
 
 StoneshardPlayerInputs::StoneshardPlayerInputs(StoneshardManager* managerP, StoneshardMap* mapP) : Actor(), manager(managerP), map(mapP)
@@ -13,17 +14,22 @@ StoneshardPlayerInputs::StoneshardPlayerInputs(StoneshardManager* managerP, Ston
 
 	camera = new StoneshardCamera(player);
 
+	GridComponent& map_grid = map->GetGridComp();
 
 	aimDirGrid = new GridComponent(this, 1000);
-	aimDirGrid->setTileSize(map->GetGridComp().getTileSize());
-	aimDirGrid->setGridSize(map->GetGridComp().getGridSize());
+	aimDirGrid->setTileSize(map_grid.getTileSize());
+	aimDirGrid->setGridSize(map_grid.getGridSize());
 	aimDirGrid->setTileTraduction(1, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("aimDirOk")), false });
 	aimDirGrid->setTileTraduction(2, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("aimDirNotOk")), false });
 	aimDirGrid->setTileTraduction(3, new TileTraduction{ new GridTileDrawSprite(Assets::getTexture("dirPathfinding")), false });
 
-	managerP->AddTurnBasedActor(player);
+	manager->AddTurnBasedActor(player);
 
-	managerP->ForceGlobalTurnAction();
+	auto enemy_1 = new TurnBasedEnemy(*player, map_grid, Vector2{ 336.0f, 720.0f }, 50176.0f);
+	manager->AddTurnBasedActor(enemy_1);
+	manager->AddEnemy(enemy_1);
+
+	manager->ForceGlobalTurnAction();
 }
 
 void StoneshardPlayerInputs::updateActor(float dt)
@@ -31,6 +37,16 @@ void StoneshardPlayerInputs::updateActor(float dt)
 	aimDirGrid->resetToZero();
 
 	GridComponent& map_grid = map->GetGridComp();
+	Vector2 mouse_pos = getGame().getMousePosition();
+
+	bool aiming_enemy = false;
+	vector<TurnBasedEnemy*> enemies = manager->GetEnemiesList();
+	for (auto enemy : enemies)
+	{
+		if (!enemy->GetIsVisible()) continue;
+		if (enemy->GetPlayerDetected()) player->ForceClearMovement();
+		if (enemy->IsUnderMouse(mouse_pos)) aiming_enemy = true;
+	}
 
 
 	if (player->HasMovementWaiting())
@@ -63,11 +79,10 @@ void StoneshardPlayerInputs::updateActor(float dt)
 	}
 	else
 	{
-		Vector2 mouse_pos = getGame().getMousePosition();
-
 		if (player->IsUnderMouse(mouse_pos)) return;
 		int map_mouse_x, map_mouse_y = 0;
 		int map_player_x, map_player_y = 0;
+
 
 		if (map_grid.intersectWithScreenPoint(mouse_pos, &map_mouse_x, &map_mouse_y))
 		{
@@ -98,9 +113,13 @@ void StoneshardPlayerInputs::updateActor(float dt)
 
 						player->SetMovementList(move_list);
 						lastDestinationRegistered = map_mouse;
+						manager->PlayGlobalTurnAction();
 					}
 
-					aimDirGrid->setGridElement(map_mouse_x, map_mouse_y, 1);
+					if (!aiming_enemy)
+					{
+						aimDirGrid->setGridElement(map_mouse_x, map_mouse_y, 1);
+					}
 					dir_way.pop_back();
 					while (!dir_way.empty())
 					{

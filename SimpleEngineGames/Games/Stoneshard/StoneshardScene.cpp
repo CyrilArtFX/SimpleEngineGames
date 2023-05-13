@@ -15,6 +15,7 @@ void StoneshardScene::load(Game* game)
 	Assets::loadTexture(game->getRenderer(), "DirPathfinding.png", "dirPathfinding");
 	Assets::loadTexture(game->getRenderer(), "Player.png", "player");
 	Assets::loadTexture(game->getRenderer(), "Enemy.png", "enemy");
+	Assets::loadTexture(game->getRenderer(), "EnemyHighlighted.png", "enemy_highlight");
 	Assets::loadGridMap("StoneshardMapV1.lua", "mapV1");
 	Assets::loadGridMap("StoneshardMapV2.lua", "mapV2");
 	Assets::loadTexture(game->getRenderer(), "Tiles/grass.png", "tile_grass");

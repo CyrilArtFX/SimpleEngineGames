@@ -27,6 +27,21 @@ void StoneshardManager::RemoveTurnBasedActor(ITurnBasedActor* actor)
 	}
 }
 
+void StoneshardManager::AddEnemy(TurnBasedEnemy* enemy)
+{
+	enemiesList.emplace_back(enemy);
+}
+
+void StoneshardManager::RemoveEnemy(TurnBasedEnemy* enemy)
+{
+	auto iter = std::find(begin(enemiesList), end(enemiesList), enemy);
+	if (iter != end(enemiesList))
+	{
+		std::iter_swap(iter, end(enemiesList) - 1);
+		enemiesList.pop_back();
+	}
+}
+
 void StoneshardManager::PlayGlobalTurnAction()
 {
 	if (turnTimeCounter <= 0.0f)
