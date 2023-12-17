@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Timer.h"
 #include "Utils/Log.h"
+#include <algorithm>
 
 bool Game::initialize(const char* windowName, int windowWidth, int windowHeight, Color backgroundColor)
 {

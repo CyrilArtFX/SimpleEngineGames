@@ -1,4 +1,5 @@
 #include "StoneshardManager.h"
+#include <algorithm>
 
 StoneshardManager::StoneshardManager() : Actor()
 {

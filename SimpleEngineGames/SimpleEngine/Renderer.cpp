@@ -14,6 +14,7 @@
 #include <Components/DrawComponents/DrawTextComponent.h>
 #include <Components/CollisionComponents/ICollision.h>
 #include <iostream>
+#include <algorithm>
 
 Renderer::Renderer() : SDLRenderer(nullptr)
 {
